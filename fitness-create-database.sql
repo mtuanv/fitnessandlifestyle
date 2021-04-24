@@ -16,6 +16,7 @@ create table Goal(
 	Id int identity(1,1) primary key,
 	weightDesired float not null,
 	StatusGoal bit,
+	Category int not null,
 	UserId int foreign key references ProfileUser(Id) not null,
 );
 
@@ -31,7 +32,9 @@ create table WorkOut(
 	Content nvarchar(255) not null,
 	Title nvarchar(255) not null,
 	WeightChange float not null,
-	AgeRange int not null,
+	minAge int,
+	maxAge int,
+	Category int not null,
 	ForGender bit not null,
 	DayPerWeek int not null,
 	ProgressTime float not null,
@@ -52,6 +55,7 @@ create table DietPlan(
 	Title nvarchar(255) not null,
 	Content nvarchar(255) not null,
 	Link nvarchar(255) not null,
+	Category int not null,
 );
 
 create table Resources(
@@ -59,6 +63,7 @@ create table Resources(
 	Title nvarchar(255) not null,
 	Link nvarchar(255) not null,
 	Content nvarchar(255) not null,
+	Category int not null,
 );
 
 create table Orders(
