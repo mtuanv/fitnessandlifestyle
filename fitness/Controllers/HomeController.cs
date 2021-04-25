@@ -12,6 +12,10 @@ namespace fitness.Controllers
         {
             return View();
         }
+         public ActionResult Team()
+        {
+            return View();
+        }
 
         public ActionResult About()
         {

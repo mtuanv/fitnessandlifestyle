@@ -86,6 +86,11 @@ namespace fitness
             }
             return manager;
         }
+
+        internal Task CreateAsync(ApplicationUser user, string password, int age, int weight, int height)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     // Configure the application sign-in manager which is used in this application.
