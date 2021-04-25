@@ -180,6 +180,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ResourcesController.cs" />
     <Compile Include="Controllers\WorkOutsController.cs" />
     <Compile Include="Controllers\Workout_DayPerWeekController.cs" />
@@ -366,6 +367,7 @@
       <DependentUpon>ADOModel.edmx</DependentUpon>
       <LastGenOutput>ADOModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Public\css\bach.css" />
     <Content Include="Public\css\barfiller.css" />
     <Content Include="Public\css\bootstrap.min.css" />
     <Content Include="Public\css\flaticon.css" />
@@ -379,6 +381,7 @@
     <Content Include="Public\fonts\fontawesome-webfont.svg" />
     <Content Include="Public\img\about-us.jpg" />
     <Content Include="Public\img\banner-bg.jpg" />
+    <Content Include="Public\img\banner-profile.jpg" />
     <Content Include="Public\img\blog\blog-1.jpg" />
     <Content Include="Public\img\blog\blog-2.jpg" />
     <Content Include="Public\img\blog\blog-3.jpg" />
@@ -392,6 +395,7 @@
     <Content Include="Public\img\blog\details\details-2.jpg" />
     <Content Include="Public\img\blog\details\details-hero.jpg" />
     <Content Include="Public\img\blog\details\quote-left.png" />
+    <Content Include="Public\img\bmi.png" />
     <Content Include="Public\img\breadcrumb-bg.jpg" />
     <Content Include="Public\img\classes\class-1.jpg" />
     <Content Include="Public\img\classes\class-2.jpg" />
@@ -430,7 +434,9 @@
     <Content Include="Public\img\team\team-6.jpg" />
     <Content Include="Public\img\testimonial\testimonial-1.jpg" />
     <Content Include="Public\img\testimonial\testimonial-2.jpg" />
+    <Content Include="Public\js\bach.js" />
     <Content Include="Public\js\bootstrap.min.js" />
+    <Content Include="Public\js\diagram-data.js" />
     <Content Include="Public\js\jquery-3.3.1.min.js" />
     <Content Include="Public\js\jquery.barfiller.js" />
     <Content Include="Public\js\jquery.magnific-popup.min.js" />
@@ -438,6 +444,7 @@
     <Content Include="Public\js\main.js" />
     <Content Include="Public\js\masonry.pkgd.min.js" />
     <Content Include="Public\js\owl.carousel.min.js" />
+    <Content Include="Public\js\side-bar-menu.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\ADOModel.edmx">
@@ -588,6 +595,10 @@
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\Shared\_NavigationLayout.cshtml" />
     <Content Include="Views\Shared\_FooterLayout.cshtml" />
+    <Content Include="Views\Profile\UserDiagram.cshtml" />
+    <Content Include="Views\Profile\UserProfile.cshtml" />
+    <Content Include="Views\Profile\UserPlan.cshtml" />
+    <Content Include="Views\Profile\UserBMI.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
