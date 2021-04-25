@@ -223,6 +223,7 @@
     <Compile Include="Models\DietPlan.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DietViewModel.cs" />
     <Compile Include="Models\Diet_DayPerWeek.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
@@ -246,6 +247,7 @@
     <Compile Include="Models\WorkOut.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WorkOutViewModel.cs" />
     <Compile Include="Models\Workout_DayPerWeek.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
@@ -370,6 +372,7 @@
     <Content Include="Public\css\font-awesome.min.css" />
     <Content Include="Public\css\magnific-popup.css" />
     <Content Include="Public\css\owl.carousel.min.css" />
+    <Content Include="Public\css\owl.theme.default.min.css" />
     <Content Include="Public\css\slicknav.min.css" />
     <Content Include="Public\css\style.css" />
     <Content Include="Public\fonts\Flaticon.svg" />

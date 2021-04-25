@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using fitness.Models;
+using Microsoft.AspNet.Identity;
 
 namespace fitness.Controllers
 {
@@ -52,6 +53,9 @@ namespace fitness.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,UserId,WorkoutId,DietplanId")] Order order)
         {
+            var username = System.Web.HttpContext.Current.User.Identity.Name;
+            AspNetUser user = db.AspNetUsers.Where(u => u.Email.Equals(username)).First();
+            order.UserId = user.Id;
             if (ModelState.IsValid)
             {
                 db.Orders.Add(order);

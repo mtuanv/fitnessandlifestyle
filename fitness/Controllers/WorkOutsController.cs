@@ -23,6 +23,7 @@ namespace fitness.Controllers
         // GET: WorkOuts/Details/5
         public ActionResult Details(int? id)
         {
+            WorkOutViewModel wvm = new WorkOutViewModel();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -32,7 +33,11 @@ namespace fitness.Controllers
             {
                 return HttpNotFound();
             }
-            return View(workOut);
+            wvm.workOut = workOut;
+            int category = db.WorkOuts.Find(id).Category;
+            IList<DietPlan> dietPlans = db.DietPlans.Where(d => d.Category == category).ToList();
+            wvm.dietPlans = dietPlans;
+            return View(wvm);
         }
 
         // GET: WorkOuts/Create

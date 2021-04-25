@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -23,6 +24,7 @@ namespace fitness.Controllers
         // GET: DietPlans/Details/5
         public ActionResult Details(int? id)
         {
+            DietViewModel dvm = new DietViewModel();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -32,7 +34,11 @@ namespace fitness.Controllers
             {
                 return HttpNotFound();
             }
-            return View(dietPlan);
+            dvm.dietPlan = dietPlan;
+            int category = db.DietPlans.Find(id).Category;
+            IList<WorkOut> workOut = db.WorkOuts.Where(w=> w.Category == category).ToList();
+            dvm.workOuts = workOut;
+            return View(dvm);
         }
 
         // GET: DietPlans/Create
