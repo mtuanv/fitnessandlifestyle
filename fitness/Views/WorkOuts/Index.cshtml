@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-lg-3 order-lg-1 col-md-6 p-0">
                 <div class="ss-pic">
-                    <img src="~/Assets/WebClient/images/services-3.jpg" alt="" />
+                    <img src="~/Public/img/services/services-3.jpg" alt=""/>
                 </div>
 
             </div>
@@ -42,12 +42,12 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut dolore
                         facilisis.
                     </p>
-                    <a href="#">Explore</a>
+                    <a href="#musleBuild">Explore</a>
                 </div>
             </div>
             <div class="col-lg-3 order-lg-3 col-md-6 p-0">
                 <div class="ss-pic">
-                    <img src="~/Assets/WebClient/images/services-4.jpg" alt="" />
+                    <img src="~/Public/img/services/services-4.jpg" alt=""/>
                 </div>
             </div>
             <div class="col-lg-3 order-lg-3 col-md-6 p-0">
@@ -57,7 +57,7 @@
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut dolore
                         facilisis.
                     </p>
-                    <a href="#">Explore</a>
+                    <a href="#fatLoss">Explore</a>
                 </div>
             </div>
         </div>
@@ -86,15 +86,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="section-title">
-                    <span>fat loss</span>
-                    <h2>Choose your suitable plan</h2>
+                <div class="section-title" id="muscleBuild">
+                    <span>Muscle building</span>
+                    <h2>Hardcore plan for strengthening your body</h2>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="ts-slider owl-carousel">
-                @foreach (var item in Model.WorkOuts.Where(x => x.Category == 2))
+                @foreach (var item in Model.WorkOuts.Where(x => x.Category == 1))
                 {
                     <div class="col-lg-4 col-md-8" style="padding-top: 15px">
                         <div class="ps-item">
@@ -117,23 +117,26 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <div class="section-title">
-                    <span>Muscle building</span>
-                    <h2>Hardcore plan for strengthening your body</h2>
+                <div class="section-title" id="fatLoss">
+                    <span>fat loss</span>
+                    <h2>Choose your suitable plan</h2>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="ts-slider owl-carousel">
-                @foreach (var item in Model.WorkOuts.Where(x => x.Category == 1))
+                @foreach (var item in Model.WorkOuts.Where(x => x.Category == 2))
                 {
                     <div class="col-lg-4 col-md-8" style="padding-top: 15px">
                         <div class="ps-item">
                             <h3>@item.Title</h3>
+                            <div class="pi-price">
+                                <span>Featured Exercises</span>
+                            </div>
                             <ul>
                                 @foreach (var wd in item.Workout_DayPerWeek.Where(x => x.DayPerWeekId == 1))
                                 {
-                                    foreach (var ex in wd.Exercises)
+                                    foreach (var ex in wd.Exercises.Take(5))
                                     {
                                         <li>@ex.Title</li>
                                     }
