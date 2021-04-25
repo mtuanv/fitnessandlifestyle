@@ -129,6 +129,7 @@
     <Property Name="UserId" Type="nvarchar" MaxLength="128" />
     <Property Name="WorkoutId" Type="int" />
     <Property Name="DietplanId" Type="int" />
+    <Property Name="timestamp" Type="date" />
   </EntityType>
   <EntityType Name="Resources">
     <Key>
@@ -137,8 +138,8 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Link" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Content" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Category" Type="int" Nullable="false" />
+    <Property Name="Content" Type="ntext" />
+    <Property Name="Category" Type="int" />
   </EntityType>
   <EntityType Name="WorkOut">
     <Key>
@@ -154,6 +155,7 @@
     <Property Name="ForGender" Type="int" Nullable="false" />
     <Property Name="ProgressTime" Type="float" Nullable="false" />
     <Property Name="Link" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="StartDay" Type="datetime" />
   </EntityType>
   <EntityType Name="Workout_DayPerWeek">
     <Key>
@@ -162,6 +164,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DayPerWeekId" Type="int" />
     <Property Name="WorkOutId" Type="int" />
+    <Property Name="Status" Type="int" />
   </EntityType>
   <Association Name="FK__Daily_Diet__DDId__5D95E53A">
     <End Role="Diet_DayPerWeek" Type="Self.Diet_DayPerWeek" Multiplicity="0..1" />

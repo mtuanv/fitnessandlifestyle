@@ -17,7 +17,11 @@ namespace fitness.Controllers
         // GET: WorkOuts
         public ActionResult Index()
         {
-            return View(db.WorkOuts.ToList());
+            WorkoutModelIndex model = new WorkoutModelIndex();
+            model.Exercises = db.Exercises.Where(e => e.Workout_DayPerWeek.DayPerWeekId == 1).ToList();
+            model.WorkOuts = db.WorkOuts.ToList();
+
+            return View(model);
         }
 
         // GET: WorkOuts/Details/5

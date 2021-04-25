@@ -247,6 +247,7 @@
     <Compile Include="Models\WorkOut.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WorkoutModelIndex.cs" />
     <Compile Include="Models\WorkOutViewModel.cs" />
     <Compile Include="Models\Workout_DayPerWeek.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
