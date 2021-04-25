@@ -214,6 +214,9 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BMI.cs" />
+    <Compile Include="Models\BMI_OBJ.cs" />
+    <Compile Include="Models\BMI_parameter.cs" />
     <Compile Include="Models\Daily_Diet.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
@@ -367,6 +370,7 @@
       <DependentUpon>ADOModel.edmx</DependentUpon>
       <LastGenOutput>ADOModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Public\css\bach.css" />
     <Content Include="Public\css\barfiller.css" />
     <Content Include="Public\css\bootstrap.min.css" />
     <Content Include="Public\css\flaticon.css" />
@@ -589,6 +593,8 @@
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\Shared\_NavigationLayout.cshtml" />
     <Content Include="Views\Shared\_FooterLayout.cshtml" />
+    <Content Include="Views\Home\BMI.cshtml" />
+    <Content Include="Views\Home\tex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
