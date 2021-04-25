@@ -66,6 +66,31 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="Daily_Diet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Content" Type="text" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DDId" Type="int" />
+        </EntityType>
+        <EntityType Name="DayPerWeek">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Day" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Diet_DayPerWeek">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DayPerWeekId" Type="int" />
+          <Property Name="DietID" Type="int" />
+        </EntityType>
         <EntityType Name="DietPlan">
           <Key>
             <PropertyRef Name="Id" />
@@ -82,11 +107,11 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Content" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Content" Type="text" Nullable="false" />
           <Property Name="Link" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="exerciseReps" Type="int" Nullable="false" />
           <Property Name="exersiceSets" Type="int" Nullable="false" />
-          <Property Name="WorkOutId" Type="int" />
+          <Property Name="WDId" Type="int" />
         </EntityType>
         <EntityType Name="Goal">
           <Key>
@@ -142,31 +167,84 @@
           <Property Name="Content" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Category" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="WorkOut">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Content" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Content" Type="ntext" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="WeightChange" Type="float" Nullable="false" />
-          <Property Name="MinAge" Type="int" Nullable="false" />
-          <Property Name="MaxAge" Type="int" Nullable="false" />
-          <Property Name="ForGender" Type="bit" Nullable="false" />
-          <Property Name="DayPerWeek" Type="int" Nullable="false" />
-          <Property Name="ProgressTime" Type="float" Nullable="false" />
+          <Property Name="minAge" Type="int" />
+          <Property Name="maxAge" Type="int" />
           <Property Name="Category" Type="int" Nullable="false" />
-          <Property Name="Link" Type="varchar" MaxLength="255" />
+          <Property Name="ForGender" Type="int" Nullable="false" />
+          <Property Name="ProgressTime" Type="float" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Exercise__WorkOu__68487DD7">
-          <End Role="WorkOut" Type="Self.WorkOut" Multiplicity="0..1" />
+        <EntityType Name="Workout_DayPerWeek">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DayPerWeekId" Type="int" />
+          <Property Name="WorkOutId" Type="int" />
+        </EntityType>
+        <Association Name="FK__Daily_Diet__DDId__37703C52">
+          <End Role="Diet_DayPerWeek" Type="Self.Diet_DayPerWeek" Multiplicity="0..1" />
+          <End Role="Daily_Diet" Type="Self.Daily_Diet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diet_DayPerWeek">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Daily_Diet">
+              <PropertyRef Name="DDId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Diet_DayP__DayPe__32AB8735">
+          <End Role="DayPerWeek" Type="Self.DayPerWeek" Multiplicity="0..1" />
+          <End Role="Diet_DayPerWeek" Type="Self.Diet_DayPerWeek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DayPerWeek">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Diet_DayPerWeek">
+              <PropertyRef Name="DayPerWeekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Diet_DayP__DietI__339FAB6E">
+          <End Role="DietPlan" Type="Self.DietPlan" Multiplicity="0..1" />
+          <End Role="Diet_DayPerWeek" Type="Self.Diet_DayPerWeek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DietPlan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Diet_DayPerWeek">
+              <PropertyRef Name="DietID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exercise__WDId__2BFE89A6">
+          <End Role="Workout_DayPerWeek" Type="Self.Workout_DayPerWeek" Multiplicity="0..1" />
           <End Role="Exercise" Type="Self.Exercise" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="WorkOut">
+            <Principal Role="Workout_DayPerWeek">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Exercise">
-              <PropertyRef Name="WorkOutId" />
+              <PropertyRef Name="WDId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -194,7 +272,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__DietPlan__70DDC3D8">
+        <Association Name="FK__Orders__DietPlan__3C34F16F">
           <End Role="DietPlan" Type="Self.DietPlan" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -206,7 +284,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__UserId__6EF57B66">
+        <Association Name="FK__Orders__UserId__3A4CA8FD">
           <End Role="ProfileUser" Type="Self.ProfileUser" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -218,7 +296,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__WorkOutI__6FE99F9F">
+        <Association Name="FK__Orders__WorkOutI__3B40CD36">
           <End Role="WorkOut" Type="Self.WorkOut" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -226,6 +304,30 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Orders">
+              <PropertyRef Name="WorkOutId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Workout_D__DayPe__282DF8C2">
+          <End Role="DayPerWeek" Type="Self.DayPerWeek" Multiplicity="0..1" />
+          <End Role="Workout_DayPerWeek" Type="Self.Workout_DayPerWeek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DayPerWeek">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Workout_DayPerWeek">
+              <PropertyRef Name="DayPerWeekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Workout_D__WorkO__29221CFB">
+          <End Role="WorkOut" Type="Self.WorkOut" Multiplicity="0..1" />
+          <End Role="Workout_DayPerWeek" Type="Self.Workout_DayPerWeek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkOut">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Workout_DayPerWeek">
               <PropertyRef Name="WorkOutId" />
             </Dependent>
           </ReferentialConstraint>
@@ -293,6 +395,9 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Daily_Diet" EntityType="Self.Daily_Diet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DayPerWeek" EntityType="Self.DayPerWeek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Diet_DayPerWeek" EntityType="Self.Diet_DayPerWeek" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DietPlan" EntityType="Self.DietPlan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exercise" EntityType="Self.Exercise" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Goal" EntityType="Self.Goal" Schema="dbo" store:Type="Tables" />
@@ -300,9 +405,23 @@
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProfileUser" EntityType="Self.ProfileUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Resources" EntityType="Self.Resources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkOut" EntityType="Self.WorkOut" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Exercise__WorkOu__68487DD7" Association="Self.FK__Exercise__WorkOu__68487DD7">
-            <End Role="WorkOut" EntitySet="WorkOut" />
+          <EntitySet Name="Workout_DayPerWeek" EntityType="Self.Workout_DayPerWeek" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Daily_Diet__DDId__37703C52" Association="Self.FK__Daily_Diet__DDId__37703C52">
+            <End Role="Diet_DayPerWeek" EntitySet="Diet_DayPerWeek" />
+            <End Role="Daily_Diet" EntitySet="Daily_Diet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Diet_DayP__DayPe__32AB8735" Association="Self.FK__Diet_DayP__DayPe__32AB8735">
+            <End Role="DayPerWeek" EntitySet="DayPerWeek" />
+            <End Role="Diet_DayPerWeek" EntitySet="Diet_DayPerWeek" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Diet_DayP__DietI__339FAB6E" Association="Self.FK__Diet_DayP__DietI__339FAB6E">
+            <End Role="DietPlan" EntitySet="DietPlan" />
+            <End Role="Diet_DayPerWeek" EntitySet="Diet_DayPerWeek" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exercise__WDId__2BFE89A6" Association="Self.FK__Exercise__WDId__2BFE89A6">
+            <End Role="Workout_DayPerWeek" EntitySet="Workout_DayPerWeek" />
             <End Role="Exercise" EntitySet="Exercise" />
           </AssociationSet>
           <AssociationSet Name="FK__Goal__UserId__60A75C0F" Association="Self.FK__Goal__UserId__60A75C0F">
@@ -313,17 +432,25 @@
             <End Role="Goal" EntitySet="Goal" />
             <End Role="GoalProgress" EntitySet="GoalProgress" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__DietPlan__70DDC3D8" Association="Self.FK__Orders__DietPlan__70DDC3D8">
+          <AssociationSet Name="FK__Orders__DietPlan__3C34F16F" Association="Self.FK__Orders__DietPlan__3C34F16F">
             <End Role="DietPlan" EntitySet="DietPlan" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__UserId__6EF57B66" Association="Self.FK__Orders__UserId__6EF57B66">
+          <AssociationSet Name="FK__Orders__UserId__3A4CA8FD" Association="Self.FK__Orders__UserId__3A4CA8FD">
             <End Role="ProfileUser" EntitySet="ProfileUser" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__WorkOutI__6FE99F9F" Association="Self.FK__Orders__WorkOutI__6FE99F9F">
+          <AssociationSet Name="FK__Orders__WorkOutI__3B40CD36" Association="Self.FK__Orders__WorkOutI__3B40CD36">
             <End Role="WorkOut" EntitySet="WorkOut" />
             <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Workout_D__DayPe__282DF8C2" Association="Self.FK__Workout_D__DayPe__282DF8C2">
+            <End Role="DayPerWeek" EntitySet="DayPerWeek" />
+            <End Role="Workout_DayPerWeek" EntitySet="Workout_DayPerWeek" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Workout_D__WorkO__29221CFB" Association="Self.FK__Workout_D__WorkO__29221CFB">
+            <End Role="WorkOut" EntitySet="WorkOut" />
+            <End Role="Workout_DayPerWeek" EntitySet="Workout_DayPerWeek" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -406,6 +533,37 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
+        <EntityType Name="Daily_Diet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DDId" Type="Int32" />
+          <NavigationProperty Name="Diet_DayPerWeek" Relationship="Self.FK__Daily_Diet__DDId__37703C52" FromRole="Daily_Diet" ToRole="Diet_DayPerWeek" />
+        </EntityType>
+        <EntityType Name="DayPerWeek">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Day" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Diet_DayPerWeek" Relationship="Self.FK__Diet_DayP__DayPe__32AB8735" FromRole="DayPerWeek" ToRole="Diet_DayPerWeek" />
+          <NavigationProperty Name="Workout_DayPerWeek" Relationship="Self.FK__Workout_D__DayPe__282DF8C2" FromRole="DayPerWeek" ToRole="Workout_DayPerWeek" />
+        </EntityType>
+        <EntityType Name="Diet_DayPerWeek">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DayPerWeekId" Type="Int32" />
+          <Property Name="DietID" Type="Int32" />
+          <NavigationProperty Name="Daily_Diet" Relationship="Self.FK__Daily_Diet__DDId__37703C52" FromRole="Diet_DayPerWeek" ToRole="Daily_Diet" />
+          <NavigationProperty Name="DayPerWeek" Relationship="Self.FK__Diet_DayP__DayPe__32AB8735" FromRole="Diet_DayPerWeek" ToRole="DayPerWeek" />
+          <NavigationProperty Name="DietPlan" Relationship="Self.FK__Diet_DayP__DietI__339FAB6E" FromRole="Diet_DayPerWeek" ToRole="DietPlan" />
+        </EntityType>
         <EntityType Name="DietPlan">
           <Key>
             <PropertyRef Name="Id" />
@@ -415,7 +573,8 @@
           <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Category" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__DietPlan__70DDC3D8" FromRole="DietPlan" ToRole="Orders" />
+          <NavigationProperty Name="Diet_DayPerWeek" Relationship="Self.FK__Diet_DayP__DietI__339FAB6E" FromRole="DietPlan" ToRole="Diet_DayPerWeek" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__DietPlan__3C34F16F" FromRole="DietPlan" ToRole="Orders" />
         </EntityType>
         <EntityType Name="Exercise">
           <Key>
@@ -423,12 +582,12 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="exerciseReps" Type="Int32" Nullable="false" />
           <Property Name="exersiceSets" Type="Int32" Nullable="false" />
-          <Property Name="WorkOutId" Type="Int32" />
-          <NavigationProperty Name="WorkOut" Relationship="Self.FK__Exercise__WorkOu__68487DD7" FromRole="Exercise" ToRole="WorkOut" />
+          <Property Name="WDId" Type="Int32" />
+          <NavigationProperty Name="Workout_DayPerWeek" Relationship="Self.FK__Exercise__WDId__2BFE89A6" FromRole="Exercise" ToRole="Workout_DayPerWeek" />
         </EntityType>
         <EntityType Name="Goal">
           <Key>
@@ -460,9 +619,9 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="WorkOutId" Type="Int32" />
           <Property Name="DietPlanId" Type="Int32" />
-          <NavigationProperty Name="DietPlan" Relationship="Self.FK__Orders__DietPlan__70DDC3D8" FromRole="Orders" ToRole="DietPlan" />
-          <NavigationProperty Name="ProfileUser" Relationship="Self.FK__Orders__UserId__6EF57B66" FromRole="Orders" ToRole="ProfileUser" />
-          <NavigationProperty Name="WorkOut" Relationship="Self.FK__Orders__WorkOutI__6FE99F9F" FromRole="Orders" ToRole="WorkOut" />
+          <NavigationProperty Name="DietPlan" Relationship="Self.FK__Orders__DietPlan__3C34F16F" FromRole="Orders" ToRole="DietPlan" />
+          <NavigationProperty Name="ProfileUser" Relationship="Self.FK__Orders__UserId__3A4CA8FD" FromRole="Orders" ToRole="ProfileUser" />
+          <NavigationProperty Name="WorkOut" Relationship="Self.FK__Orders__WorkOutI__3B40CD36" FromRole="Orders" ToRole="WorkOut" />
         </EntityType>
         <EntityType Name="ProfileUser">
           <Key>
@@ -480,7 +639,7 @@
           <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Goals" Relationship="Self.FK__Goal__UserId__60A75C0F" FromRole="ProfileUser" ToRole="Goal" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__UserId__6EF57B66" FromRole="ProfileUser" ToRole="Orders" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__UserId__3A4CA8FD" FromRole="ProfileUser" ToRole="Orders" />
         </EntityType>
         <EntityType Name="Resource">
           <Key>
@@ -492,23 +651,43 @@
           <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Category" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="WorkOut">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="WeightChange" Type="Double" Nullable="false" />
-          <Property Name="MinAge" Type="Int32" Nullable="false" />
-          <Property Name="MaxAge" Type="Int32" Nullable="false" />
-          <Property Name="ForGender" Type="Boolean" Nullable="false" />
-          <Property Name="DayPerWeek" Type="Int32" Nullable="false" />
-          <Property Name="ProgressTime" Type="Double" Nullable="false" />
+          <Property Name="minAge" Type="Int32" />
+          <Property Name="maxAge" Type="Int32" />
           <Property Name="Category" Type="Int32" Nullable="false" />
-          <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Exercises" Relationship="Self.FK__Exercise__WorkOu__68487DD7" FromRole="WorkOut" ToRole="Exercise" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__WorkOutI__6FE99F9F" FromRole="WorkOut" ToRole="Orders" />
+          <Property Name="ForGender" Type="Int32" Nullable="false" />
+          <Property Name="ProgressTime" Type="Double" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__WorkOutI__3B40CD36" FromRole="WorkOut" ToRole="Orders" />
+          <NavigationProperty Name="Workout_DayPerWeek" Relationship="Self.FK__Workout_D__WorkO__29221CFB" FromRole="WorkOut" ToRole="Workout_DayPerWeek" />
+        </EntityType>
+        <EntityType Name="Workout_DayPerWeek">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DayPerWeekId" Type="Int32" />
+          <Property Name="WorkOutId" Type="Int32" />
+          <NavigationProperty Name="DayPerWeek" Relationship="Self.FK__Workout_D__DayPe__282DF8C2" FromRole="Workout_DayPerWeek" ToRole="DayPerWeek" />
+          <NavigationProperty Name="Exercises" Relationship="Self.FK__Exercise__WDId__2BFE89A6" FromRole="Workout_DayPerWeek" ToRole="Exercise" />
+          <NavigationProperty Name="WorkOut" Relationship="Self.FK__Workout_D__WorkO__29221CFB" FromRole="Workout_DayPerWeek" ToRole="WorkOut" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -538,7 +717,55 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__DietPlan__70DDC3D8">
+        <Association Name="FK__Daily_Diet__DDId__37703C52">
+          <End Role="Diet_DayPerWeek" Type="Self.Diet_DayPerWeek" Multiplicity="0..1" />
+          <End Role="Daily_Diet" Type="Self.Daily_Diet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Diet_DayPerWeek">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Daily_Diet">
+              <PropertyRef Name="DDId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Diet_DayP__DayPe__32AB8735">
+          <End Role="DayPerWeek" Type="Self.DayPerWeek" Multiplicity="0..1" />
+          <End Role="Diet_DayPerWeek" Type="Self.Diet_DayPerWeek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DayPerWeek">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Diet_DayPerWeek">
+              <PropertyRef Name="DayPerWeekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Workout_D__DayPe__282DF8C2">
+          <End Role="DayPerWeek" Type="Self.DayPerWeek" Multiplicity="0..1" />
+          <End Role="Workout_DayPerWeek" Type="Self.Workout_DayPerWeek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DayPerWeek">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Workout_DayPerWeek">
+              <PropertyRef Name="DayPerWeekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Diet_DayP__DietI__339FAB6E">
+          <End Role="DietPlan" Type="Self.DietPlan" Multiplicity="0..1" />
+          <End Role="Diet_DayPerWeek" Type="Self.Diet_DayPerWeek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DietPlan">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Diet_DayPerWeek">
+              <PropertyRef Name="DietID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__DietPlan__3C34F16F">
           <End Role="DietPlan" Type="Self.DietPlan" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -550,15 +777,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Exercise__WorkOu__68487DD7">
-          <End Role="WorkOut" Type="Self.WorkOut" Multiplicity="0..1" />
+        <Association Name="FK__Exercise__WDId__2BFE89A6">
+          <End Role="Workout_DayPerWeek" Type="Self.Workout_DayPerWeek" Multiplicity="0..1" />
           <End Role="Exercise" Type="Self.Exercise" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="WorkOut">
+            <Principal Role="Workout_DayPerWeek">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Exercise">
-              <PropertyRef Name="WorkOutId" />
+              <PropertyRef Name="WDId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -586,7 +813,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__UserId__6EF57B66">
+        <Association Name="FK__Orders__UserId__3A4CA8FD">
           <End Role="ProfileUser" Type="Self.ProfileUser" Multiplicity="1" />
           <End Role="Orders" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -598,7 +825,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__WorkOutI__6FE99F9F">
+        <Association Name="FK__Orders__WorkOutI__3B40CD36">
           <End Role="WorkOut" Type="Self.WorkOut" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
@@ -610,16 +837,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Workout_D__WorkO__29221CFB">
+          <End Role="WorkOut" Type="Self.WorkOut" Multiplicity="0..1" />
+          <End Role="Workout_DayPerWeek" Type="Self.Workout_DayPerWeek" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkOut">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Workout_DayPerWeek">
+              <PropertyRef Name="WorkOutId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="AspNetUserRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="fitnessandlifestyleEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="fitnessandlifestyle" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Daily_Diet" EntityType="Self.Daily_Diet" />
+          <EntitySet Name="DayPerWeeks" EntityType="Self.DayPerWeek" />
+          <EntitySet Name="Diet_DayPerWeek" EntityType="Self.Diet_DayPerWeek" />
           <EntitySet Name="DietPlans" EntityType="Self.DietPlan" />
           <EntitySet Name="Exercises" EntityType="Self.Exercise" />
           <EntitySet Name="Goals" EntityType="Self.Goal" />
@@ -627,7 +869,9 @@
           <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="ProfileUsers" EntityType="Self.ProfileUser" />
           <EntitySet Name="Resources" EntityType="Self.Resource" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="WorkOuts" EntityType="Self.WorkOut" />
+          <EntitySet Name="Workout_DayPerWeek" EntityType="Self.Workout_DayPerWeek" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -636,12 +880,28 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__DietPlan__70DDC3D8" Association="Self.FK__Orders__DietPlan__70DDC3D8">
+          <AssociationSet Name="FK__Daily_Diet__DDId__37703C52" Association="Self.FK__Daily_Diet__DDId__37703C52">
+            <End Role="Diet_DayPerWeek" EntitySet="Diet_DayPerWeek" />
+            <End Role="Daily_Diet" EntitySet="Daily_Diet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Diet_DayP__DayPe__32AB8735" Association="Self.FK__Diet_DayP__DayPe__32AB8735">
+            <End Role="DayPerWeek" EntitySet="DayPerWeeks" />
+            <End Role="Diet_DayPerWeek" EntitySet="Diet_DayPerWeek" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Workout_D__DayPe__282DF8C2" Association="Self.FK__Workout_D__DayPe__282DF8C2">
+            <End Role="DayPerWeek" EntitySet="DayPerWeeks" />
+            <End Role="Workout_DayPerWeek" EntitySet="Workout_DayPerWeek" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Diet_DayP__DietI__339FAB6E" Association="Self.FK__Diet_DayP__DietI__339FAB6E">
+            <End Role="DietPlan" EntitySet="DietPlans" />
+            <End Role="Diet_DayPerWeek" EntitySet="Diet_DayPerWeek" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__DietPlan__3C34F16F" Association="Self.FK__Orders__DietPlan__3C34F16F">
             <End Role="DietPlan" EntitySet="DietPlans" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Exercise__WorkOu__68487DD7" Association="Self.FK__Exercise__WorkOu__68487DD7">
-            <End Role="WorkOut" EntitySet="WorkOuts" />
+          <AssociationSet Name="FK__Exercise__WDId__2BFE89A6" Association="Self.FK__Exercise__WDId__2BFE89A6">
+            <End Role="Workout_DayPerWeek" EntitySet="Workout_DayPerWeek" />
             <End Role="Exercise" EntitySet="Exercises" />
           </AssociationSet>
           <AssociationSet Name="FK__Goal__UserId__60A75C0F" Association="Self.FK__Goal__UserId__60A75C0F">
@@ -652,13 +912,17 @@
             <End Role="Goal" EntitySet="Goals" />
             <End Role="GoalProgress" EntitySet="GoalProgresses" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__UserId__6EF57B66" Association="Self.FK__Orders__UserId__6EF57B66">
+          <AssociationSet Name="FK__Orders__UserId__3A4CA8FD" Association="Self.FK__Orders__UserId__3A4CA8FD">
             <End Role="ProfileUser" EntitySet="ProfileUsers" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__WorkOutI__6FE99F9F" Association="Self.FK__Orders__WorkOutI__6FE99F9F">
+          <AssociationSet Name="FK__Orders__WorkOutI__3B40CD36" Association="Self.FK__Orders__WorkOutI__3B40CD36">
             <End Role="WorkOut" EntitySet="WorkOuts" />
             <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Workout_D__WorkO__29221CFB" Association="Self.FK__Workout_D__WorkO__29221CFB">
+            <End Role="WorkOut" EntitySet="WorkOuts" />
+            <End Role="Workout_DayPerWeek" EntitySet="Workout_DayPerWeek" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -670,7 +934,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="fitnessandlifestyleModelStoreContainer" CdmEntityContainer="fitnessandlifestyleEntities">
+        <EntityContainerMapping StorageEntityContainer="fitnessandlifestyleModelStoreContainer" CdmEntityContainer="fitnessandlifestyle">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="fitnessandlifestyleModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -726,6 +990,34 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Daily_Diet">
+            <EntityTypeMapping TypeName="fitnessandlifestyleModel.Daily_Diet">
+              <MappingFragment StoreEntitySet="Daily_Diet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="DDId" ColumnName="DDId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DayPerWeeks">
+            <EntityTypeMapping TypeName="fitnessandlifestyleModel.DayPerWeek">
+              <MappingFragment StoreEntitySet="DayPerWeek">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Diet_DayPerWeek">
+            <EntityTypeMapping TypeName="fitnessandlifestyleModel.Diet_DayPerWeek">
+              <MappingFragment StoreEntitySet="Diet_DayPerWeek">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DayPerWeekId" ColumnName="DayPerWeekId" />
+                <ScalarProperty Name="DietID" ColumnName="DietID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DietPlans">
             <EntityTypeMapping TypeName="fitnessandlifestyleModel.DietPlan">
               <MappingFragment StoreEntitySet="DietPlan">
@@ -746,7 +1038,7 @@
                 <ScalarProperty Name="Link" ColumnName="Link" />
                 <ScalarProperty Name="exerciseReps" ColumnName="exerciseReps" />
                 <ScalarProperty Name="exersiceSets" ColumnName="exersiceSets" />
-                <ScalarProperty Name="WorkOutId" ColumnName="WorkOutId" />
+                <ScalarProperty Name="WDId" ColumnName="WDId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -809,6 +1101,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="fitnessandlifestyleModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="WorkOuts">
             <EntityTypeMapping TypeName="fitnessandlifestyleModel.WorkOut">
               <MappingFragment StoreEntitySet="WorkOut">
@@ -816,13 +1119,21 @@
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="WeightChange" ColumnName="WeightChange" />
-                <ScalarProperty Name="MinAge" ColumnName="MinAge" />
-                <ScalarProperty Name="MaxAge" ColumnName="MaxAge" />
-                <ScalarProperty Name="ForGender" ColumnName="ForGender" />
-                <ScalarProperty Name="DayPerWeek" ColumnName="DayPerWeek" />
-                <ScalarProperty Name="ProgressTime" ColumnName="ProgressTime" />
+                <ScalarProperty Name="minAge" ColumnName="minAge" />
+                <ScalarProperty Name="maxAge" ColumnName="maxAge" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ForGender" ColumnName="ForGender" />
+                <ScalarProperty Name="ProgressTime" ColumnName="ProgressTime" />
                 <ScalarProperty Name="Link" ColumnName="Link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workout_DayPerWeek">
+            <EntityTypeMapping TypeName="fitnessandlifestyleModel.Workout_DayPerWeek">
+              <MappingFragment StoreEntitySet="Workout_DayPerWeek">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DayPerWeekId" ColumnName="DayPerWeekId" />
+                <ScalarProperty Name="WorkOutId" ColumnName="WorkOutId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

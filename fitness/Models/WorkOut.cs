@@ -17,25 +17,24 @@ namespace fitness.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public WorkOut()
         {
-            this.Exercises = new HashSet<Exercise>();
             this.Orders = new HashSet<Order>();
+            this.Workout_DayPerWeek = new HashSet<Workout_DayPerWeek>();
         }
     
         public int Id { get; set; }
         public string Content { get; set; }
         public string Title { get; set; }
         public double WeightChange { get; set; }
-        public int MinAge { get; set; }
-        public int MaxAge { get; set; }
-        public bool ForGender { get; set; }
-        public int DayPerWeek { get; set; }
-        public double ProgressTime { get; set; }
+        public Nullable<int> minAge { get; set; }
+        public Nullable<int> maxAge { get; set; }
         public int Category { get; set; }
+        public int ForGender { get; set; }
+        public double ProgressTime { get; set; }
         public string Link { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Exercise> Exercises { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Workout_DayPerWeek> Workout_DayPerWeek { get; set; }
     }
 }

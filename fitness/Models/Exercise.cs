@@ -20,8 +20,8 @@ namespace fitness.Models
         public string Link { get; set; }
         public int exerciseReps { get; set; }
         public int exersiceSets { get; set; }
-        public Nullable<int> WorkOutId { get; set; }
+        public Nullable<int> WDId { get; set; }
     
-        public virtual WorkOut WorkOut { get; set; }
+        public virtual Workout_DayPerWeek Workout_DayPerWeek { get; set; }
     }
 }

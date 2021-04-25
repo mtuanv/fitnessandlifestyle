@@ -17,6 +17,7 @@ namespace fitness.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DietPlan()
         {
+            this.Diet_DayPerWeek = new HashSet<Diet_DayPerWeek>();
             this.Orders = new HashSet<Order>();
         }
     
@@ -26,6 +27,8 @@ namespace fitness.Models
         public string Link { get; set; }
         public int Category { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Diet_DayPerWeek> Diet_DayPerWeek { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
     }

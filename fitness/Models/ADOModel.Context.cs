@@ -13,10 +13,10 @@ namespace fitness.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class fitnessandlifestyleEntities : DbContext
+    public partial class fitnessandlifestyle : DbContext
     {
-        public fitnessandlifestyleEntities()
-            : base("name=fitnessandlifestyleEntities")
+        public fitnessandlifestyle()
+            : base("name=fitnessandlifestyle")
         {
         }
     
@@ -30,6 +30,9 @@ namespace fitness.Models
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Daily_Diet> Daily_Diet { get; set; }
+        public virtual DbSet<DayPerWeek> DayPerWeeks { get; set; }
+        public virtual DbSet<Diet_DayPerWeek> Diet_DayPerWeek { get; set; }
         public virtual DbSet<DietPlan> DietPlans { get; set; }
         public virtual DbSet<Exercise> Exercises { get; set; }
         public virtual DbSet<Goal> Goals { get; set; }
@@ -37,6 +40,8 @@ namespace fitness.Models
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<ProfileUser> ProfileUsers { get; set; }
         public virtual DbSet<Resource> Resources { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<WorkOut> WorkOuts { get; set; }
+        public virtual DbSet<Workout_DayPerWeek> Workout_DayPerWeek { get; set; }
     }
 }
