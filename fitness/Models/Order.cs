@@ -15,12 +15,12 @@ namespace fitness.Models
     public partial class Order
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
-        public Nullable<int> WorkOutId { get; set; }
-        public Nullable<int> DietPlanId { get; set; }
+        public string UserId { get; set; }
+        public Nullable<int> WorkoutId { get; set; }
+        public Nullable<int> DietplanId { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         public virtual DietPlan DietPlan { get; set; }
-        public virtual ProfileUser ProfileUser { get; set; }
         public virtual WorkOut WorkOut { get; set; }
     }
 }

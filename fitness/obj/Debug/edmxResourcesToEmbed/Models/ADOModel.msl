@@ -1,16 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="fitnessandlifestyleModelStoreContainer" CdmEntityContainer="fitnessandlifestyle">
-    <EntitySetMapping Name="C__MigrationHistory">
-      <EntityTypeMapping TypeName="fitnessandlifestyleModel.C__MigrationHistory">
-        <MappingFragment StoreEntitySet="__MigrationHistory">
-          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-          <ScalarProperty Name="Model" ColumnName="Model" />
-          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="AspNetRoles">
       <EntityTypeMapping TypeName="fitnessandlifestyleModel.AspNetRole">
         <MappingFragment StoreEntitySet="AspNetRoles">
@@ -53,6 +43,10 @@
           <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
           <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserAge" ColumnName="UserAge" />
+          <ScalarProperty Name="UserWeight" ColumnName="UserWeight" />
+          <ScalarProperty Name="UserHeight" ColumnName="UserHeight" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -112,19 +106,19 @@
       <EntityTypeMapping TypeName="fitnessandlifestyleModel.Goal">
         <MappingFragment StoreEntitySet="Goal">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="weightDesired" ColumnName="weightDesired" />
+          <ScalarProperty Name="WeightDesired" ColumnName="WeightDesired" />
           <ScalarProperty Name="StatusGoal" ColumnName="StatusGoal" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Category" ColumnName="Category" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="GoalProgresses">
-      <EntityTypeMapping TypeName="fitnessandlifestyleModel.GoalProgress">
-        <MappingFragment StoreEntitySet="GoalProgress">
+    <EntitySetMapping Name="GoalProgesses">
+      <EntityTypeMapping TypeName="fitnessandlifestyleModel.GoalProgess">
+        <MappingFragment StoreEntitySet="GoalProgess">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="currentWeight" ColumnName="currentWeight" />
-          <ScalarProperty Name="currentHeight" ColumnName="currentHeight" />
+          <ScalarProperty Name="CurrentWeight" ColumnName="CurrentWeight" />
+          <ScalarProperty Name="CurrentHeight" ColumnName="CurrentHeight" />
           <ScalarProperty Name="GoalId" ColumnName="GoalId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -134,25 +128,8 @@
         <MappingFragment StoreEntitySet="Orders">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="WorkOutId" ColumnName="WorkOutId" />
-          <ScalarProperty Name="DietPlanId" ColumnName="DietPlanId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ProfileUsers">
-      <EntityTypeMapping TypeName="fitnessandlifestyleModel.ProfileUser">
-        <MappingFragment StoreEntitySet="ProfileUser">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="pass" ColumnName="pass" />
-          <ScalarProperty Name="gender" ColumnName="gender" />
-          <ScalarProperty Name="userHeight" ColumnName="userHeight" />
-          <ScalarProperty Name="userWeight" ColumnName="userWeight" />
-          <ScalarProperty Name="userAge" ColumnName="userAge" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="WorkoutId" ColumnName="WorkoutId" />
+          <ScalarProperty Name="DietplanId" ColumnName="DietplanId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -164,17 +141,6 @@
           <ScalarProperty Name="Link" ColumnName="Link" />
           <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="Category" ColumnName="Category" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="fitnessandlifestyleModel.sysdiagram">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -17,17 +17,17 @@ namespace fitness.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Goal()
         {
-            this.GoalProgresses = new HashSet<GoalProgress>();
+            this.GoalProgesses = new HashSet<GoalProgess>();
         }
     
         public int Id { get; set; }
-        public double weightDesired { get; set; }
-        public Nullable<bool> StatusGoal { get; set; }
-        public int UserId { get; set; }
-        public int Category { get; set; }
+        public Nullable<double> WeightDesired { get; set; }
+        public Nullable<int> StatusGoal { get; set; }
+        public string UserId { get; set; }
+        public Nullable<int> Category { get; set; }
     
-        public virtual ProfileUser ProfileUser { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GoalProgress> GoalProgresses { get; set; }
+        public virtual ICollection<GoalProgess> GoalProgesses { get; set; }
     }
 }

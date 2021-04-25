@@ -170,8 +170,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Daily_DietController.cs" />
+    <Compile Include="Controllers\DayPerWeeksController.cs" />
+    <Compile Include="Controllers\DietPlansController.cs" />
+    <Compile Include="Controllers\Diet_DayPerWeekController.cs" />
+    <Compile Include="Controllers\ExercisesController.cs" />
+    <Compile Include="Controllers\GoalProgessesController.cs" />
+    <Compile Include="Controllers\GoalsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\ResourcesController.cs" />
+    <Compile Include="Controllers\WorkOutsController.cs" />
+    <Compile Include="Controllers\Workout_DayPerWeekController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -203,9 +214,6 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\C__MigrationHistory.cs">
-      <DependentUpon>ADOModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Daily_Diet.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
@@ -224,7 +232,7 @@
     <Compile Include="Models\Goal.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\GoalProgress.cs">
+    <Compile Include="Models\GoalProgess.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
@@ -232,13 +240,7 @@
     <Compile Include="Models\Order.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProfileUser.cs">
-      <DependentUpon>ADOModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Resource.cs">
-      <DependentUpon>ADOModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WorkOut.cs">
@@ -323,6 +325,61 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Daily_Diet\Create.cshtml" />
+    <Content Include="Views\Daily_Diet\Delete.cshtml" />
+    <Content Include="Views\Daily_Diet\Details.cshtml" />
+    <Content Include="Views\Daily_Diet\Edit.cshtml" />
+    <Content Include="Views\Daily_Diet\Index.cshtml" />
+    <Content Include="Views\DayPerWeeks\Create.cshtml" />
+    <Content Include="Views\DayPerWeeks\Delete.cshtml" />
+    <Content Include="Views\DayPerWeeks\Details.cshtml" />
+    <Content Include="Views\DayPerWeeks\Edit.cshtml" />
+    <Content Include="Views\DayPerWeeks\Index.cshtml" />
+    <Content Include="Views\Diet_DayPerWeek\Create.cshtml" />
+    <Content Include="Views\Diet_DayPerWeek\Delete.cshtml" />
+    <Content Include="Views\Diet_DayPerWeek\Details.cshtml" />
+    <Content Include="Views\Diet_DayPerWeek\Edit.cshtml" />
+    <Content Include="Views\Diet_DayPerWeek\Index.cshtml" />
+    <Content Include="Views\DietPlans\Create.cshtml" />
+    <Content Include="Views\DietPlans\Delete.cshtml" />
+    <Content Include="Views\DietPlans\Details.cshtml" />
+    <Content Include="Views\DietPlans\Edit.cshtml" />
+    <Content Include="Views\DietPlans\Index.cshtml" />
+    <Content Include="Views\Exercises\Create.cshtml" />
+    <Content Include="Views\Exercises\Delete.cshtml" />
+    <Content Include="Views\Exercises\Details.cshtml" />
+    <Content Include="Views\Exercises\Edit.cshtml" />
+    <Content Include="Views\Exercises\Index.cshtml" />
+    <Content Include="Views\Goals\Create.cshtml" />
+    <Content Include="Views\Goals\Delete.cshtml" />
+    <Content Include="Views\Goals\Details.cshtml" />
+    <Content Include="Views\Goals\Edit.cshtml" />
+    <Content Include="Views\Goals\Index.cshtml" />
+    <Content Include="Views\GoalProgesses\Create.cshtml" />
+    <Content Include="Views\GoalProgesses\Delete.cshtml" />
+    <Content Include="Views\GoalProgesses\Details.cshtml" />
+    <Content Include="Views\GoalProgesses\Edit.cshtml" />
+    <Content Include="Views\GoalProgesses\Index.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Resources\Create.cshtml" />
+    <Content Include="Views\Resources\Delete.cshtml" />
+    <Content Include="Views\Resources\Details.cshtml" />
+    <Content Include="Views\Resources\Edit.cshtml" />
+    <Content Include="Views\Resources\Index.cshtml" />
+    <Content Include="Views\WorkOuts\Create.cshtml" />
+    <Content Include="Views\WorkOuts\Delete.cshtml" />
+    <Content Include="Views\WorkOuts\Details.cshtml" />
+    <Content Include="Views\WorkOuts\Edit.cshtml" />
+    <Content Include="Views\WorkOuts\Index.cshtml" />
+    <Content Include="Views\Workout_DayPerWeek\Create.cshtml" />
+    <Content Include="Views\Workout_DayPerWeek\Delete.cshtml" />
+    <Content Include="Views\Workout_DayPerWeek\Details.cshtml" />
+    <Content Include="Views\Workout_DayPerWeek\Edit.cshtml" />
+    <Content Include="Views\Workout_DayPerWeek\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

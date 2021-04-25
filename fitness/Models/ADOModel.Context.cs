@@ -25,7 +25,6 @@ namespace fitness.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
@@ -36,11 +35,9 @@ namespace fitness.Models
         public virtual DbSet<DietPlan> DietPlans { get; set; }
         public virtual DbSet<Exercise> Exercises { get; set; }
         public virtual DbSet<Goal> Goals { get; set; }
-        public virtual DbSet<GoalProgress> GoalProgresses { get; set; }
+        public virtual DbSet<GoalProgess> GoalProgesses { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<ProfileUser> ProfileUsers { get; set; }
         public virtual DbSet<Resource> Resources { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<WorkOut> WorkOuts { get; set; }
         public virtual DbSet<Workout_DayPerWeek> Workout_DayPerWeek { get; set; }
     }

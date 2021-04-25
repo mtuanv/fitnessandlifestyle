@@ -12,12 +12,12 @@ namespace fitness.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class GoalProgress
+    public partial class GoalProgess
     {
         public int Id { get; set; }
-        public double currentWeight { get; set; }
-        public double currentHeight { get; set; }
-        public int GoalId { get; set; }
+        public Nullable<double> CurrentWeight { get; set; }
+        public Nullable<double> CurrentHeight { get; set; }
+        public Nullable<int> GoalId { get; set; }
     
         public virtual Goal Goal { get; set; }
     }
