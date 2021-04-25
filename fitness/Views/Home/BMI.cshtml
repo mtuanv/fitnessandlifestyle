@@ -83,11 +83,12 @@
     <script type="text/javascript">
 
         function _calculate() {
-            
+
             var obj = {
                 Weight: $('#Weight').val(),
                 Height: $('#Height').val()
             }
+           
             var html = '';
             var html2 = '';
             $.ajax({
@@ -96,23 +97,22 @@
                 data: JSON.stringify(obj),
                 contentType: "application/json; charset=utf-8",
                 success: function (result) {
-
+                    var obj2 = {
+                        result: result
+                    }
                     html += '<span style = "font-weight: bolder;font-size: 15px"> Your BMI is: ' + result + ' | You can try take practice that are showing below  </span>';
                     html += '<span style = "font-weight: bolder;font-size: 15px "> Normal BMI is: 25';
                     $("#Result").html(html);
-                    var obj2 = {
-                        parameter: result
-                    }
                     $.ajax({
-                        url: "/Home/listWorkOut",
-                        type: "GET",
+                        url: '/Home/listWorkOut',
+                        type: "POST",
                         data: JSON.stringify(obj2),
                         contentType: "application/json; charset=utf-8",
                         success: function (KQ) {
                             var random = 1;
 
                             $.each(KQ, function (k, v) {
-                                
+
                                 html2 += ' <div style = "margin-top: 20px" class="col-lg-3">' +
                                     ' <div class="ss-pic">' +
                                     '<img src="/Public/img/services/services-' + random + '.jpg" alt="">' +
@@ -120,10 +120,10 @@
                                     '</div>' +
                                     '<div style = "margin-top: 20px" class="col-lg-3">' +
                                     '<div class="ss-text">' +
-                                    '<h4>' + v.Title + '</h4>' +
+                                    '<h4 class= "label_title">' + v.Title + '</h4>' +
                                     ' <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut dolore facilisis.' +
                                     ' </p>' +
-                                    ' <a href="#">Explore</a>' +
+                                    ' <a href="/WorkOuts/Details/' + v.Id + '">Explore</a>' +
                                     '</div>' +
                                     '</div>';
                                 if (random > 4) {
@@ -131,8 +131,14 @@
                                 } else {
                                     random = random + 1;
                                 }
-                                
-                            })
+                            });
+
+                            $(".label_title").each(function () {
+                                if ($(this).text().length > 50) {
+                                    $(this).text($(this).text().substr(0, 50));
+                                    $(this).append('...');
+                                }
+                            });
                             $('#sugguest').html(html2);
                         }
                     });

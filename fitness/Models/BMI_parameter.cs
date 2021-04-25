@@ -7,6 +7,6 @@ namespace fitness.Models
 {
     public class BMI_parameter
     {
-        public float parameter { get; set; }
+        public string result { get; set; }
     }
 }

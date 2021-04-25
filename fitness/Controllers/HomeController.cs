@@ -37,32 +37,74 @@ namespace fitness.Controllers
             }
             else
             {
-                return Json("Error", JsonRequestBehavior.AllowGet);
+                return Json("", JsonRequestBehavior.AllowGet);
             }
         }
-        public JsonResult listWorkOut(BMI_parameter bMI_Parameter)
+
+        [HttpPost]
+        public JsonResult listWorkOut(BMI_parameter a)
         {
-            
+            string result = a.result;
             bool proxyCreation = db.Configuration.ProxyCreationEnabled;
-            try
-            {
-                //set ProxyCreation to false
-                db.Configuration.ProxyCreationEnabled = false;
 
-                var data = db.WorkOuts.Where(i => i.Category == 2).ToList();
+            if (result != "")
+            {
+                float _parameter = (float)Convert.ToDouble(result);
+                if (_parameter >= 25)
+                {
+                    try
+                    {
+                        //set ProxyCreation to false
+                        db.Configuration.ProxyCreationEnabled = false;
 
-                return Json(data, JsonRequestBehavior.AllowGet);
+                        var data = db.WorkOuts.Where(i => i.Category == 2).ToList();
+
+                        return Json(data, JsonRequestBehavior.AllowGet);
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        return Json(ex.Message);
+                    }
+                    finally
+                    {
+                        //restore ProxyCreation to its original state
+                        db.Configuration.ProxyCreationEnabled = proxyCreation;
+                    }
+                }
+                else if (_parameter <= 18)
+                {
+                    try
+                    {
+                        //set ProxyCreation to false
+                        db.Configuration.ProxyCreationEnabled = false;
+
+                        var data = db.WorkOuts.Where(i => i.Category == 1).ToList();
+
+                        return Json(data, JsonRequestBehavior.AllowGet);
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                        return Json(ex.Message);
+                    }
+                    finally
+                    {
+                        //restore ProxyCreation to its original state
+                        db.Configuration.ProxyCreationEnabled = proxyCreation;
+                    }
+                }
+                else
+                {
+                    return Json("Erro", JsonRequestBehavior.AllowGet);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                return Json(ex.Message);
+                return Json("", JsonRequestBehavior.AllowGet);
             }
-            finally
-            {
-                //restore ProxyCreation to its original state
-                db.Configuration.ProxyCreationEnabled = proxyCreation;
-            }
+            
+            
         }
 
 
