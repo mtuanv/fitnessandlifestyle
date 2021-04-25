@@ -18,6 +18,7 @@ namespace fitness.Models
         public string UserId { get; set; }
         public Nullable<int> WorkoutId { get; set; }
         public Nullable<int> DietplanId { get; set; }
+        public Nullable<System.DateTime> timestamp { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual DietPlan DietPlan { get; set; }

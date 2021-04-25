@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="fitnessandlifestyleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="fitnessandlifestyleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -134,6 +134,7 @@
           <Property Name="UserId" Type="nvarchar" MaxLength="128" />
           <Property Name="WorkoutId" Type="int" />
           <Property Name="DietplanId" Type="int" />
+          <Property Name="timestamp" Type="date" />
         </EntityType>
         <EntityType Name="Resources">
           <Key>
@@ -142,8 +143,8 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Link" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Content" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Category" Type="int" Nullable="false" />
+          <Property Name="Content" Type="ntext" />
+          <Property Name="Category" Type="int" />
         </EntityType>
         <EntityType Name="WorkOut">
           <Key>
@@ -159,6 +160,7 @@
           <Property Name="ForGender" Type="int" Nullable="false" />
           <Property Name="ProgressTime" Type="float" Nullable="false" />
           <Property Name="Link" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="StartDay" Type="datetime" />
         </EntityType>
         <EntityType Name="Workout_DayPerWeek">
           <Key>
@@ -167,6 +169,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DayPerWeekId" Type="int" />
           <Property Name="WorkOutId" Type="int" />
+          <Property Name="Status" Type="int" />
         </EntityType>
         <Association Name="FK__Daily_Diet__DDId__5D95E53A">
           <End Role="Diet_DayPerWeek" Type="Self.Diet_DayPerWeek" Multiplicity="0..1" />
@@ -434,8 +437,7 @@
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="fitnessandlifestyleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -583,6 +585,7 @@
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK__Orders__UserId__69FBBC1F" FromRole="Orders" ToRole="AspNetUsers" />
           <NavigationProperty Name="DietPlan" Relationship="Self.FK__Orders__Dietplan__6BE40491" FromRole="Orders" ToRole="DietPlan" />
           <NavigationProperty Name="WorkOut" Relationship="Self.FK__Orders__WorkoutI__6AEFE058" FromRole="Orders" ToRole="WorkOut" />
+          <Property Name="timestamp" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Resource">
           <Key>
@@ -591,8 +594,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Category" Type="Int32" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="Int32" />
         </EntityType>
         <EntityType Name="WorkOut">
           <Key>
@@ -610,6 +613,7 @@
           <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__WorkoutI__6AEFE058" FromRole="WorkOut" ToRole="Orders" />
           <NavigationProperty Name="Workout_DayPerWeek" Relationship="Self.FK__Workout_D__WorkO__29221CFB" FromRole="WorkOut" ToRole="Workout_DayPerWeek" />
+          <Property Name="StartDay" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Workout_DayPerWeek">
           <Key>
@@ -621,6 +625,7 @@
           <NavigationProperty Name="DayPerWeek" Relationship="Self.FK__Workout_D__DayPe__282DF8C2" FromRole="Workout_DayPerWeek" ToRole="DayPerWeek" />
           <NavigationProperty Name="Exercises" Relationship="Self.FK__Exercise__WDId__2BFE89A6" FromRole="Workout_DayPerWeek" ToRole="Exercise" />
           <NavigationProperty Name="WorkOut" Relationship="Self.FK__Workout_D__WorkO__29221CFB" FromRole="Workout_DayPerWeek" ToRole="WorkOut" />
+          <Property Name="Status" Type="Int32" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -990,6 +995,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="fitnessandlifestyleModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="WorkoutId" ColumnName="WorkoutId" />
@@ -1011,6 +1017,7 @@
           <EntitySetMapping Name="WorkOuts">
             <EntityTypeMapping TypeName="fitnessandlifestyleModel.WorkOut">
               <MappingFragment StoreEntitySet="WorkOut">
+                <ScalarProperty Name="StartDay" ColumnName="StartDay" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -1027,6 +1034,7 @@
           <EntitySetMapping Name="Workout_DayPerWeek">
             <EntityTypeMapping TypeName="fitnessandlifestyleModel.Workout_DayPerWeek">
               <MappingFragment StoreEntitySet="Workout_DayPerWeek">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="DayPerWeekId" ColumnName="DayPerWeekId" />
                 <ScalarProperty Name="WorkOutId" ColumnName="WorkOutId" />

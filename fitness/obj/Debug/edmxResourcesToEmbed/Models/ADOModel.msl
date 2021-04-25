@@ -126,6 +126,7 @@
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="fitnessandlifestyleModel.Order">
         <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="WorkoutId" ColumnName="WorkoutId" />
@@ -147,6 +148,7 @@
     <EntitySetMapping Name="WorkOuts">
       <EntityTypeMapping TypeName="fitnessandlifestyleModel.WorkOut">
         <MappingFragment StoreEntitySet="WorkOut">
+          <ScalarProperty Name="StartDay" ColumnName="StartDay" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="Title" ColumnName="Title" />
@@ -163,6 +165,7 @@
     <EntitySetMapping Name="Workout_DayPerWeek">
       <EntityTypeMapping TypeName="fitnessandlifestyleModel.Workout_DayPerWeek">
         <MappingFragment StoreEntitySet="Workout_DayPerWeek">
+          <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="DayPerWeekId" ColumnName="DayPerWeekId" />
           <ScalarProperty Name="WorkOutId" ColumnName="WorkOutId" />

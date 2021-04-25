@@ -23,6 +23,7 @@ namespace fitness.Models
         public int Id { get; set; }
         public Nullable<int> DayPerWeekId { get; set; }
         public Nullable<int> WorkOutId { get; set; }
+        public Nullable<int> Status { get; set; }
     
         public virtual DayPerWeek DayPerWeek { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

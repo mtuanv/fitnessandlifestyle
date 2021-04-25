@@ -144,6 +144,7 @@
     <NavigationProperty Name="AspNetUser" Relationship="Self.FK__Orders__UserId__69FBBC1F" FromRole="Orders" ToRole="AspNetUsers" />
     <NavigationProperty Name="DietPlan" Relationship="Self.FK__Orders__Dietplan__6BE40491" FromRole="Orders" ToRole="DietPlan" />
     <NavigationProperty Name="WorkOut" Relationship="Self.FK__Orders__WorkoutI__6AEFE058" FromRole="Orders" ToRole="WorkOut" />
+    <Property Name="timestamp" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="Resource">
     <Key>
@@ -152,8 +153,8 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Category" Type="Int32" Nullable="false" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="Int32" />
   </EntityType>
   <EntityType Name="WorkOut">
     <Key>
@@ -171,6 +172,7 @@
     <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__WorkoutI__6AEFE058" FromRole="WorkOut" ToRole="Orders" />
     <NavigationProperty Name="Workout_DayPerWeek" Relationship="Self.FK__Workout_D__WorkO__29221CFB" FromRole="WorkOut" ToRole="Workout_DayPerWeek" />
+    <Property Name="StartDay" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Workout_DayPerWeek">
     <Key>
@@ -182,6 +184,7 @@
     <NavigationProperty Name="DayPerWeek" Relationship="Self.FK__Workout_D__DayPe__282DF8C2" FromRole="Workout_DayPerWeek" ToRole="DayPerWeek" />
     <NavigationProperty Name="Exercises" Relationship="Self.FK__Exercise__WDId__2BFE89A6" FromRole="Workout_DayPerWeek" ToRole="Exercise" />
     <NavigationProperty Name="WorkOut" Relationship="Self.FK__Workout_D__WorkO__29221CFB" FromRole="Workout_DayPerWeek" ToRole="WorkOut" />
+    <Property Name="Status" Type="Int32" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">

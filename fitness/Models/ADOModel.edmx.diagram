@@ -14,11 +14,11 @@
         <EntityTypeShape EntityType="fitnessandlifestyleModel.Diet_DayPerWeek" Width="1.5" PointX="11.875" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="fitnessandlifestyleModel.DietPlan" Width="1.5" PointX="7.625" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="fitnessandlifestyleModel.Exercise" Width="1.5" PointX="14" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="fitnessandlifestyleModel.Goal" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="fitnessandlifestyleModel.Goal" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="fitnessandlifestyleModel.GoalProgess" Width="1.5" PointX="5.25" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="fitnessandlifestyleModel.Order" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="fitnessandlifestyleModel.Resource" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="fitnessandlifestyleModel.WorkOut" Width="1.5" PointX="7.625" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="fitnessandlifestyleModel.WorkOut" Width="1.5" PointX="7.625" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="fitnessandlifestyleModel.Workout_DayPerWeek" Width="1.5" PointX="11.875" PointY="10.125" IsExpanded="true" />
         <AssociationConnector Association="fitnessandlifestyleModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="fitnessandlifestyleModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />

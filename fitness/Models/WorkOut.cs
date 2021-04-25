@@ -31,6 +31,7 @@ namespace fitness.Models
         public int ForGender { get; set; }
         public double ProgressTime { get; set; }
         public string Link { get; set; }
+        public Nullable<System.DateTime> StartDay { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
