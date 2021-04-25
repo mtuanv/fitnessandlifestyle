@@ -214,6 +214,7 @@ H:\GitHub_Pull\fitnessandlifestyle\fitness\obj\Debug\fitness.csproj.CopyComplete
 H:\GitHub_Pull\fitnessandlifestyle\fitness\obj\Debug\fitness.dll
 H:\GitHub_Pull\fitnessandlifestyle\fitness\obj\Debug\fitness.pdb
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 C:\Users\User\Desktop\fitnessandlifestyle\fitness\bin\fitness.dll.config
 C:\Users\User\Desktop\fitnessandlifestyle\fitness\bin\fitness.dll
 C:\Users\User\Desktop\fitnessandlifestyle\fitness\bin\fitness.pdb
@@ -322,6 +323,9 @@ C:\Users\User\Desktop\fitnessandlifestyle\fitness\obj\Debug\fitness.csproj.CopyC
 C:\Users\User\Desktop\fitnessandlifestyle\fitness\obj\Debug\fitness.dll
 C:\Users\User\Desktop\fitnessandlifestyle\fitness\obj\Debug\fitness.pdb
 C:\Users\User\Desktop\fitnessandlifestyle\fitness\obj\Debug\fitness.csprojAssemblyReference.cache
+=======
+H:\GitHub_Pull\fitnessandlifestyle\fitness\obj\Debug\fitness.csprojAssemblyReference.cache
+>>>>>>> Stashed changes
 =======
 H:\GitHub_Pull\fitnessandlifestyle\fitness\obj\Debug\fitness.csprojAssemblyReference.cache
 >>>>>>> Stashed changes
