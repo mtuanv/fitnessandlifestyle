@@ -45,11 +45,12 @@
             </div>
             <div class="col-lg-6">
                 <div class="leave-comment">
-                    <input id="name" placeholder="Name" />
-                    <input id="email" placeholder="email" />
-                    <input id="subject" placeholder="subject" />
-                    <input id="content" placeholder="content" />
-                    <button class="btn btn-danger" onclick="return _SendEmail()">Submit</button>
+					<form>
+						<input id="name" placeholder="Name"/>
+						<input id="subject" placeholder="Subject" />
+						<textarea id="content" placeholder="Content"></textarea>
+						<button type="button" class="btn btn-danger" onclick="return _SendEmail()">Send Feedback</button>
+					</form>
                 </div>
             </div>
         </div>
@@ -64,18 +65,43 @@
         function _SendEmail() {
             var obj = {
                 name: $('#name').val(),
-                email: $('#email').val(),
                 subject: $('#subject').val(),
                 content: $('#content').val()
             }
+			Swal.showLoading()
             $.ajax({
                 url: "/Contact/SendMailToUser",
                 type: "POST",
                 data: JSON.stringify(obj),
                 contentType: "application/json; charset=utf-8",
                 success: function () {
-                    alert("Successfully");
-                }
+					const swalWithBootstrapButtons = Swal.mixin({
+						customClass: {
+							confirmButton: 'btn btn-success',
+							cancelButton: 'btn btn-danger mr-3'
+						},
+						buttonsStyling: false
+					})
+					swalWithBootstrapButtons.fire(
+						'Success',
+						'Feedback success',
+						'success'
+					)
+                },
+				error: function (response) {
+					const swalWithBootstrapButtons = Swal.mixin({
+						customClass: {
+							confirmButton: 'btn btn-success',
+							cancelButton: 'btn btn-danger mr-3'
+						},
+						buttonsStyling: false
+					})
+					swalWithBootstrapButtons.fire(
+						'Fail!',
+						'Feedback fail',
+						'error'
+					)
+				}
             });
         }
     </script>

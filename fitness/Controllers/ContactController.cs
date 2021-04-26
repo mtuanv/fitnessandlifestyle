@@ -13,6 +13,7 @@ namespace fitness.Controllers
 {
     public class ContactController : Controller
     {
+        private fitnessandlifestyle db = new fitnessandlifestyle();
         // GET: Contact
         public ActionResult Index()
         {
@@ -49,12 +50,13 @@ namespace fitness.Controllers
         [HttpPost]
         public JsonResult SendMailToUser(Email emails)
         {
+            var username = System.Web.HttpContext.Current.User.Identity.Name;
+            AspNetUser user = db.AspNetUsers.Where(u => u.Email.Equals(username)).First();
             string subject = emails.subject;
             string name = emails.name;
             string content = emails.content;
-            string email = emails.email;
             bool result = false;
-            result = SendEmail("minhtuan1690002@gmail.com", subject, "<p><b>Name:</b> " + name + "<br/><b>Email:</b> " + email + "<br/><b>Feedback Content:</b> " + content + "</p>");
+            result = SendEmail("minhtuan1690002@gmail.com", subject, "<p><b>Name:</b> " + name + "<br/><b>Email:</b> " + user.Email + "<br/><b>Feedback Content:</b> " + content + "</p>");
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         public bool SendEmail(string toEmail, string subject, string emailBody)
