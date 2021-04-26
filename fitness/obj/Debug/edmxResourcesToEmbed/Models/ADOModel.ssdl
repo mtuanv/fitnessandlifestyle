@@ -117,6 +117,7 @@
     <Property Name="CurrentWeight" Type="float" />
     <Property Name="CurrentHeight" Type="float" />
     <Property Name="GoalId" Type="int" />
+    <Property Name="timestamp" Type="datetime" />
   </EntityType>
   <EntityType Name="Orders">
     <Key>
@@ -134,9 +135,10 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
-    <Property Name="Link" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Image" Type="nvarchar" MaxLength="250" />
     <Property Name="Content" Type="ntext" />
     <Property Name="Category" Type="int" />
+    <Property Name="Link" Type="text" />
   </EntityType>
   <EntityType Name="Schedule">
     <Key>

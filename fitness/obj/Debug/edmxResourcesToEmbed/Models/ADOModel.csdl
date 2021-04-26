@@ -129,6 +129,7 @@
     <Property Name="CurrentHeight" Type="Double" />
     <Property Name="GoalId" Type="Int32" />
     <NavigationProperty Name="Goal" Relationship="Self.FK__GoalProge__GoalI__671F4F74" FromRole="GoalProgess" ToRole="Goal" />
+    <Property Name="timestamp" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -149,9 +150,10 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Category" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="WorkOut">
     <Key>

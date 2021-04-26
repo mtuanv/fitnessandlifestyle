@@ -18,6 +18,7 @@ namespace fitness.Models
         public Nullable<double> CurrentWeight { get; set; }
         public Nullable<double> CurrentHeight { get; set; }
         public Nullable<int> GoalId { get; set; }
+        public Nullable<System.DateTime> timestamp { get; set; }
     
         public virtual Goal Goal { get; set; }
     }
