@@ -44,48 +44,50 @@
                             <p>
                                 @Html.DisplayFor(model => model.WorkOut.Content)
                             </p>
-                            @*@foreach (var item in Model.)
+
+                            @foreach (var item in Model.DayPerWeeks)
                             {
-                                <h5 class="dpw_title">@Html.DisplayFor(modelItem => item.DayPerWeek)</h5>
-                                foreach (var wditem in item.DayPerWeek.Where(wdpw => wdpw.DayPerWeekId == item.Id).Where(wdpw => wdpw.WorkOutId == Model.WorkOut.Id))
-                                {
-                                    if (wditem.Status == 0)
+                                <h5 class="dpw_title">@item.Day</h5>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr class="bg-danger text-white">
+                                            <th scope="col" class="border-0">Exercise</th>
+                                            <th scope="col" class="border-0">Sets</th>
+                                            <th scope="col" class="border-0">Reps</th>
+                                        </tr>
+                                    </thead>
+                                    @foreach (var day in item.Schedules)
                                     {
-                                        <table class="table table-striped">
-                                            <thead><tr class="bg-danger text-white"><th scope="col" class="border-0">Rest Day</th></tr></thead>
-                                        </table>
-                                    }
-                                    else
-                                    {
-                                        <table class="table table-striped">
+                                        if (day.Status == 2)
+                                        {
                                             <thead>
-                                                <tr class="bg-danger text-white">
-                                                    <th scope="col" class="border-0">Exercise</th>
-                                                    <th scope="col" class="border-0">Sets</th>
-                                                    <th scope="col" class="border-0">Reps</th>
-                                                </tr>
+                                                <tr class="table-light"><th scope="col" class="border-0">Rest Day</th></tr>
                                             </thead>
-                                            <tbody>
-                                                @foreach (var ex in wditem.Exercises)
-                                                {
+                                        }
+                                        else
+                                        {
+                                            foreach (var ex in Model.Exercises.Where(x => x.Id == day.ExId))
+                                            {
+                                                <tbody>
                                                     <tr class="table-light">
-                                                        <th>@Html.DisplayFor(exItem => ex.Title)</th>
-                                                        <td>@Html.DisplayFor(exItem => ex.exersiceSets)</td>
-                                                        <td>@Html.DisplayFor(exItem => ex.exerciseReps)</td>
+                                                        <th>@ex.Title</th>
+                                                        <td>@day.sets</td>
+                                                        <td>@day.reps</td>
                                                     </tr>
-                                                }
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            }
+                                        }
                                     }
-                                }
-                            }*@
+                                </table>
+                            }
                             @using (Html.BeginForm("Create", "Orders", FormMethod.Post))
                             {
                                 @Html.AntiForgeryToken()
                                 <input type="hidden" name="WorkoutId" value="@Html.DisplayFor(model => model.WorkOut.Id)" />
                                 <div class="li-text"><h6><button type="submit" class="btn float-right btn-tpi">Take part in</button></h6></div>
                             }
-                            <p class="clearfix"></p><br />
+                            <p class="clearfix"></p>
+                            <br />
                             <h3>Related workout</h3>
                         </div>
                     </div>
@@ -131,42 +133,22 @@
                         <h5 class="title">Resources</h5>
                         <div class="latest-large set-bg" data-setbg="img/resources/bench-press_0.jpg">
                             <div class="ll-text">
-                                @if (Model.WorkOut.Category == 1)
-                                {
-                                    <h5><a href="#">@Html.DisplayFor(model => model.Resources.Where(r => r.Category == 1).First().Title)</a></h5>
-                                    <ul>
-                                        <li>
-                                            For Weight Gain
-                                        </li>
-                                    </ul> }
-                                else
-                                { @*<h5><a href="#">@Html.DisplayFor(model => model.resources.Where(r => r.Category == 2).First().Title)</a></h5>*@
+
+                                <h5><a href="#"></a></h5>
                                 <ul>
                                     <li>
-                                        For Weight Loss
+                                        For Muscle Building
                                     </li>
-                                </ul>}
+                                </ul>
+                                <h5><a href="#"></a></h5>
+                                <ul>
+                                    <li>
+                                        For Fat Loss
+                                    </li>
+                                </ul>
+
                             </div>
                         </div>
-                        @foreach (var item in Model.Resources.Skip(1).Take(4).Where(r => r.Category == Model.WorkOut.Category))
-                        {
-                            <div class="latest-item">
-                                <div class="li-text">
-                                    <h6><a href="#">@Html.DisplayFor(modelItem => item.Title)</a></h6>
-                                    <span class="li-time">
-                                        For Weight
-                                        @if (Model.WorkOut.Category == 1)
-                                        {
-                                            <span>Gain</span> }
-                                        else
-                                        {
-                                            <span>Loss</span>}
-
-                                    </span>
-                                </div>
-
-                            </div>
-                        }
                         <div class="so-banner set-bg" data-setbg="img/sidebar-banner.jpg">
                             <h5>Banner 300x300</h5>
                         </div>
@@ -174,4 +156,5 @@
                 </div>
             </div>
         </div>
+    </div>
 </section>

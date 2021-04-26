@@ -27,7 +27,7 @@ namespace fitness.Controllers
         // GET: WorkOuts/Details/5
         public ActionResult Details(int? id)
         {
-            WorkOutViewModel wvm = new WorkOutViewModel();
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -37,15 +37,14 @@ namespace fitness.Controllers
             {
                 return HttpNotFound();
             }
-            wvm.WorkOut = workOut;
+            WorkOutViewModel model = new WorkOutViewModel();
+            model.WorkOut = workOut;
             int category = db.WorkOuts.Find(id).Category;
-            IList<DietPlan> dietPlans = db.DietPlans.Where(d => d.Category == category).ToList();
-            wvm.DietPlans = dietPlans;
-            ICollection<DayPerWeek> dayPerWeeks = db.DayPerWeeks.ToList();
-            wvm.Schedules = (ICollection<Schedule>)dayPerWeeks;
-            IList<Resource> resources = db.Resources.ToList();
-            wvm.Resources = resources;
-            return View(wvm);
+            model.DietPlans = db.DietPlans.Where(d => d.Category == category).ToList();
+            model.Exercises = db.Exercises.ToList();
+            model.DayPerWeeks = db.DayPerWeeks.ToList();
+            model.Schedules = db.Schedules.ToList();
+            return View(model);
         }
 
         // GET: WorkOuts/Create

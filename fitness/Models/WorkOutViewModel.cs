@@ -11,5 +11,7 @@ namespace fitness.Models
         public ICollection<DietPlan> DietPlans { get; set; }
         public ICollection<Schedule> Schedules { get; set; }
         public ICollection<Resource> Resources { get; set; }
+        public ICollection<Exercise> Exercises { get; set; }
+        public ICollection<DayPerWeek> DayPerWeeks { get; set; }
     }
 }
