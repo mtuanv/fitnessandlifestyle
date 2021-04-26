@@ -1,6 +1,35 @@
 ﻿<!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-sectionProfile set-bg" data-setbg="img/banner-profile.jpg">
     <div class="container-profile">
+
+        <!--        Modal Begin-->
+        <div class="modal fade" id="inputGoal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content goalInput">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="exampleModalLabel">Your Daily Info</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-modal">
+                            <div class="mb-3">
+                                <label for="dailyWeight" class="form-label">Input Weight</label>
+                                <input type="email" class="form-control" id="dailyWeight" placeholder="Wight">
+                            </div>
+                            <div class="mb-3">
+                                <label for="dailyHeight" class="form-label">Input Height</label>
+                                <input type="email" class="form-control" id="dailyHeight" placeholder="Height">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="goalButton" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--        Modal End-->
+
         <div class="row gutters">
             <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
                 <div class="card h-100">
@@ -28,6 +57,9 @@
             <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
                 <div class="card h-100">
                     <div class="card-body">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputGoal">
+                            Daily Info
+                        </button>
                         <table class="userProgress table">
                             <thead>
                                 <tr>
