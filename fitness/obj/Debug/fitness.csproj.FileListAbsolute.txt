@@ -111,3 +111,4 @@ H:\GitHub_Pull\fitnessandlifestyle\fitness\bin\Microsoft.CodeDom.Providers.DotNe
 H:\GitHub_Pull\fitnessandlifestyle\fitness\obj\Debug\fitness.csproj.CopyComplete
 H:\GitHub_Pull\fitnessandlifestyle\fitness\obj\Debug\fitness.dll
 H:\GitHub_Pull\fitnessandlifestyle\fitness\obj\Debug\fitness.pdb
+H:\GitHub_Pull\fitnessandlifestyle\fitness\obj\Debug\fitness.csprojAssemblyReference.cache
