@@ -18,15 +18,15 @@ function calBMI() {
 
 function showMess(bmi){
     if(bmi < 18.5){
-        $(".status").text("underweight");
+        $(".statusMessage").text("underweight");
     } else if (bmi < 25){
-        $(".status").text("a healthy weight");
+        $(".statusMessage").text("a healthy weight");
     } else if (bmi < 30){
-        $(".status").text("overweight");
+        $(".statusMessage").text("overweight");
     } else if (bmi < 35) {
-        $(".status").text("obese");
+        $(".statusMessage").text("obese");
     } else {
-        $(".status").text("extremly obese");
+        $(".statusMessage").text("extremly obese");
     }
 }
 
