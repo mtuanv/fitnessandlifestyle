@@ -19,5 +19,6 @@ namespace fitness.Models
         public string Link { get; set; }
         public string Content { get; set; }
         public Nullable<int> Category { get; set; }
+        public string Image { get; set; }
     }
 }

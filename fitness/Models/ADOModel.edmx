@@ -122,6 +122,7 @@
           <Property Name="CurrentWeight" Type="float" />
           <Property Name="CurrentHeight" Type="float" />
           <Property Name="GoalId" Type="int" />
+          <Property Name="timestamp" Type="datetime" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -139,9 +140,10 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Link" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="250" />
           <Property Name="Content" Type="ntext" />
           <Property Name="Category" Type="int" />
+          <Property Name="Link" Type="text" />
         </EntityType>
         <EntityType Name="Schedule">
           <Key>
@@ -570,6 +572,7 @@
           <Property Name="CurrentHeight" Type="Double" />
           <Property Name="GoalId" Type="Int32" />
           <NavigationProperty Name="Goal" Relationship="Self.FK__GoalProge__GoalI__671F4F74" FromRole="GoalProgess" ToRole="Goal" />
+          <Property Name="timestamp" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -590,9 +593,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Category" Type="Int32" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="WorkOut">
           <Key>
@@ -982,6 +986,7 @@
           <EntitySetMapping Name="GoalProgesses">
             <EntityTypeMapping TypeName="fitnessandlifestyleModel.GoalProgess">
               <MappingFragment StoreEntitySet="GoalProgess">
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CurrentWeight" ColumnName="CurrentWeight" />
                 <ScalarProperty Name="CurrentHeight" ColumnName="CurrentHeight" />
@@ -1003,6 +1008,7 @@
           <EntitySetMapping Name="Resources">
             <EntityTypeMapping TypeName="fitnessandlifestyleModel.Resource">
               <MappingFragment StoreEntitySet="Resources">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Link" ColumnName="Link" />
