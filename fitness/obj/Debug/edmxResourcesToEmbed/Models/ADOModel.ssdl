@@ -97,7 +97,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Content" Type="text" Nullable="false" />
-    <Property Name="Link" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Link" Type="text" />
   </EntityType>
   <EntityType Name="Goal">
     <Key>

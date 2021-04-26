@@ -645,3 +645,9 @@ D:\fitnessandlifestyle\fitness\obj\Debug\fitness.csproj.CoreCompileInputs.cache
 D:\fitnessandlifestyle\fitness\obj\Debug\fitness.csproj.CopyComplete
 D:\fitnessandlifestyle\fitness\obj\Debug\fitness.dll
 D:\fitnessandlifestyle\fitness\obj\Debug\fitness.pdb
+D:\fitnessandlifestyle\fitness\bin\Microsoft.AspNet.SignalR.Core.dll
+D:\fitnessandlifestyle\fitness\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+D:\fitnessandlifestyle\fitness\bin\Microsoft.AspNet.SignalR.Core.pdb
+D:\fitnessandlifestyle\fitness\bin\Microsoft.AspNet.SignalR.Core.xml
+D:\fitnessandlifestyle\fitness\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+D:\fitnessandlifestyle\fitness\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
