@@ -46,7 +46,7 @@ namespace fitness.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Link,Content,Category")] Resource resource)
+        public ActionResult Create([Bind(Include = "Id,Title,Link,Content,Category,Image")] Resource resource)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace fitness.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Link,Content,Category")] Resource resource)
+        public ActionResult Edit([Bind(Include = "Id,Title,Link,Content,Category,Image")] Resource resource)
         {
             if (ModelState.IsValid)
             {

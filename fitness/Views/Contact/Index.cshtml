@@ -6,8 +6,7 @@
                 <div class="breadcrumb-text">
                     <h2>Contact Us</h2>
                     <div class="bt-option">
-                        <a href="./index.html">Home</a>
-                        <a href="#">Pages</a>
+                        <a href="@Url.Action("Index", "Home")">Home</a>
                         <span>Contact us</span>
                     </div>
                 </div>
@@ -45,12 +44,12 @@
             </div>
             <div class="col-lg-6">
                 <div class="leave-comment">
-					<form>
-						<input id="name" placeholder="Name"/>
-						<input id="subject" placeholder="Subject" />
-						<textarea id="content" placeholder="Content"></textarea>
-						<button type="button" class="btn btn-danger" onclick="return _SendEmail()">Send Feedback</button>
-					</form>
+                    <form>
+                        <input id="name" placeholder="Name" />
+                        <input id="subject" placeholder="Subject" />
+                        <textarea id="content" placeholder="Content"></textarea>
+                        <button type="button" class="btn btn-danger" onclick="return _SendEmail()">Send Feedback</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -68,7 +67,7 @@
                 subject: $('#subject').val(),
                 content: $('#content').val()
             }
-			Swal.showLoading()
+            Swal.showLoading()
             if (obj.name.toString() == "") {
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
@@ -82,7 +81,7 @@
                     'Please input name!',
                     'error'
                 )
-			} else if (obj.subject.toString() == "") {
+            } else if (obj.subject.toString() == "") {
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: 'btn btn-success',
@@ -95,7 +94,7 @@
                     'Please input subject!',
                     'error'
                 )
-			} else if (obj.content.toString() == "") {
+            } else if (obj.content.toString() == "") {
                 const swalWithBootstrapButtons = Swal.mixin({
                     customClass: {
                         confirmButton: 'btn btn-success',
@@ -109,40 +108,40 @@
                     'error'
                 )
             } else {
-				$.ajax({
-					url: "/Contact/SendMailToUser",
-					type: "POST",
-					data: JSON.stringify(obj),
-					contentType: "application/json; charset=utf-8",
-					success: function () {
-						const swalWithBootstrapButtons = Swal.mixin({
-							customClass: {
-								confirmButton: 'btn btn-success',
-								cancelButton: 'btn btn-danger mr-3'
-							},
-							buttonsStyling: false
-						})
-						swalWithBootstrapButtons.fire(
-							'Success',
-							'Feedback success',
-							'success'
-						)
-					},
-					error: function (response) {
-						const swalWithBootstrapButtons = Swal.mixin({
-							customClass: {
-								confirmButton: 'btn btn-success',
-								cancelButton: 'btn btn-danger mr-3'
-							},
-							buttonsStyling: false
-						})
-						swalWithBootstrapButtons.fire(
-							'Fail!',
-							'Feedback fail',
-							'error'
-						)
-					}
-				});
+                $.ajax({
+                    url: "/Contact/SendMailToUser",
+                    type: "POST",
+                    data: JSON.stringify(obj),
+                    contentType: "application/json; charset=utf-8",
+                    success: function () {
+                        const swalWithBootstrapButtons = Swal.mixin({
+                            customClass: {
+                                confirmButton: 'btn btn-success',
+                                cancelButton: 'btn btn-danger mr-3'
+                            },
+                            buttonsStyling: false
+                        })
+                        swalWithBootstrapButtons.fire(
+                            'Success',
+                            'Feedback success',
+                            'success'
+                        )
+                    },
+                    error: function (response) {
+                        const swalWithBootstrapButtons = Swal.mixin({
+                            customClass: {
+                                confirmButton: 'btn btn-success',
+                                cancelButton: 'btn btn-danger mr-3'
+                            },
+                            buttonsStyling: false
+                        })
+                        swalWithBootstrapButtons.fire(
+                            'Fail!',
+                            'Feedback fail',
+                            'error'
+                        )
+                    }
+                });
             }
         }
     </script>
