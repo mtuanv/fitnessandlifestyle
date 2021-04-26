@@ -220,7 +220,6 @@ C:\Users\User\Desktop\fitnessandlifestyle2\fitness\bin\Microsoft.Owin.Security.T
 C:\Users\User\Desktop\fitnessandlifestyle2\fitness\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\User\Desktop\fitnessandlifestyle2\fitness\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\User\Desktop\fitnessandlifestyle2\fitness\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\User\Desktop\fitnessandlifestyle2\fitness\obj\Debug\fitness.csprojAssemblyReference.cache
 C:\Users\User\Desktop\fitnessandlifestyle2\fitness\obj\Debug\fitness.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\fitnessandlifestyle2\fitness\obj\Debug\fitness.csproj.CopyComplete
 C:\Users\User\Desktop\fitnessandlifestyle2\fitness\obj\Debug\fitness.dll
