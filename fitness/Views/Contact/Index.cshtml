@@ -33,8 +33,8 @@
                     <div class="cw-text">
                         <i class="fa fa-mobile"></i>
                         <ul>
-                            <li>125-711-811</li>
-                            <li>125-668-886</li>
+                            <li><a href="tel://125711811" style="color: #c4c4c4">125-711-811</a></li>
+                            <li><a href="tel://125668886" style="color: #c4c4c4">125-668-886</a></li>
                         </ul>
                     </div>
                     <div class="cw-text email">
@@ -69,40 +69,81 @@
                 content: $('#content').val()
             }
 			Swal.showLoading()
-            $.ajax({
-                url: "/Contact/SendMailToUser",
-                type: "POST",
-                data: JSON.stringify(obj),
-                contentType: "application/json; charset=utf-8",
-                success: function () {
-					const swalWithBootstrapButtons = Swal.mixin({
-						customClass: {
-							confirmButton: 'btn btn-success',
-							cancelButton: 'btn btn-danger mr-3'
-						},
-						buttonsStyling: false
-					})
-					swalWithBootstrapButtons.fire(
-						'Success',
-						'Feedback success',
-						'success'
-					)
-                },
-				error: function (response) {
-					const swalWithBootstrapButtons = Swal.mixin({
-						customClass: {
-							confirmButton: 'btn btn-success',
-							cancelButton: 'btn btn-danger mr-3'
-						},
-						buttonsStyling: false
-					})
-					swalWithBootstrapButtons.fire(
-						'Fail!',
-						'Feedback fail',
-						'error'
-					)
-				}
-            });
+            if (obj.name.toString() == "") {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger mr-3'
+                    },
+                    buttonsStyling: false
+                })
+                swalWithBootstrapButtons.fire(
+                    'Fail!',
+                    'Please input name!',
+                    'error'
+                )
+			} else if (obj.subject.toString() == "") {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger mr-3'
+                    },
+                    buttonsStyling: false
+                })
+                swalWithBootstrapButtons.fire(
+                    'Fail!',
+                    'Please input subject!',
+                    'error'
+                )
+			} else if (obj.content.toString() == "") {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger mr-3'
+                    },
+                    buttonsStyling: false
+                })
+                swalWithBootstrapButtons.fire(
+                    'Fail!',
+                    'Please input your feedback!',
+                    'error'
+                )
+            } else {
+				$.ajax({
+					url: "/Contact/SendMailToUser",
+					type: "POST",
+					data: JSON.stringify(obj),
+					contentType: "application/json; charset=utf-8",
+					success: function () {
+						const swalWithBootstrapButtons = Swal.mixin({
+							customClass: {
+								confirmButton: 'btn btn-success',
+								cancelButton: 'btn btn-danger mr-3'
+							},
+							buttonsStyling: false
+						})
+						swalWithBootstrapButtons.fire(
+							'Success',
+							'Feedback success',
+							'success'
+						)
+					},
+					error: function (response) {
+						const swalWithBootstrapButtons = Swal.mixin({
+							customClass: {
+								confirmButton: 'btn btn-success',
+								cancelButton: 'btn btn-danger mr-3'
+							},
+							buttonsStyling: false
+						})
+						swalWithBootstrapButtons.fire(
+							'Fail!',
+							'Feedback fail',
+							'error'
+						)
+					}
+				});
+            }
         }
     </script>
 }
