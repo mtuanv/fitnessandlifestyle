@@ -219,10 +219,6 @@ input::-webkit-inner-spin-button {
     overflow: hidden;
 }
 
-.table .table-light .hidden-link {
-    display: none;
-}
-
 .table .table-light th a{
     text-decoration: none;
     color: black;
