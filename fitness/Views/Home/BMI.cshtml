@@ -121,7 +121,7 @@
                                     '<div style = "margin-top: 20px" class="col-lg-3">' +
                                     '<div class="ss-text">' +
                                     '<h4 class= "label_title">' + v.Title + '</h4>' +
-                                    ' <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut dolore facilisis.' +
+                                    ' <p class = "content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut dolore facilisis.' +
                                     ' </p>' +
                                     ' <a href="/WorkOuts/Details/' + v.Id + '">Explore</a>' +
                                     '</div>' +
@@ -133,13 +133,19 @@
                                 }
                             });
 
-                            $(".label_title").each(function () {
-                                if ($(this).text().length > 50) {
-                                    $(this).text($(this).text().substr(0, 50));
-                                    $(this).append('...');
-                                }
-                            });
                             $('#sugguest').html(html2);
+                            $(".label_title").each(function () {
+                                
+                                    $(this).text($(this).text().substr(0, 20));
+                                    $(this).append('...');
+                              
+                            });
+                            $(".content").each(function () {
+                               
+                                    $(this).text($(this).text().substr(0, 80));
+                                    $(this).append('...');
+                                
+                            });
                         }
                     });
 
