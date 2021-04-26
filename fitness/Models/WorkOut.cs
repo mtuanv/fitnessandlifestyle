@@ -18,7 +18,7 @@ namespace fitness.Models
         public WorkOut()
         {
             this.Orders = new HashSet<Order>();
-            this.Workout_DayPerWeek = new HashSet<Workout_DayPerWeek>();
+            this.Schedules = new HashSet<Schedule>();
         }
     
         public int Id { get; set; }
@@ -36,6 +36,6 @@ namespace fitness.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Workout_DayPerWeek> Workout_DayPerWeek { get; set; }
+        public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }

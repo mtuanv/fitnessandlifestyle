@@ -20,15 +20,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Link)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.exerciseReps)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.exersiceSets)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Workout_DayPerWeek.Id)
-        </th>
         <th></th>
     </tr>
 
@@ -42,15 +33,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Link)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.exerciseReps)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.exersiceSets)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Workout_DayPerWeek.Id)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

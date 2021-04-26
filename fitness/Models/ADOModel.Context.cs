@@ -39,6 +39,6 @@ namespace fitness.Models
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Resource> Resources { get; set; }
         public virtual DbSet<WorkOut> WorkOuts { get; set; }
-        public virtual DbSet<Workout_DayPerWeek> Workout_DayPerWeek { get; set; }
+        public virtual DbSet<Schedule> Schedules { get; set; }
     }
 }

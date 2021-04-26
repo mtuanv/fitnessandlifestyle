@@ -18,7 +18,6 @@ namespace fitness.Controllers
         public ActionResult Index()
         {
             WorkoutModelIndex model = new WorkoutModelIndex();
-            model.Exercises = db.Exercises.Where(e => e.Workout_DayPerWeek.DayPerWeekId == 1).ToList();
             model.WorkOuts = db.WorkOuts.ToList();
 
             return View(model);

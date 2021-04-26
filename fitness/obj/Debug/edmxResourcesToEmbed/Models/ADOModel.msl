@@ -96,9 +96,6 @@
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="Link" ColumnName="Link" />
-          <ScalarProperty Name="exerciseReps" ColumnName="exerciseReps" />
-          <ScalarProperty Name="exersiceSets" ColumnName="exersiceSets" />
-          <ScalarProperty Name="WDId" ColumnName="WDId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -162,16 +159,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Workout_DayPerWeek">
-      <EntityTypeMapping TypeName="fitnessandlifestyleModel.Workout_DayPerWeek">
-        <MappingFragment StoreEntitySet="Workout_DayPerWeek">
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="DayPerWeekId" ColumnName="DayPerWeekId" />
-          <ScalarProperty Name="WorkOutId" ColumnName="WorkOutId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="fitnessandlifestyleModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetRoles">
         <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -180,5 +167,18 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Schedules">
+      <EntityTypeMapping TypeName="fitnessandlifestyleModel.Schedule">
+        <MappingFragment StoreEntitySet="Schedule">
+          <ScalarProperty Name="ExId" ColumnName="ExId" />
+          <ScalarProperty Name="sets" ColumnName="sets" />
+          <ScalarProperty Name="reps" ColumnName="reps" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="WorkOutId" ColumnName="WorkOutId" />
+          <ScalarProperty Name="DayPerWeekId" ColumnName="DayPerWeekId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

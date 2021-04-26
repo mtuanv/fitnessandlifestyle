@@ -10,116 +10,120 @@ using fitness.Models;
 
 namespace fitness.Controllers
 {
-    public class Workout_DayPerWeekController : Controller
+    public class SchedulesController : Controller
     {
         private fitnessandlifestyle db = new fitnessandlifestyle();
 
-        // GET: Workout_DayPerWeek
+        // GET: Schedules
         public ActionResult Index()
         {
-            var workout_DayPerWeek = db.Workout_DayPerWeek.Include(w => w.DayPerWeek).Include(w => w.WorkOut);
-            return View(workout_DayPerWeek.ToList());
+            var schedules = db.Schedules.Include(s => s.DayPerWeek).Include(s => s.Exercise).Include(s => s.WorkOut);
+            return View(schedules.ToList());
         }
 
-        // GET: Workout_DayPerWeek/Details/5
+        // GET: Schedules/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Workout_DayPerWeek workout_DayPerWeek = db.Workout_DayPerWeek.Find(id);
-            if (workout_DayPerWeek == null)
+            Schedule schedule = db.Schedules.Find(id);
+            if (schedule == null)
             {
                 return HttpNotFound();
             }
-            return View(workout_DayPerWeek);
+            return View(schedule);
         }
 
-        // GET: Workout_DayPerWeek/Create
+        // GET: Schedules/Create
         public ActionResult Create()
         {
             ViewBag.DayPerWeekId = new SelectList(db.DayPerWeeks, "Id", "Day");
+            ViewBag.ExId = new SelectList(db.Exercises, "Id", "Title");
             ViewBag.WorkOutId = new SelectList(db.WorkOuts, "Id", "Content");
             return View();
         }
 
-        // POST: Workout_DayPerWeek/Create
+        // POST: Schedules/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,DayPerWeekId,WorkOutId")] Workout_DayPerWeek workout_DayPerWeek)
+        public ActionResult Create([Bind(Include = "Id,DayPerWeekId,WorkOutId,Status,reps,sets,ExId")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
-                db.Workout_DayPerWeek.Add(workout_DayPerWeek);
+                db.Schedules.Add(schedule);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DayPerWeekId = new SelectList(db.DayPerWeeks, "Id", "Day", workout_DayPerWeek.DayPerWeekId);
-            ViewBag.WorkOutId = new SelectList(db.WorkOuts, "Id", "Content", workout_DayPerWeek.WorkOutId);
-            return View(workout_DayPerWeek);
+            ViewBag.DayPerWeekId = new SelectList(db.DayPerWeeks, "Id", "Day", schedule.DayPerWeekId);
+            ViewBag.ExId = new SelectList(db.Exercises, "Id", "Title", schedule.ExId);
+            ViewBag.WorkOutId = new SelectList(db.WorkOuts, "Id", "Content", schedule.WorkOutId);
+            return View(schedule);
         }
 
-        // GET: Workout_DayPerWeek/Edit/5
+        // GET: Schedules/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Workout_DayPerWeek workout_DayPerWeek = db.Workout_DayPerWeek.Find(id);
-            if (workout_DayPerWeek == null)
+            Schedule schedule = db.Schedules.Find(id);
+            if (schedule == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DayPerWeekId = new SelectList(db.DayPerWeeks, "Id", "Day", workout_DayPerWeek.DayPerWeekId);
-            ViewBag.WorkOutId = new SelectList(db.WorkOuts, "Id", "Content", workout_DayPerWeek.WorkOutId);
-            return View(workout_DayPerWeek);
+            ViewBag.DayPerWeekId = new SelectList(db.DayPerWeeks, "Id", "Day", schedule.DayPerWeekId);
+            ViewBag.ExId = new SelectList(db.Exercises, "Id", "Title", schedule.ExId);
+            ViewBag.WorkOutId = new SelectList(db.WorkOuts, "Id", "Content", schedule.WorkOutId);
+            return View(schedule);
         }
 
-        // POST: Workout_DayPerWeek/Edit/5
+        // POST: Schedules/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,DayPerWeekId,WorkOutId")] Workout_DayPerWeek workout_DayPerWeek)
+        public ActionResult Edit([Bind(Include = "Id,DayPerWeekId,WorkOutId,Status,reps,sets,ExId")] Schedule schedule)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(workout_DayPerWeek).State = EntityState.Modified;
+                db.Entry(schedule).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DayPerWeekId = new SelectList(db.DayPerWeeks, "Id", "Day", workout_DayPerWeek.DayPerWeekId);
-            ViewBag.WorkOutId = new SelectList(db.WorkOuts, "Id", "Content", workout_DayPerWeek.WorkOutId);
-            return View(workout_DayPerWeek);
+            ViewBag.DayPerWeekId = new SelectList(db.DayPerWeeks, "Id", "Day", schedule.DayPerWeekId);
+            ViewBag.ExId = new SelectList(db.Exercises, "Id", "Title", schedule.ExId);
+            ViewBag.WorkOutId = new SelectList(db.WorkOuts, "Id", "Content", schedule.WorkOutId);
+            return View(schedule);
         }
 
-        // GET: Workout_DayPerWeek/Delete/5
+        // GET: Schedules/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Workout_DayPerWeek workout_DayPerWeek = db.Workout_DayPerWeek.Find(id);
-            if (workout_DayPerWeek == null)
+            Schedule schedule = db.Schedules.Find(id);
+            if (schedule == null)
             {
                 return HttpNotFound();
             }
-            return View(workout_DayPerWeek);
+            return View(schedule);
         }
 
-        // POST: Workout_DayPerWeek/Delete/5
+        // POST: Schedules/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Workout_DayPerWeek workout_DayPerWeek = db.Workout_DayPerWeek.Find(id);
-            db.Workout_DayPerWeek.Remove(workout_DayPerWeek);
+            Schedule schedule = db.Schedules.Find(id);
+            db.Schedules.Remove(schedule);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

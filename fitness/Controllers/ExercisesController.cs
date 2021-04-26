@@ -17,8 +17,7 @@ namespace fitness.Controllers
         // GET: Exercises
         public ActionResult Index()
         {
-            var exercises = db.Exercises.Include(e => e.Workout_DayPerWeek);
-            return View(exercises.ToList());
+            return View(db.Exercises.ToList());
         }
 
         // GET: Exercises/Details/5
@@ -39,7 +38,6 @@ namespace fitness.Controllers
         // GET: Exercises/Create
         public ActionResult Create()
         {
-            ViewBag.WDId = new SelectList(db.Workout_DayPerWeek, "Id", "Id");
             return View();
         }
 
@@ -48,7 +46,7 @@ namespace fitness.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Content,Link,exerciseReps,exersiceSets,WDId")] Exercise exercise)
+        public ActionResult Create([Bind(Include = "Id,Title,Content,Link")] Exercise exercise)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +55,6 @@ namespace fitness.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.WDId = new SelectList(db.Workout_DayPerWeek, "Id", "Id", exercise.WDId);
             return View(exercise);
         }
 
@@ -73,7 +70,6 @@ namespace fitness.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.WDId = new SelectList(db.Workout_DayPerWeek, "Id", "Id", exercise.WDId);
             return View(exercise);
         }
 
@@ -82,7 +78,7 @@ namespace fitness.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,Content,Link,exerciseReps,exersiceSets,WDId")] Exercise exercise)
+        public ActionResult Edit([Bind(Include = "Id,Title,Content,Link")] Exercise exercise)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +86,6 @@ namespace fitness.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.WDId = new SelectList(db.Workout_DayPerWeek, "Id", "Id", exercise.WDId);
             return View(exercise);
         }
 

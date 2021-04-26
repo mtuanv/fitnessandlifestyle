@@ -1,167 +1,174 @@
 ﻿@model fitness.Models.WorkOutViewModel
 
 @{
-	ViewBag.Title = "Details";
+    ViewBag.Title = "Details";
 }
 
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb-bg.jpg">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 text-center">
-				<div class="breadcrumb-text">
-					<h2>Classes detail</h2>
-					<div class="bt-option">
-						<a href="./index.html">Home</a>
-						<a href="#">Classes</a>
-						<span>Body building</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb-text">
+                    <h2>@Model.workOut.Title</h2>
+                    <div class="bt-option">
+                        <a href="@Url.Action("Index","Home")">Home</a>
+                        <a href="@Url.Action("Index","WorkOuts")">Workouts</a>
+                        @if (Model.workOut.Category == 1)
+                        {
+                            <span>Body building</span>
+                        }
+                        else
+                        {
+                            <span>Fat loss</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
 <!-- Breadcrumb Section End -->
 <!-- Class Details Section Begin -->
 <section class="class-details-section spad">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8">
-				<div class="class-details-text">
-					<div class="cd-pic">
-						<img src="@Html.DisplayFor(model => model.workOut.Link)" />
-					</div>
-					<div class="cd-text">
-						<div class="cd-single-item">
-							<h3>@Html.DisplayFor(model => model.workOut.Title)</h3>
-							<p>
-								@Html.DisplayFor(model => model.workOut.Content)
-							</p>
-							@foreach (var item in Model.dayPerWeeks)
-							{
-								<h5 class="dpw_title">@Html.DisplayFor(modelItem => item.Day)</h5> foreach (var wditem in item.Workout_DayPerWeek.Where(wdpw => wdpw.DayPerWeekId == item.Id).Where(wdpw => wdpw.WorkOutId == Model.workOut.Id))
-								{
-									if (wditem.Exercises.Count == 0)
-									{
-										<table class="table table-striped">
-											<thead><tr class="bg-danger text-white"><th scope="col" class="border-0">Rest Day</th></tr></thead>
-										</table> }
-									else
-									{
-										<table class="table table-striped">
-											<thead>
-												<tr class="bg-danger text-white">
-													<th scope="col" class="border-0">Exercise</th>
-													<th scope="col" class="border-0">Sets</th>
-													<th scope="col" class="border-0">Reps</th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach (var ex in wditem.Exercises)
-												{
-													<tr class="table-light">
-														<th>@Html.DisplayFor(exItem => ex.Title)</th>
-														<td>@Html.DisplayFor(exItem => ex.exersiceSets)</td>
-														<td>@Html.DisplayFor(exItem => ex.exerciseReps)</td>
-													</tr>
-												}
-											</tbody>
-										</table> }
-								}
-								<br /><br />}
-							@using (Html.BeginForm("Create", "Orders", FormMethod.Post))
-							{
-								@Html.AntiForgeryToken()
-								<input type="hidden" name="WorkoutId" value="@Html.DisplayFor(model => model.workOut.Id)" />
-								<div class="li-text"><h6><button type="submit" class="btn float-right btn-tpi">Take part in</button></h6></div>
-							}
-							<p class="clearfix"></p><br />
-							<h3>Related workout</h3>
-						</div>
-					</div>
-					<div class="cd-trainer">
-						<div id="owl-demo" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
-							<div id="owl-example" class="owl-carousel">
-								@foreach (var item in Model.dietPlans)
-								{
-									<div>
-										<a href="@Url.Action("Details","DietPlans",new { id = item.Id })">
-											<img src="@Html.DisplayFor(modelItem => item.Link)" alt="Alternate Text" style="max-height:140px;" />
-											<div class="li-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="class-details-text">
+                    <div class="cd-pic">
+                        <img src="@Html.DisplayFor(model => model.workOut.Link)" />
+                    </div>
+                    <div class="cd-text">
+                        <div class="cd-single-item">
+                            <h3>@Html.DisplayFor(model => model.workOut.Title)</h3>
+                            <p>
+                                @Html.DisplayFor(model => model.workOut.Content)
+                            </p>
+                            @foreach (var item in Model.dayPerWeeks)
+                            {
+                                <h5 class="dpw_title">@Html.DisplayFor(modelItem => item.Day)</h5> foreach (var wditem in item.Workout_DayPerWeek.Where(wdpw => wdpw.DayPerWeekId == item.Id).Where(wdpw => wdpw.WorkOutId == Model.workOut.Id))
+                                {
+                                    if (wditem.Exercises.Count == 0)
+                                    {
+                                        <table class="table table-striped">
+                                            <thead><tr class="bg-danger text-white"><th scope="col" class="border-0">Rest Day</th></tr></thead>
+                                        </table> }
+                                    else
+                                    {
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr class="bg-danger text-white">
+                                                    <th scope="col" class="border-0">Exercise</th>
+                                                    <th scope="col" class="border-0">Sets</th>
+                                                    <th scope="col" class="border-0">Reps</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var ex in wditem.Exercises)
+                                                {
+                                                    <tr class="table-light">
+                                                        <th>@Html.DisplayFor(exItem => ex.Title)</th>
+                                                        <td>@Html.DisplayFor(exItem => ex.exersiceSets)</td>
+                                                        <td>@Html.DisplayFor(exItem => ex.exerciseReps)</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table> }
+                                }
+                                <br /><br />}
+                            @using (Html.BeginForm("Create", "Orders", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="WorkoutId" value="@Html.DisplayFor(model => model.workOut.Id)" />
+                                <div class="li-text"><h6><button type="submit" class="btn float-right btn-tpi">Take part in</button></h6></div>
+                            }
+                            <p class="clearfix"></p><br />
+                            <h3>Related workout</h3>
+                        </div>
+                    </div>
+                    <div class="cd-trainer">
+                        <div id="owl-demo" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
+                            <div id="owl-example" class="owl-carousel">
+                                @foreach (var item in Model.dietPlans)
+                                {
+                                    <div>
+                                        <a href="@Url.Action("Details","DietPlans",new { id = item.Id })">
+                                            <img src="@Html.DisplayFor(modelItem => item.Link)" alt="Alternate Text" style="max-height:140px;" />
+                                            <div class="li-text">
 
-												<p href="#" style="color: #fff">@Html.DisplayFor(modelItem => item.Title)</p>
+                                                <p href="#" style="color: #fff">@Html.DisplayFor(modelItem => item.Title)</p>
 
-											</div>
+                                            </div>
 
-										</a>
-									</div>
-								}
-							</div>
-						</div>
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
 
-					</div>
-					<script type="text/javascript">
-						$(document).ready(function () {
-							$("#owl-example").owlCarousel();
-						});
+                    </div>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $("#owl-example").owlCarousel();
+                        });
 
-					</script>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-8">
-				<div class="sidebar-option">
-					<div class="so-categories">
-						<h5 class="title">Categories</h5>
-						<ul>
-							<li><a href="#">Gain Weight</a></li>
-							<li><a href="#">Loss Weight</a></li>
-						</ul>
-					</div>
-					<div class="so-latest">
-						<h5 class="title">Resources</h5>
-						<div class="latest-large set-bg" data-setbg="img/resources/bench-press_0.jpg">
-							<div class="ll-text">
-								@if (Model.workOut.Category == 1)
-								{
-									<h5><a href="#">@Html.DisplayFor(model => model.resources.Where(r => r.Category == 1).First().Title)</a></h5>
-									<ul>
-										<li>
-											For Weight Gain
-										</li>
-									</ul> }
-								else
-								{ @*<h5><a href="#">@Html.DisplayFor(model => model.resources.Where(r => r.Category == 2).First().Title)</a></h5>*@
-								<ul>
-									<li>
-										For Weight Loss
-									</li>
-								</ul>}
-							</div>
-						</div>
-						@foreach (var item in Model.resources.Skip(1).Take(4).Where(r => r.Category == Model.workOut.Category))
-						{
-							<div class="latest-item">
-								<div class="li-text">
-									<h6><a href="#">@Html.DisplayFor(modelItem => item.Title)</a></h6>
-									<span class="li-time">
-										For Weight
-										@if (Model.workOut.Category == 1)
-										{
-											<span>Gain</span> }
-										else
-										{
-											<span>Loss</span>}
+                    </script>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-8">
+                <div class="sidebar-option">
+                    <div class="so-categories">
+                        <h5 class="title">Categories</h5>
+                        <ul>
+                            <li><a href="#">Gain Weight</a></li>
+                            <li><a href="#">Loss Weight</a></li>
+                        </ul>
+                    </div>
+                    <div class="so-latest">
+                        <h5 class="title">Resources</h5>
+                        <div class="latest-large set-bg" data-setbg="img/resources/bench-press_0.jpg">
+                            <div class="ll-text">
+                                @if (Model.workOut.Category == 1)
+                                {
+                                    <h5><a href="#">@Html.DisplayFor(model => model.resources.Where(r => r.Category == 1).First().Title)</a></h5>
+                                    <ul>
+                                        <li>
+                                            For Weight Gain
+                                        </li>
+                                    </ul> }
+                                else
+                                { @*<h5><a href="#">@Html.DisplayFor(model => model.resources.Where(r => r.Category == 2).First().Title)</a></h5>*@
+                                <ul>
+                                    <li>
+                                        For Weight Loss
+                                    </li>
+                                </ul>}
+                            </div>
+                        </div>
+                        @foreach (var item in Model.resources.Skip(1).Take(4).Where(r => r.Category == Model.workOut.Category))
+                        {
+                            <div class="latest-item">
+                                <div class="li-text">
+                                    <h6><a href="#">@Html.DisplayFor(modelItem => item.Title)</a></h6>
+                                    <span class="li-time">
+                                        For Weight
+                                        @if (Model.workOut.Category == 1)
+                                        {
+                                            <span>Gain</span> }
+                                        else
+                                        {
+                                            <span>Loss</span>}
 
-									</span>
-								</div>
+                                    </span>
+                                </div>
 
-							</div>
-						}
-						<div class="so-banner set-bg" data-setbg="img/sidebar-banner.jpg">
-							<h5>Banner 300x300</h5>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+                            </div>
+                        }
+                        <div class="so-banner set-bg" data-setbg="img/sidebar-banner.jpg">
+                            <h5>Banner 300x300</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </section>

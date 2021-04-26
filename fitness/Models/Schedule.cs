@@ -12,22 +12,18 @@ namespace fitness.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Workout_DayPerWeek
+    public partial class Schedule
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Workout_DayPerWeek()
-        {
-            this.Exercises = new HashSet<Exercise>();
-        }
-    
         public int Id { get; set; }
         public Nullable<int> DayPerWeekId { get; set; }
         public Nullable<int> WorkOutId { get; set; }
         public Nullable<int> Status { get; set; }
+        public Nullable<int> reps { get; set; }
+        public Nullable<int> sets { get; set; }
+        public Nullable<int> ExId { get; set; }
     
         public virtual DayPerWeek DayPerWeek { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Exercise> Exercises { get; set; }
+        public virtual Exercise Exercise { get; set; }
         public virtual WorkOut WorkOut { get; set; }
     }
 }

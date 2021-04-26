@@ -1,4 +1,4 @@
-﻿@model IEnumerable<fitness.Models.Workout_DayPerWeek>
+﻿@model IEnumerable<fitness.Models.Schedule>
 
 @{
     ViewBag.Title = "Index";
@@ -12,7 +12,19 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.reps)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sets)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.DayPerWeek.Day)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Exercise.Title)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.WorkOut.Content)
@@ -23,7 +35,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.reps)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sets)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.DayPerWeek.Day)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Exercise.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.WorkOut.Content)

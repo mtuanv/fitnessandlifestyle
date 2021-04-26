@@ -14,14 +14,18 @@ namespace fitness.Models
     
     public partial class Exercise
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Exercise()
+        {
+            this.Schedules = new HashSet<Schedule>();
+        }
+    
         public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public string Link { get; set; }
-        public int exerciseReps { get; set; }
-        public int exersiceSets { get; set; }
-        public Nullable<int> WDId { get; set; }
     
-        public virtual Workout_DayPerWeek Workout_DayPerWeek { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Schedule> Schedules { get; set; }
     }
 }
