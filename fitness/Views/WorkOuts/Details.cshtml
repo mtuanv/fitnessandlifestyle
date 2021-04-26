@@ -56,12 +56,16 @@
                                             <th scope="col" class="border-0">Reps</th>
                                         </tr>
                                     </thead>
-                                    @foreach (var day in item.Schedules)
+                                    @foreach (var day in item.Schedules.Where(x => x.WorkOutId == Model.WorkOut.Id))
                                     {
                                         if (day.Status == 2)
                                         {
                                             <thead>
-                                                <tr class="table-light"><th scope="col" class="border-0">Rest Day</th></tr>
+                                                <tr class="table-light">
+                                                    <th>Rest Day</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                </tr>
                                             </thead>
                                         }
                                         else
@@ -71,8 +75,8 @@
                                                 <tbody>
                                                     <tr class="table-light">
                                                         <th>@ex.Title</th>
-                                                        <td>@day.sets</td>
-                                                        <td>@day.reps</td>
+                                                        <th>@day.sets</th>
+                                                        <th>@day.reps</th>
                                                     </tr>
                                                 </tbody>
                                             }
@@ -100,17 +104,13 @@
                                         <a href="@Url.Action("Details","DietPlans",new { id = item.Id })">
                                             <img src="@Html.DisplayFor(modelItem => item.Link)" alt="Alternate Text" style="max-height:140px;" />
                                             <div class="li-text">
-
                                                 <p href="#" style="color: #fff">@Html.DisplayFor(modelItem => item.Title)</p>
-
                                             </div>
-
                                         </a>
                                     </div>
                                 }
                             </div>
                         </div>
-
                     </div>
                     <script type="text/javascript">
                         $(document).ready(function () {
