@@ -9,5 +9,7 @@ namespace fitness.Models
     {
         public WorkOut workOut { get; set; }
         public ICollection<DietPlan> dietPlans { get; set; }
+        public ICollection<DayPerWeek> dayPerWeeks { get; set; }
+        public ICollection<Resource> resources { get; set; }
     }
 }

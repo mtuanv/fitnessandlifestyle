@@ -215,6 +215,9 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BMI.cs" />
+    <Compile Include="Models\BMI_OBJ.cs" />
+    <Compile Include="Models\BMI_parameter.cs" />
     <Compile Include="Models\Daily_Diet.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
@@ -248,6 +251,7 @@
     <Compile Include="Models\WorkOut.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WorkoutModelIndex.cs" />
     <Compile Include="Models\WorkOutViewModel.cs" />
     <Compile Include="Models\Workout_DayPerWeek.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
