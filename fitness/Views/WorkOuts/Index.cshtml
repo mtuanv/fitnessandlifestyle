@@ -98,9 +98,11 @@
                 {
                     <div class="col-lg-4 col-md-8" style="padding-top: 15px">
                         <div class="ps-item">
-                            <h3>@item.Title</h3>
-                            <div class="pi-price">
-                                <span>Featured Exercises</span>
+                            <div class="basicInfo">
+                                <h3>@item.Title</h3>
+                                <div class="pi-price">
+                                    <span>Featured Exercises</span>
+                                </div>
                             </div>
                             <ul>
                                 @foreach (var s in item.Schedules.Where(x => x.DayPerWeekId == 1))
@@ -132,11 +134,13 @@
                 {
                     <div class="col-lg-4 col-md-8" style="padding-top: 15px">
                         <div class="ps-item">
-                            <h3>@item.Title</h3>
-                            <div class="pi-price">
-                                <span>Featured Exercises</span>
+                            <div class="basicInfo">
+                                <h3>@item.Title</h3>
+                                <div class="pi-price">
+                                    <span>Featured Exercises</span>
+                                </div>
                             </div>
-                            <ul>
+                            <ul class="list-exercise">
                                 @foreach (var s in item.Schedules.Where(x => x.DayPerWeekId == 1))
                                 {
                                     foreach (var ex in Model.Exercises.Where(x => x.Id == s.ExId))

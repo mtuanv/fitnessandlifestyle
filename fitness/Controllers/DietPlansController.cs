@@ -38,6 +38,10 @@ namespace fitness.Controllers
             int category = db.DietPlans.Find(id).Category;
             IList<WorkOut> workOut = db.WorkOuts.Where(w=> w.Category == category).ToList();
             dvm.workOuts = workOut;
+            IList<DayPerWeek> dayPerWeeks = db.DayPerWeeks.ToList();
+            dvm.dayPerWeeks = dayPerWeeks;
+            IList<Resource> resources = db.Resources.ToList();
+            dvm.resources = resources;
             return View(dvm);
         }
 

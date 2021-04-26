@@ -27,24 +27,56 @@
             </div>
         </div>
         <div class="row">
-            @foreach (var dp in Model)
+            @{ int rowCount = 1; int totalRecord = 1;}
+            @foreach (var item in Model)
             {
-                <div class="col-lg-6 col-md-12 p-0">
-                    <div class="row">
+                if (rowCount % 2 != 0)
+                {
+                    <div class="col-lg-6 row">
                         <div class="col-lg-6 order-lg-1 col-md-6 p-0">
                             <div class="ss-pic">
-                                <img style="height:auto; width:100%" src="@dp.Link" alt="" />
+                                <img src="@item.Link" alt="">
                             </div>
                         </div>
                         <div class="col-lg-6 order-lg-2 col-md-6 p-0">
                             <div class="ss-text">
-                                <h4>@dp.Title</h4>
-                                <a href="@Url.Action("Details","DietPlans",new { id=dp.Id})">Explore</a>
+                                <div class="content-show">
+                                    <h4>@item.Title</h4>
+                                    <p>@item.Content</p>
+                                </div>
+                                <a href="@Url.Action("Details","DietPlans",new {id = item.Id})">Explore</a>
                             </div>
                         </div>
                     </div>
-                </div>
+                    if (totalRecord % 2 == 0)
+                    {
+                        rowCount++;
+                    }
+                    totalRecord++;
+                }
+                else
+                {
+                    <div class="col-lg-6 row">
+                        <div class="col-lg-6 order-lg-8 col-md-6 p-0">
+                            <div class="ss-pic">
+                                <img src="@item.Link" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 order-lg-7 col-md-6 p-0">
+                            <div class="ss-text second-row">
+                                <div class="content-show">
+                                    <h4>@item.Title</h4>
+                                    <p>
+                                        @item.Content
+                                    </p>
+                                </div>
+                                <a href="@Url.Action("Details","DietPlans",new {id = item.Id})">Explore</a>
+                            </div>
+                        </div>
+                    </div>
+                }
             }
+
 
         </div>
     </div>
