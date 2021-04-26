@@ -238,6 +238,7 @@
     <Compile Include="Models\Diet_DayPerWeek.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Exercise.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
@@ -259,7 +260,6 @@
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SearchModel.cs" />
-    <Compile Include="Models\sMail.cs" />
     <Compile Include="Models\WorkOut.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>

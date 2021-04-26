@@ -5,7 +5,7 @@ using System.Web;
 
 namespace fitness.Models
 {
-    public class sMail
+    public class Email
     {
         public string name { get; set; }
         public string email { get; set; }

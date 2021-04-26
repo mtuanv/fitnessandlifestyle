@@ -47,10 +47,14 @@ namespace fitness.Controllers
         //}
 
         [HttpPost]
-        public JsonResult SendMailToUser(sMail email)
+        public JsonResult SendMailToUser(Email emails)
         {
+            string subject = emails.subject;
+            string name = emails.name;
+            string content = emails.content;
+            string email = emails.email;
             bool result = false;
-            result = SendEmail("minhtuan1690002@gmail.com", email.subject, "<p><b>Name:</b> " + email.name + "<br/><b>Email:</b> " + email.email + "<br/><b>Feedback Content:</b> " + email.content + "</p>");
+            result = SendEmail("minhtuan1690002@gmail.com", subject, "<p><b>Name:</b> " + name + "<br/><b>Email:</b> " + email + "<br/><b>Feedback Content:</b> " + content + "</p>");
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         public bool SendEmail(string toEmail, string subject, string emailBody)
