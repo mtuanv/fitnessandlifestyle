@@ -39,13 +39,13 @@
                         <label style="color: white">
                             Weight
                         </label>
-                        <input class="form-control" type="number" id="Weight" placeholder="kg">
+                        <input class="form-control" type="number" value="70" id="Weight" placeholder="kg">
                     </div>
                     <div class="form-group">
                         <label style="color: white">
                             Height
                         </label>
-                        <input class="form-control" type="number" id="Height" placeholder="cm">
+                        <input class="form-control" type="number" value="150" id="Height" placeholder="cm">
                     </div>
                     <div class="form-group">
                         <button class="btn btn-danger" onclick="return _calculate()">Submit</button>
@@ -76,76 +76,75 @@
     </div>
 </section>
 
-
-
-
 @section js{
-    <script type="text/javascript">
+<script type="text/javascript">
 
-        function _calculate() {
+    function _calculate() {
 
-            var obj = {
-                Weight: $('#Weight').val(),
-                Height: $('#Height').val()
-            }
-           
-            var html = '';
-            var html2 = '';
-            $.ajax({
-                url: "/Home/calculateBMI",
-                type: "POST",
-                data: JSON.stringify(obj),
-                contentType: "application/json; charset=utf-8",
-                success: function (result) {
-                    var obj2 = {
-                        result: result
-                    }
-                    html += '<span style = "font-weight: bolder;font-size: 15px"> Your BMI is: ' + result + ' | You can try take practice that are showing below  </span>';
-                    html += '<span style = "font-weight: bolder;font-size: 15px "> Normal BMI is: 25';
-                    $("#Result").html(html);
-                    $.ajax({
-                        url: '/Home/listWorkOut',
-                        type: "POST",
-                        data: JSON.stringify(obj2),
-                        contentType: "application/json; charset=utf-8",
-                        success: function (KQ) {
-                            var random = 1;
-
-                            $.each(KQ, function (k, v) {
-
-                                html2 += ' <div style = "margin-top: 20px" class="col-lg-3">' +
-                                    ' <div class="ss-pic">' +
-                                    '<img src="/Public/img/services/services-' + random + '.jpg" alt="">' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div style = "margin-top: 20px" class="col-lg-3">' +
-                                    '<div class="ss-text">' +
-                                    '<h4 class= "label_title">' + v.Title + '</h4>' +
-                                    ' <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut dolore facilisis.' +
-                                    ' </p>' +
-                                    ' <a href="/WorkOuts/Details/' + v.Id + '">Explore</a>' +
-                                    '</div>' +
-                                    '</div>';
-                                if (random > 4) {
-                                    random = 1;
-                                } else {
-                                    random = random + 1;
-                                }
-                            });
-
-                            $(".label_title").each(function () {
-                                if ($(this).text().length > 50) {
-                                    $(this).text($(this).text().substr(0, 50));
-                                    $(this).append('...');
-                                }
-                            });
-                            $('#sugguest').html(html2);
-                        }
-                    });
-
-
-                }
-            });
+        var obj = {
+            Weight: $('#Weight').val(),
+            Height: $('#Height').val()
         }
-    </script>
+
+        var html = '';
+        var html2 = '';
+        $.ajax({
+            url: "/Home/calculateBMI",
+            type: "POST",
+            data: JSON.stringify(obj),
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                var obj2 = {
+                    result: result
+                }
+                html += '<span style = "font-weight: bolder;font-size: 15px"> Your BMI is: ' + result + ' | You can try take practice that are showing below. It may be Good for you ! </span>';
+                html += '<p style = "font-weight: bolder;font-size: 15px "> Normal BMI is: 25</p>';
+                $("#Result").html(html);
+                $.ajax({
+                    url: '/Home/listWorkOut',
+                    type: "POST",
+                    data: JSON.stringify(obj2),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (KQ) {
+                        var random = 1;
+
+                        $.each(KQ, function (k, v) {
+                            
+                            html2 += ' <div style = "margin-top: 20px" class="col-lg-3">' +
+                                ' <div class="ss-pic">' +
+                                '<img src="/Public/img/services/services-' + random + '.jpg" alt="">' +
+                                '</div>' +
+                                '</div>' +
+                                '<div style = "margin-top: 20px" class="col-lg-3">' +
+                                '<div class="ss-text">' +
+                                '<h4 class= "label_title">' + v.Title + '</h4>' +
+                                '<p class= "content">' + v.Content +'</p>' +
+                                ' <a href="/WorkOuts/Details/' + v.Id + '">Explore</a>' +
+                                '</div>' +
+                                '</div>';
+                            if (random > 4) {
+                                random = 1;
+                            } else {
+                                random = random + 1;
+                            }
+                           
+                        });
+
+                        $('#sugguest').html(html2);
+                        $(".label_title").each(function () {
+                            $(this).text($(this).text().substr(0, 20));
+                            $(this).append('...');
+                        });
+                        $(".content").each(function () {
+                            $(this).text($(this).text().substr(0, 90));
+                            $(this).append('...');
+                        });
+                    }
+                });
+
+
+            }
+        });
+    }
+</script>
 }

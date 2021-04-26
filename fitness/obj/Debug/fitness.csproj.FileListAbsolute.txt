@@ -645,6 +645,7 @@ D:\fitnessandlifestyle\fitness\obj\Debug\fitness.csproj.CoreCompileInputs.cache
 D:\fitnessandlifestyle\fitness\obj\Debug\fitness.csproj.CopyComplete
 D:\fitnessandlifestyle\fitness\obj\Debug\fitness.dll
 D:\fitnessandlifestyle\fitness\obj\Debug\fitness.pdb
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 C:\Users\User\Desktop\fitnessandlifestyle2\fitness\obj\Debug\fitness.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\fitnessandlifestyle2\fitness\obj\Debug\fitness.dll
@@ -761,3 +762,6 @@ D:\fitnessandlifestyle\fitness\bin\Microsoft.AspNet.SignalR.Core.xml
 D:\fitnessandlifestyle\fitness\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
 D:\fitnessandlifestyle\fitness\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
 >>>>>>> 0d117e716c0f6125bc90c9cabe0f63d63509779e
+=======
+H:\GitHub_Pull\fitnessandlifestyle\fitness\obj\Debug\fitness.csprojAssemblyReference.cache
+>>>>>>> Stashed changes
