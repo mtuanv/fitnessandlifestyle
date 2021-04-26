@@ -208,16 +208,27 @@ input::-webkit-inner-spin-button {
     right: 0;
 }
 
-/*.owl-item{
-    height: 540px;
-}*/
 
-    .owl-item .basicInfo{
-        width: 100%;
-        height: 143px;
-    }
+.owl-item .basicInfo{
+    width: 100%;
+    height: 143px;
+}
 
-    .list-exercise {
-        height: 185px;
-        overflow: hidden;
-    }
+.list-exercise {
+    height: 185px;
+    overflow: hidden;
+}
+
+.table .table-light .hidden-link {
+    display: none;
+}
+
+.table .table-light th a{
+    text-decoration: none;
+    color: black;
+}
+
+.content-video {
+    height: 200px;
+    overflow: scroll;
+}

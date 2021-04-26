@@ -30,7 +30,7 @@
 </section>
 <!-- Breadcrumb Section End -->
 <!-- Class Details Section Begin -->
-<section class="class-details-section spad">
+<section class="class-details-section spad" id="loadSection">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
@@ -74,7 +74,8 @@
                                             {
                                                 <tbody>
                                                     <tr class="table-light">
-                                                        <th>@ex.Title</th>
+                                                        <th class="hidden-link">@ex.Link</th>
+                                                        <th><a href="" onclick="loadModal('@ex.Link','@ex.Title')" data-bs-toggle="modal" data-bs-target="#exampleModal">@ex.Title</a></th>
                                                         <th>@day.sets</th>
                                                         <th>@day.reps</th>
                                                     </tr>
