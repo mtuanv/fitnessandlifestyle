@@ -9,5 +9,6 @@ namespace fitness.Models
     {
         public ICollection<WorkOut> WorkOuts { get; set; }
         public ICollection<Exercise> Exercises { get; set; }
+        public ICollection<Schedule> Schedules { get; set; }
     }
 }

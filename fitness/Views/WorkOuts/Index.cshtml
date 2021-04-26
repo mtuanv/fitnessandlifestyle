@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-lg-3 order-lg-1 col-md-6 p-0">
                 <div class="ss-pic">
-                    <img src="~/Public/img/services/services-3.jpg" alt=""/>
+                    <img src="~/Public/img/services/services-3.jpg" alt="" />
                 </div>
 
             </div>
@@ -47,7 +47,7 @@
             </div>
             <div class="col-lg-3 order-lg-3 col-md-6 p-0">
                 <div class="ss-pic">
-                    <img src="~/Public/img/services/services-4.jpg" alt=""/>
+                    <img src="~/Public/img/services/services-4.jpg" alt="" />
                 </div>
             </div>
             <div class="col-lg-3 order-lg-3 col-md-6 p-0">
@@ -99,10 +99,13 @@
                     <div class="col-lg-4 col-md-8" style="padding-top: 15px">
                         <div class="ps-item">
                             <h3>@item.Title</h3>
+                            <div class="pi-price">
+                                <span>Featured Exercises</span>
+                            </div>
                             <ul>
-                                @foreach (var wd in item.Workout_DayPerWeek.Where(x => x.DayPerWeekId == 1))
+                                @foreach (var s in item.Schedules.Where(x => x.DayPerWeekId == 1))
                                 {
-                                    foreach (var ex in wd.Exercises)
+                                    foreach (var ex in Model.Exercises.Where(x => x.Id == s.ExId))
                                     {
                                         <li>@ex.Title</li>
                                     }
@@ -134,9 +137,9 @@
                                 <span>Featured Exercises</span>
                             </div>
                             <ul>
-                                @foreach (var wd in item.Workout_DayPerWeek.Where(x => x.DayPerWeekId == 1))
+                                @foreach (var s in item.Schedules.Where(x => x.DayPerWeekId == 1))
                                 {
-                                    foreach (var ex in wd.Exercises.Take(5))
+                                    foreach (var ex in Model.Exercises.Where(x => x.Id == s.ExId))
                                     {
                                         <li>@ex.Title</li>
                                     }

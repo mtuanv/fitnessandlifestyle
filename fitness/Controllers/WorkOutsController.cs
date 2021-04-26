@@ -18,8 +18,9 @@ namespace fitness.Controllers
         public ActionResult Index()
         {
             WorkoutModelIndex model = new WorkoutModelIndex();
+            model.Exercises = db.Exercises.ToList();
             model.WorkOuts = db.WorkOuts.ToList();
-
+            model.Schedules = db.Schedules.ToList();
             return View(model);
         }
 
@@ -36,14 +37,14 @@ namespace fitness.Controllers
             {
                 return HttpNotFound();
             }
-            wvm.workOut = workOut;
+            wvm.WorkOut = workOut;
             int category = db.WorkOuts.Find(id).Category;
             IList<DietPlan> dietPlans = db.DietPlans.Where(d => d.Category == category).ToList();
-            wvm.dietPlans = dietPlans;
-            IList<DayPerWeek> dayPerWeeks = db.DayPerWeeks.ToList();
-            wvm.dayPerWeeks = dayPerWeeks;
+            wvm.DietPlans = dietPlans;
+            ICollection<DayPerWeek> dayPerWeeks = db.DayPerWeeks.ToList();
+            wvm.Schedules = dayPerWeeks;
             IList<Resource> resources = db.Resources.ToList();
-            wvm.resources = resources;
+            wvm.Resources = resources;
             return View(wvm);
         }
 

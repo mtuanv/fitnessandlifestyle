@@ -1,10 +1,12 @@
 ﻿using fitness.Models;
+using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using fitness.Servies;
 
 namespace fitness.Controllers
 {
@@ -13,20 +15,6 @@ namespace fitness.Controllers
         fitnessandlifestyle db = new fitnessandlifestyle();
         public ActionResult Index()
         {
-            //var query = (from s in students
-            //             join c in courses on s.StudentID equals c.StudentID
-            //             join t in teachers on c.TeacherID equals t.TeacherID
-            //             select new
-            //             {
-            //                 s.StudentID,
-            //                 s.StudentName,
-            //                 c.CourseID,
-            //                 c.CourseName,
-            //                 t.TeacherID,
-            //                 t.TeacherName
-            //             }).OrderBy(x => x.CourseID);
-
-            //var search = from 
             return View();
         }
         public ActionResult Team()
@@ -135,5 +123,9 @@ namespace fitness.Controllers
 
             return View();
         }
+        //private void sendMessage(string message)
+        //{
+        //    GlobalHost.ConnectionManager.GetHubContext<notification>().Clients.
+        //}
     }
 }

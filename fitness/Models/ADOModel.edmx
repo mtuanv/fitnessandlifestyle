@@ -102,7 +102,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Content" Type="text" Nullable="false" />
-          <Property Name="Link" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Link" Type="text" />
         </EntityType>
         <EntityType Name="Goal">
           <Key>
@@ -546,7 +546,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="true" />
           <NavigationProperty Name="Schedules" Relationship="fitnessandlifestyleModel.FK__Workout_Da__ExId__6CD828CA" FromRole="Exercise" ToRole="Schedule" />
         </EntityType>
         <EntityType Name="Goal">
@@ -823,7 +823,7 @@
           <Property Name="Status" Type="Int32" />
           <Property Name="reps" Type="Int32" />
           <Property Name="sets" Type="Int32" />
-          <Property Name="ExId" Type="Int32" />
+          <Property Name="ExId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="DayPerWeek" Relationship="fitnessandlifestyleModel.FK__Workout_D__DayPe__282DF8C21" FromRole="Schedule" ToRole="DayPerWeek" />
           <NavigationProperty Name="Exercise" Relationship="fitnessandlifestyleModel.FK__Workout_Da__ExId__6CD828CA" FromRole="Schedule" ToRole="Exercise" />
           <NavigationProperty Name="WorkOut" Relationship="fitnessandlifestyleModel.FK__Workout_D__WorkO__29221CFB1" FromRole="Schedule" ToRole="WorkOut" />
