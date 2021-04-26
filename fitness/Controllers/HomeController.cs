@@ -98,7 +98,7 @@ namespace fitness.Controllers
                 }
                 else
                 {
-                    return Json("Erro", JsonRequestBehavior.AllowGet);
+                    return Json("", JsonRequestBehavior.AllowGet);
                 }
             }
             else
