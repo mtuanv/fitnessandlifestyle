@@ -44,17 +44,36 @@ namespace fitness.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdateProfile(string id, string firstName, string lastName, int gender, int age, string email, string phone, int weight, int height )
+        public ActionResult UpdateProfile(string firstname, string lastname, int gender, int age, int weight, int height, int desire_weight )
         {
-            AspNetUser user = db.AspNetUsers.Find(id);
-            user.UserName = firstName + lastName;
+            var username = System.Web.HttpContext.Current.User.Identity.Name;
+            AspNetUser user = db.AspNetUsers.Where(u => u.Email.Equals(username)).First();
+
+            user.FirstName = firstname;
+            user.LastName = lastname;
             user.UserAge = age;
             user.Gender = gender;
-            user.Email = email;
             user.UserWeight = weight;
             user.UserHeight = height;
             db.SaveChanges();
-            return View();
+
+            int category = 0;
+            if(desire_weight >= weight)
+            {
+                category = 1;
+            } else
+            {
+                category = 2;
+            }
+
+            Goal goal = new Goal();
+            goal.WeightDesired = desire_weight;
+            goal.UserId = user.Id;
+            goal.Category = category;
+            goal.StatusGoal = 0;
+            db.Goals.Add(goal);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -66,5 +85,31 @@ namespace fitness.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult UserInputInfo()
+        {
+            var username = System.Web.HttpContext.Current.User.Identity.Name;
+            AspNetUser user = db.AspNetUsers.Where(u => u.Email.Equals(username)).First();
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateProgess(int weight, int height)
+        {
+            var username = System.Web.HttpContext.Current.User.Identity.Name;
+            AspNetUser user = db.AspNetUsers.Where(u => u.Email.Equals(username)).First();
+
+            Goal userGoal = db.Goals.Find("UserId = " + user.Id);
+            int goalId = userGoal.Id;
+
+            GoalProgess progess = new GoalProgess();
+            progess.CurrentHeight = height;
+            progess.CurrentWeight = weight;
+            progess.GoalId = goalId;
+            progess.timestamp = DateTime.Now;
+            db.GoalProgesses.Add(progess);
+            db.SaveChanges();
+
+            return RedirectToAction("UserPlan", "Profile");
+        }
     }
 }

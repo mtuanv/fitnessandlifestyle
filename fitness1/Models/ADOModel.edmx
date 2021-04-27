@@ -69,6 +69,8 @@
           <Property Name="UserWeight" Type="int" />
           <Property Name="UserHeight" Type="int" />
           <Property Name="Gender" Type="int" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="255" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Daily_Diet">
           <Key>
@@ -519,6 +521,8 @@
           <NavigationProperty Name="Goals" Relationship="Self.FK__Goal__UserId__6442E2C9" FromRole="AspNetUsers" ToRole="Goal" />
           <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__UserId__69FBBC1F" FromRole="AspNetUsers" ToRole="Orders" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Daily_Diet">
           <Key>
@@ -948,6 +952,8 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="fitnessandlifestyleModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />

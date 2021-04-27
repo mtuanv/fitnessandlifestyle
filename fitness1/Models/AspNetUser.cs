@@ -40,6 +40,8 @@ namespace fitness.Models
         public Nullable<int> UserWeight { get; set; }
         public Nullable<int> UserHeight { get; set; }
         public Nullable<int> Gender { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }

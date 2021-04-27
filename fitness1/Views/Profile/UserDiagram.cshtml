@@ -1,4 +1,6 @@
-﻿<section class="breadcrumb-sectionProfile set-bg" data-setbg="img/banner-profile.jpg">
+﻿@model fitness.Models.AspNetUser
+
+<section class="breadcrumb-sectionProfile set-bg" data-setbg="img/banner-profile.jpg">
     <div class="container-profile">
         <div class="row gutters">
             <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
@@ -9,8 +11,9 @@
                                 <div class="user-avatar">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
                                 </div>
-                                <h5 class="user-name">Yuki Hayashi</h5>
-                                <h6 class="user-email">yuki@Maxwell.com</h6>
+
+                                <h5 class="user-name">@Model.UserName </h5>
+                                <h6 class="user-email">@Model.Email</h6>
                             </div>
                             <div class="about">
                                 <ul class="nav nav-list flex-column mb-5">
@@ -37,8 +40,11 @@
     </div>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@next/dist/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@next/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 <script src="~/Public/js/diagram-data.js"></script>
 <script>
+
     let ctx = document.getElementById('myChart');
     let config = {
         type: 'line',

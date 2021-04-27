@@ -1,5 +1,6 @@
 ﻿<!-- Breadcrumb Section Begin -->
 @model fitness.Models.AspNetUser
+
 <section class="breadcrumb-sectionProfile set-bg" data-setbg="img/banner-profile.jpg">
     <div class="container-profile">
         <div class="row gutters">
@@ -11,7 +12,7 @@
                                 <div class="user-avatar">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
                                 </div>
-                                <h5 class="user-name"></h5> @*Chỗ này đặt @Model.firstname  @Model.LastName*@
+                                <h5 class="user-name">@Model.UserName</h5>
                                 <h6 class="user-email">@Model.Email</h6>
                             </div>
                             <div class="about">

@@ -46,8 +46,9 @@
 							</p>
 							@foreach (var item in Model.dayPerWeeks)
 							{
-								<h5 class="dpw_title">@Html.DisplayFor(modelItem => item.Day)</h5> foreach (var dditem in item.Diet_DayPerWeek.Where(ddpw => ddpw.DayPerWeekId == item.Id).Where(ddpw => ddpw.DietID == Model.dietPlan.Id))
+								foreach (var dditem in item.Diet_DayPerWeek.Where(ddpw => ddpw.DayPerWeekId == item.Id).Where(ddpw => ddpw.DietID == Model.dietPlan.Id))
 								{
+									<h5 class="dpw_title">Day @Html.DisplayFor(modelItem => item.Id)</h5>
 									<table class="table table-striped">
 										<thead>
 											<tr class="bg-danger text-white">
@@ -70,9 +71,9 @@
 							{
 								@Html.AntiForgeryToken()
 								<input type="hidden" name="DietplanId" value="@Html.DisplayFor(model => model.dietPlan.Id)" />
-								<div class="li-text"><h6><button type="submit" class="btn float-right" style="color:white;background-color: #f36100;border-color: #f36100">Take part in</button></h6></div>
+								<div class="li-text"><h6><button type="submit" class="btn float-right btn-tpi">Take part in</button></h6></div>
 							}
-							<p style="clear: both"></p><br />
+							<p class="clearfix"></p><br />
 							<h3>Related workout</h3>
 						</div>
 					</div>
@@ -83,7 +84,7 @@
 								{
 									<div>
 										<a href="@Url.Action("Details","WorkOuts",new { id = item.Id })">
-											<img src="@Html.DisplayFor(modelItem => item.Link)" alt="Alternate Text" style="max-height:140px;" />
+											<img src="@Html.DisplayFor(modelItem => item.Link)" alt="Alternate Text" class="mh-slide" />
 											<div class="li-text ">
 												<p class="text-white m-0">@Html.DisplayFor(modelItem => item.Title)</p>
 											</div>
@@ -104,60 +105,17 @@
 			</div>
 			<div class="col-lg-4 col-md-8">
 				<div class="sidebar-option">
-					<div class="so-categories">
-						<h5 class="title">Services</h5>
-						<ul>
-							<li><a href="@Url.Action("Index","Workouts")">Workouts</a></li>
-							<li><a href="@Url.Action("Index","DietPlans")">Diet Plans</a></li>
-						</ul>
-					</div>
 					<div class="so-latest">
-						<h5 class="title">Latest posts</h5>
-						<div class="latest-large set-bg" data-setbg="img/letest-blog/latest-1.jpg">
-							<div class="ll-text">
-								<h5><a href="#">This Japanese Way of Making Iced Coffee Is a Game...</a></h5>
-								<ul>
-									<li>Aug 20, 2019</li>
-									<li>20 Comment</li>
-								</ul>
-							</div>
+						<h5 class="title">Some resources</h5>
+						@foreach (var item in Model.resources.Take(5))
+						{
+							<input type="hidden" value="@item.Link"/>
+					<div class="latest-large set-bg" data-setbg="img/resources/@item.Image">
+						<div class="ll-text">
+							<h5><a href="@Url.Action("Details","Resources",new { id = item.Id})">@item.Title</a></h5>
 						</div>
-						<div class="latest-item">
-							<div class="li-pic">
-								<img src="img/letest-blog/latest-2.jpg" alt="">
-							</div>
-							<div class="li-text">
-								<h6><a href="#">Grilled Potato and Green Bean Salad</a></h6>
-								<span class="li-time">Aug 15, 2019</span>
-							</div>
-						</div>
-						<div class="latest-item">
-							<div class="li-pic">
-								<img src="img/letest-blog/latest-3.jpg" alt="">
-							</div>
-							<div class="li-text">
-								<h6><a href="#">The $8 French Rosé I Buy in Bulk Every Summer</a></h6>
-								<span class="li-time">Aug 15, 2019</span>
-							</div>
-						</div>
-						<div class="latest-item">
-							<div class="li-pic">
-								<img src="img/letest-blog/latest-4.jpg" alt="">
-							</div>
-							<div class="li-text">
-								<h6><a href="#">Ina Garten's Skillet-Roasted Lemon Chicken</a></h6>
-								<span class="li-time">Aug 15, 2019</span>
-							</div>
-						</div>
-						<div class="latest-item">
-							<div class="li-pic">
-								<img src="img/letest-blog/latest-5.jpg" alt="">
-							</div>
-							<div class="li-text">
-								<h6><a href="#">The Best Weeknight Baked Potatoes, 3 Creative Ways</a></h6>
-								<span class="li-time">Aug 15, 2019</span>
-							</div>
-						</div>
+					</div>
+						}
 					</div>
 					<div class="so-banner set-bg" data-setbg="img/sidebar-banner.jpg">
 						<h5>Banner 300x300</h5>
