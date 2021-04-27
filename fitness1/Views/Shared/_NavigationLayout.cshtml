@@ -12,9 +12,11 @@
             <div class="col-lg-8">
                 <nav class="nav-menu">
                     <ul>
-                        <li class="active"><a href='@Url.Action("Index","Home")'>Home</a></li>
+                        <li  class="active">
+                            <a href='/Home/Index'>Home</a>
+                        </li>
 
-                        <li><a href='@Url.Action("Team","Home")'>Our Team</a></li>
+                        <li><a href='/Home/Team'>Our Team</a></li>
                         <li>
                             <a>Services</a>
                             <ul class="dropdown">
@@ -24,7 +26,7 @@
                             </ul>
                         </li>
                         <li><a href="@Url.Action("Index", "Contact")">Contact</a></li>
-                        
+
                         @{
                             if (User.Identity.Name != "")
                             {
@@ -51,14 +53,14 @@
                         @{
                             if (User.Identity.Name != "")
                             {
-                            <a href="@Url.Action("UserProfile", "Profile")">Profile</a>
+                                <a href="@Url.Action("UserProfile", "Profile")">Profile</a>
 
-                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                            {
-                                @Html.AntiForgeryToken()
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
 
-                                <a class="smoothScroll" style="display:inline" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-                            }
+                                    <a class="smoothScroll" style="display:inline" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                }
 
                             }
                         }
@@ -71,4 +73,3 @@
         </div>
     </div>
 </header>
-
