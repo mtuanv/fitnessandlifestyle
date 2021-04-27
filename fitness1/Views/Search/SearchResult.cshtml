@@ -1,0 +1,170 @@
+﻿@model fitness.Models.SearchViewModel
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb-bg.jpg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<div class="breadcrumb-text">
+					<h2>Search Results</h2>
+					<div class="bt-option">
+						<a href='@Url.Action("Index", "Home")'>Home</a>
+						<span>Search</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Services Section Begin -->
+<section class="services-section spad">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="section-title">
+					@{ int result = Model.DietPlans.Count + Model.WorkOuts.Count;}
+					@if (result == 0)
+					{
+						<h3>We don't have any result for "@Model.search"</h3>
+						<span>Let's search something else</span>
+					}
+					else
+					{
+						<span>What we have?</span>
+						<h3>About @result result for "@Model.search"</h3>
+					}
+
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			@{ int rowCount = 1; int totalRecord = 1;}
+			@foreach (var item in Model.WorkOuts)
+			{
+				if (rowCount % 2 != 0)
+				{
+					<div class="col-lg-6 row">
+						<div class="col-lg-6 order-lg-1 col-md-6 p-0">
+							<div class="ss-pic">
+								<img src="@item.Link" alt="" style="object-fit: cover">
+							</div>
+						</div>
+						<div class="col-lg-6 order-lg-2 col-md-6 p-0">
+							<div class="ss-text">
+								<div class="content-show">
+									<h4>@item.Title</h4>
+									<p>@item.Content</p>
+								</div>
+								<a href="@Url.Action("Details","Workouts",new {id = item.Id})">Explore</a> 11 22
+							</div>
+						</div>
+					</div>
+					if (totalRecord % 2 == 0)
+					{
+						rowCount++;
+					}
+					totalRecord++;
+				}
+				else
+				{
+					<div class="col-lg-6 row">
+						<div class="col-lg-6 order-lg-8 col-md-6 p-0">
+							<div class="ss-pic">
+								<img src="@item.Link" alt=""  style="object-fit: cover">
+							</div>
+						</div>
+						<div class="col-lg-6 order-lg-7 col-md-6 p-0">
+							<div class="ss-text second-row">
+								<div class="content-show">
+									<h4>@item.Title</h4>
+									<p>
+										@item.Content
+									</p>
+								</div>
+								<a href="@Url.Action("Details","Workouts",new {id = item.Id})">Explore</a>
+							</div>
+						</div>
+					</div>
+					if (totalRecord % 2 == 0)
+					{
+						rowCount++;
+					}
+					totalRecord++;
+				}
+			}
+
+			@foreach (var item in Model.DietPlans)
+			{
+				if (rowCount % 2 != 0)
+				{
+					<div class="col-lg-6 row">
+						<div class="col-lg-6 order-lg-1 col-md-6 p-0">
+							<div class="ss-pic">
+								<img src="@item.Link" alt="">
+							</div>
+						</div>
+						<div class="col-lg-6 order-lg-2 col-md-6 p-0">
+							<div class="ss-text">
+								<div class="content-show">
+									<h4>@item.Title</h4>
+									<p>@item.Content</p>
+								</div>
+								<a href="@Url.Action("Details","DietPlans",new {id = item.Id})">Explore</a>
+							</div>
+						</div>
+					</div>
+					if (totalRecord % 2 == 0)
+					{
+						rowCount++;
+					}
+					totalRecord++;
+				}
+				else
+				{
+					<div class="col-lg-6 row">
+						<div class="col-lg-6 order-lg-8 col-md-6 p-0">
+							<div class="ss-pic">
+								<img src="@item.Link" alt="">
+							</div>
+						</div>
+						<div class="col-lg-6 order-lg-7 col-md-6 p-0">
+							<div class="ss-text second-row">
+								<div class="content-show">
+									<h4>@item.Title</h4>
+									<p>
+										@item.Content
+									</p>
+								</div>
+								<a href="@Url.Action("Details","DietPlans",new {id = item.Id})">Explore</a>
+							</div>
+						</div>
+					</div>
+					if (totalRecord % 2 == 0)
+					{
+						rowCount++;
+					}
+					totalRecord++;
+				}
+			}
+		</div>
+	</div>
+</section>
+<!-- Services Section End -->
+<!-- Banner Section Begin -->
+<section class="banner-section set-bg" data-setbg="img/banner-bg.jpg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<div class="bs-text service-banner">
+					<h2>Exercise until the body obeys.</h2>
+					<div class="bt-tips">Where health, beauty and fitness meet.</div>
+					<a href="https://www.youtube.com/watch?v=EzKkl64rRbM" class="play-btn video-popup">
+						<i class="fa fa-caret-right"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Banner Section End -->
