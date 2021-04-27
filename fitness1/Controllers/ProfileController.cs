@@ -54,7 +54,15 @@ namespace fitness.Controllers
             if (goal != null)
             {
                 GoalProgess lastProgess = db.GoalProgesses.Where(g => g.GoalId == goal.Id).OrderByDescending(g => g.timestamp).FirstOrDefault();
-                ViewBag.currentResult = lastProgess.CurrentWeight - user.UserWeight;
+                if(lastProgess != null)
+                {
+                    ViewBag.currentResult = lastProgess.CurrentWeight - user.UserWeight;
+                }
+                else
+                {
+                    ViewBag.currentResult = user.UserWeight;
+                }
+                
             }
             ViewBag.name = user.FirstName + " " + user.LastName;
             ViewBag.email = user.Email;
