@@ -12,7 +12,7 @@
                                 <div class="user-avatar">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
                                 </div>
-                                <h5 class="user-name">@Model.UserName</h5>
+                                <h5 class="user-name">@Model.FirstName @Model.LastName</h5>
                                 <h6 class="user-email">@Model.Email</h6>
                             </div>
                             <div class="about">
@@ -41,19 +41,19 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="firstName">First Name</label>
-                                        <input type="text" value="@Model.UserName" class="form-control" id="firstName" placeholder="Enter first name" name="firstName">
+                                        <input type="text" value="@Model.FirstName" class="form-control" id="firstName" placeholder="Enter first name" name="firstName">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="lastName">Last Name</label>
-                                        <input type="text" value="@Model.UserName" class="form-control" id="lastName" placeholder="Enter last name" name="lastName">
+                                        <input type="text" value="@Model.LastName" class="form-control" id="lastName" placeholder="Enter last name" name="lastName">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <label for="gender">Gender</label>
-                                        <select class="form-control" value="@Model.Gender" id="gender" placeholder="Select Gender" name="gender">
+                                        <select class="form-control" id="gender" placeholder="Select Gender" name="gender">
                                             <option value="1">Male</option>
                                             <option value="2">Female</option>
                                         </select>
@@ -69,18 +69,6 @@
                             <div class="row gutters">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="emailtxt">Email</label>
-                                        <input type="email" value="@Model.Email" class="form-control" id="emailtxt" placeholder="Enter your email" name="email">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="phone">Phone</label>
-                                        <input type="text" value="@Model.PhoneNumber" class="form-control" id="phone" placeholder="Enter your phone number" name="phone">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
                                         <label for="userWeight">User Weight</label>
                                         <input type="number" value="@Model.UserWeight" class="form-control" id="userWeight" placeholder="Enter your weight" name="weight">
                                     </div>
@@ -91,11 +79,17 @@
                                         <input type="number" value="@Model.UserHeight" class="form-control" id="userHeight" placeholder="Enter your height" name="height">
                                     </div>
                                 </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="desire_weight">Your Goal</label>
+                                        <input type="number" value="@ViewBag.Goal" class="form-control" id="desire_weight" placeholder="Enter your weight desired" name="desire_weight">
+                                    </div>
+                                </div>
                             </div>
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="text-right">
-                                        <button  class="btn btn-secondary">Cancel</button>
+                                        <button class="btn btn-secondary">Cancel</button>
                                         <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                 </div>
