@@ -10,6 +10,7 @@ using fitness.Models;
 
 namespace fitness.Controllers
 {
+    [Authorize]
     public class ResourcesController : Controller
     {
         private fitnessandlifestyle db = new fitnessandlifestyle();
