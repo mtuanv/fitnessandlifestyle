@@ -44,6 +44,7 @@ namespace fitness.Controllers
             model.Exercises = db.Exercises.ToList();
             model.DayPerWeeks = db.DayPerWeeks.ToList();
             model.Schedules = db.Schedules.ToList();
+            model.Resources = db.Resources.ToList();
             return View(model);
         }
 

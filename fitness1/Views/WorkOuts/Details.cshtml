@@ -120,41 +120,25 @@
                     </script>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-8">
-                <div class="sidebar-option">
-                    <div class="so-categories">
-                        <h5 class="title">Categories</h5>
-                        <ul>
-                            <li><a href="#">Gain Weight</a></li>
-                            <li><a href="#">Loss Weight</a></li>
-                        </ul>
-                    </div>
-                    <div class="so-latest">
-                        <h5 class="title">Resources</h5>
-                        <div class="latest-large set-bg" data-setbg="img/resources/bench-press_0.jpg">
-                            <div class="ll-text">
-
-                                <h5><a href="#"></a></h5>
-                                <ul>
-                                    <li>
-                                        For Muscle Building
-                                    </li>
-                                </ul>
-                                <h5><a href="#"></a></h5>
-                                <ul>
-                                    <li>
-                                        For Fat Loss
-                                    </li>
-                                </ul>
-
-                            </div>
-                        </div>
-                        <div class="so-banner set-bg" data-setbg="img/sidebar-banner.jpg">
-                            <h5>Banner 300x300</h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
+			<div class="col-lg-4 col-md-8">
+				<div class="sidebar-option">
+					<div class="so-latest">
+						<h5 class="title">Some resources</h5>
+						@foreach (var item in Model.Resources.Take(5))
+						{
+							<input type="hidden" value="@item.Link" />
+							<div class="latest-large set-bg" data-setbg="img/resources/@item.Image">
+								<div class="ll-text">
+									<h5><a href="@Url.Action("Details","Resources",new { id = item.Id})">@item.Title</a></h5>
+								</div>
+							</div>
+						}
+					</div>
+					<div class="so-banner set-bg" data-setbg="img/sidebar-banner.jpg">
+						<h5>Banner 300x300</h5>
+					</div>
+				</div>
+			</div>
         </div>
     </div>
 </section>
