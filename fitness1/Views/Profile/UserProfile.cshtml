@@ -29,7 +29,7 @@
                                     <div class="user-avatar">
                                         <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
                                     </div>
-                                    <h5 class="user-name">@Model.UserName</h5>
+                                    <h5 class="user-name">@Model.FirstName @Model.LastName</h5>
                                     <h6 class="user-email">@Model.Email</h6>
                                 </div>
                                 <div class="about">
@@ -40,6 +40,9 @@
                                         <li class="nav-item"><a href="@Url.Action("UserOrder","Profile")" class="nav-link">Order</a></li>
                                     </ul>
                                 </div>
+
+
+
                             </div>
                         </div>
                     </div>
@@ -79,23 +82,12 @@
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="age">Age</label>
-                                            <input type="number" value="@Model.UserAge" class="form-control" id="age" placeholder="Enter your age" name="age">
+                                            <input type="number" value="@Model.UserAge" class="form-control" id="age" placeholder="Enter last name" name="age">
                                         </div>
                                     </div>
                                 </div>
+                            
                                 <div class="row gutters">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <label for="emailtxt">Email</label>
-                                            <input type="email" value="@Model.Email" class="form-control" id="emailtxt" placeholder="Enter your email" name="email">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                        <div class="form-group">
-                                            <label for="phone">Phone</label>
-                                            <input type="text" value="@Model.PhoneNumber" class="form-control" id="phone" placeholder="Enter your phone number" name="phone">
-                                        </div>
-                                    </div>
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                         <div class="form-group">
                                             <label for="userWeight">User Weight</label>
@@ -106,6 +98,12 @@
                                         <div class="form-group">
                                             <label for="userHeight">User Height</label>
                                             <input type="number" value="@Model.UserHeight" class="form-control" id="userHeight" placeholder="Enter your height" name="height">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            <label for="desire_weight">Your Goal</label>
+                                            <input type="number" value="@ViewBag.Goal" class="form-control" id="desire_weight" placeholder="Enter your weight desired" name="desire_weight">
                                         </div>
                                     </div>
                                 </div>
@@ -119,15 +117,10 @@
                                 </div>
                             }
 
-                        </div>
+                            
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </div>
-
-
-
-
-
