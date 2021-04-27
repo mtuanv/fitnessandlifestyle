@@ -1,0 +1,169 @@
+﻿@model fitness.Models.DietViewModel
+
+@{
+	ViewBag.Title = "Details";
+}
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb-bg.jpg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<div class="breadcrumb-text">
+					<h2>@Model.dietPlan.Title</h2>
+					<div class="bt-option">
+						<a href="@Url.Action("Index","Home")">Home</a>
+						<a href="@Url.Action("Index","DietPlans")">Diet Plans</a>
+						@if (Model.dietPlan.Category == 1)
+						{
+							<span>Body building</span>
+						}
+						else
+						{
+							<span>Fat loss</span>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Class Details Section Begin -->
+<section class="class-details-section spad">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="class-details-text">
+					<div class="cd-pic">
+						<img src="@Html.DisplayFor(model => model.dietPlan.Link)" />
+					</div>
+					<div class="cd-text">
+						<div class="cd-single-item">
+							<h3>@Html.DisplayFor(model => model.dietPlan.Title)</h3>
+							<p>
+								@Html.DisplayFor(model => model.dietPlan.Content)
+							</p>
+							@foreach (var item in Model.dayPerWeeks)
+							{
+								<h5 class="dpw_title">@Html.DisplayFor(modelItem => item.Day)</h5> foreach (var dditem in item.Diet_DayPerWeek.Where(ddpw => ddpw.DayPerWeekId == item.Id).Where(ddpw => ddpw.DietID == Model.dietPlan.Id))
+								{
+									<table class="table table-striped">
+										<thead>
+											<tr class="bg-danger text-white">
+												<th scope="col" class="border-0">Meal</th>
+												<th scope="col" class="border-0">Diet</th>
+											</tr>
+										</thead>
+										<tbody>
+											@foreach (var dd in dditem.Daily_Diet)
+											{
+												<tr class="table-light">
+													<th>@Html.DisplayFor(ddItem => dd.Name)</th>
+													<td>@Html.DisplayFor(ddItem => dd.Content)</td>
+												</tr>
+											}
+										</tbody>
+									</table> }
+								<br /><br />}
+							@using (Html.BeginForm("Create", "Orders", FormMethod.Post))
+							{
+								@Html.AntiForgeryToken()
+								<input type="hidden" name="DietplanId" value="@Html.DisplayFor(model => model.dietPlan.Id)" />
+								<div class="li-text"><h6><button type="submit" class="btn float-right" style="color:white;background-color: #f36100;border-color: #f36100">Take part in</button></h6></div>
+							}
+							<p style="clear: both"></p><br />
+							<h3>Related workout</h3>
+						</div>
+					</div>
+					<div class="cd-trainer">
+						<div id="owl-demo" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
+							<div id="owl-example" class="owl-carousel">
+								@foreach (var item in Model.workOuts)
+								{
+									<div>
+										<a href="@Url.Action("Details","WorkOuts",new { id = item.Id })">
+											<img src="@Html.DisplayFor(modelItem => item.Link)" alt="Alternate Text" style="max-height:140px;" />
+											<div class="li-text ">
+												<p class="text-white m-0">@Html.DisplayFor(modelItem => item.Title)</p>
+											</div>
+										</a>
+									</div>
+								}
+							</div>
+						</div>
+
+					</div>
+					<script type="text/javascript">
+						$(document).ready(function () {
+							$("#owl-example").owlCarousel();
+						});
+
+					</script>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-8">
+				<div class="sidebar-option">
+					<div class="so-categories">
+						<h5 class="title">Services</h5>
+						<ul>
+							<li><a href="@Url.Action("Index","Workouts")">Workouts</a></li>
+							<li><a href="@Url.Action("Index","DietPlans")">Diet Plans</a></li>
+						</ul>
+					</div>
+					<div class="so-latest">
+						<h5 class="title">Latest posts</h5>
+						<div class="latest-large set-bg" data-setbg="img/letest-blog/latest-1.jpg">
+							<div class="ll-text">
+								<h5><a href="#">This Japanese Way of Making Iced Coffee Is a Game...</a></h5>
+								<ul>
+									<li>Aug 20, 2019</li>
+									<li>20 Comment</li>
+								</ul>
+							</div>
+						</div>
+						<div class="latest-item">
+							<div class="li-pic">
+								<img src="img/letest-blog/latest-2.jpg" alt="">
+							</div>
+							<div class="li-text">
+								<h6><a href="#">Grilled Potato and Green Bean Salad</a></h6>
+								<span class="li-time">Aug 15, 2019</span>
+							</div>
+						</div>
+						<div class="latest-item">
+							<div class="li-pic">
+								<img src="img/letest-blog/latest-3.jpg" alt="">
+							</div>
+							<div class="li-text">
+								<h6><a href="#">The $8 French Rosé I Buy in Bulk Every Summer</a></h6>
+								<span class="li-time">Aug 15, 2019</span>
+							</div>
+						</div>
+						<div class="latest-item">
+							<div class="li-pic">
+								<img src="img/letest-blog/latest-4.jpg" alt="">
+							</div>
+							<div class="li-text">
+								<h6><a href="#">Ina Garten's Skillet-Roasted Lemon Chicken</a></h6>
+								<span class="li-time">Aug 15, 2019</span>
+							</div>
+						</div>
+						<div class="latest-item">
+							<div class="li-pic">
+								<img src="img/letest-blog/latest-5.jpg" alt="">
+							</div>
+							<div class="li-text">
+								<h6><a href="#">The Best Weeknight Baked Potatoes, 3 Creative Ways</a></h6>
+								<span class="li-time">Aug 15, 2019</span>
+							</div>
+						</div>
+					</div>
+					<div class="so-banner set-bg" data-setbg="img/sidebar-banner.jpg">
+						<h5>Banner 300x300</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
