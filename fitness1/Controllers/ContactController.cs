@@ -11,6 +11,7 @@ using System.Text;
 
 namespace fitness.Controllers
 {
+    [Authorize]
     public class ContactController : Controller
     {
         private fitnessandlifestyle db = new fitnessandlifestyle();

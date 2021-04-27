@@ -105,7 +105,7 @@
                                 </div>
                             </div>
                             <ul>
-                                @foreach (var s in item.Schedules.Where(x => x.DayPerWeekId == 1))
+                                @foreach (var s in item.Schedules.Where(x => x.DayPerWeekId == 1).Take(5))
                                 {
                                     foreach (var ex in Model.Exercises.Where(x => x.Id == s.ExId))
                                     {
@@ -141,7 +141,7 @@
                                 </div>
                             </div>
                             <ul class="list-exercise">
-                                @foreach (var s in item.Schedules.Where(x => x.DayPerWeekId == 1))
+                                @foreach (var s in item.Schedules.Where(x => x.DayPerWeekId == 1).Take(5))
                                 {
                                     foreach (var ex in Model.Exercises.Where(x => x.Id == s.ExId))
                                     {

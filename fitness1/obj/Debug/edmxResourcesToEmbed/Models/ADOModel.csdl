@@ -54,6 +54,8 @@
     <NavigationProperty Name="Goals" Relationship="Self.FK__Goal__UserId__6442E2C9" FromRole="AspNetUsers" ToRole="Goal" />
     <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__UserId__69FBBC1F" FromRole="AspNetUsers" ToRole="Orders" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+    <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Daily_Diet">
     <Key>

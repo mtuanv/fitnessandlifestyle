@@ -11,6 +11,7 @@ using fitness.Models;
 
 namespace fitness.Controllers
 {
+    [Authorize]
     public class DietPlansController : Controller
     {
         private fitnessandlifestyle db = new fitnessandlifestyle();
