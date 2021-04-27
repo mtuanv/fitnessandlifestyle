@@ -1,0 +1,165 @@
+﻿@model fitness.Models.DietViewModel
+
+@{
+	ViewBag.Title = "Details";
+}
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb-bg.jpg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<div class="breadcrumb-text">
+					<h2>@Model.dietPlan.Title</h2>
+					<div class="bt-option">
+						<a href="@Url.Action("Index","Home")">Home</a>
+						<a href="@Url.Action("Index","DietPlans")">Diet Plans</a>
+						@if (Model.dietPlan.Category == 1)
+						{
+							<span>Body building</span>
+						}
+						else
+						{
+							<span>Fat loss</span>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Class Details Section Begin -->
+<section class="class-details-section spad">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="class-details-text">
+					<div class="cd-pic">
+						<img src="@Html.DisplayFor(model => model.dietPlan.Link)" />
+					</div>
+					<div class="cd-text">
+						<div class="cd-single-item">
+							<h3>@Html.DisplayFor(model => model.dietPlan.Title)</h3>
+							<p>
+								@Html.DisplayFor(model => model.dietPlan.Content)
+							</p>
+							@foreach (var item in Model.dayPerWeeks)
+							{
+								foreach (var dditem in item.Diet_DayPerWeek.Where(ddpw => ddpw.DayPerWeekId == item.Id).Where(ddpw => ddpw.DietID == Model.dietPlan.Id))
+								{
+									<h5 class="dpw_title">Day @Html.DisplayFor(modelItem => item.Id)</h5>
+									<table class="table table-striped">
+										<thead>
+											<tr class="bg-danger text-white">
+												<th scope="col" class="border-0">Meal</th>
+												<th scope="col" class="border-0">Diet</th>
+											</tr>
+										</thead>
+										<tbody>
+											@foreach (var dd in dditem.Daily_Diet)
+											{
+												<tr class="table-light">
+													<th>@Html.DisplayFor(ddItem => dd.Name)</th>
+													<td>@Html.DisplayFor(ddItem => dd.Content)</td>
+												</tr>
+											}
+										</tbody>
+									</table> }
+								<br />}
+						<form>
+							<input type="hidden" id="dietid" name="dietid" value="@Html.DisplayFor(model => model.dietPlan.Id)" />
+							<div class="li-text"><h6><button type="button" class="btn float-right btn-tpi"  onclick="return _UserOrder()">Take part in</button></h6></div>
+						</form>
+							<p class="clearfix"></p><br />
+							<h3>Related workout</h3>
+						</div>
+					</div>
+					<div class="cd-trainer">
+						<div id="owl-demo" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
+							<div id="owl-example" class="owl-carousel">
+								@foreach (var item in Model.workOuts)
+								{
+									<div>
+										<a href="@Url.Action("Details","WorkOuts",new { id = item.Id })">
+											<img src="@Html.DisplayFor(modelItem => item.Link)" alt="Alternate Text" class="mh-slide" />
+											<div class="li-text ">
+												<p class="text-white m-0">@Html.DisplayFor(modelItem => item.Title)</p>
+											</div>
+										</a>
+									</div>
+								}
+							</div>
+						</div>
+
+					</div>
+					<script type="text/javascript">
+						$(document).ready(function () {
+							$("#owl-example").owlCarousel();
+						});
+						function _UserOrder() {
+							var obj = {
+								dietid: $('#dietid').val(),
+								wkid: $('#wkid').val(),
+							}
+							Swal.showLoading()
+								$.ajax({
+									url: "/Orders/UserOrder",
+									type: "POST",
+									data: JSON.stringify(obj),
+									contentType: "application/json; charset=utf-8",
+									success: function (response) {
+										const swalWithBootstrapButtons = Swal.mixin({
+											customClass: {
+												confirmButton: 'btn btn-success',
+												cancelButton: 'btn btn-danger mr-3'
+											},
+											buttonsStyling: false
+										})
+										swalWithBootstrapButtons.fire(
+											'Success',
+											'Feedback success',
+											'success'
+										)
+									},
+									error: function (response) {
+										const swalWithBootstrapButtons = Swal.mixin({
+											customClass: {
+												confirmButton: 'btn btn-success',
+												cancelButton: 'btn btn-danger mr-3'
+											},
+											buttonsStyling: false
+										})
+										swalWithBootstrapButtons.fire(
+											'Fail!',
+											'Feedback fail',
+											'error'
+										)
+									}
+								});
+							}
+					</script>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-8">
+				<div class="sidebar-option">
+					<div class="so-latest">
+						<h5 class="title">Some resources</h5>
+						@foreach (var item in Model.resources.Take(5))
+						{
+							<input type="hidden" value="@item.Link"/>
+					<div class="latest-large set-bg" data-setbg="img/resources/@item.Image">
+						<div class="ll-text">
+							<h5><a href="@Url.Action("Details","Resources",new { id = item.Id})">@item.Title</a></h5>
+						</div>
+					</div>
+						}
+					</div>
+					<div class="so-banner set-bg" data-setbg="img/sidebar-banner.jpg">
+						<h5>Banner 300x300</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,126 @@
+﻿@model fitness.Models.AspNetUser
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-sectionProfile set-bg" data-setbg="img/banner-inputprofile.jpg">
+    <div class="container-profile">
+        <div class="row gutters">
+            <div class="card-survey">
+                <form id="myForm" action="@Url.Action("UpdateProfile", "Profile")" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="flip-block">
+                        <div class="block welcomeMessage text-center" id="page1">
+                            <h3>Thank you for register</br></br> Please update your info and your condition so we can have with your purposed</h3>
+                        </div>
+                        <div class="block" id="page2">
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <input class="hidden-field" value="@Model.Id" name="userId" type="number" id="userId"/>
+                                    <div class="form-group">
+                                        <label for="firstname">First Name</label>
+                                        <input type="text" class="form-control" id="firstname" placeholder="Enter your name" name="firstname">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="form-group">
+                                        <label for="lastname">Last Name</label>
+                                        <input type="text" class="form-control" id="lastname" placeholder="Enter your name" name="lastname">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="age">Age</label>
+                                <input type="number" class="form-control" id="age" placeholder="Enter your age" name="age">
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select class="form-control" id="gender" placeholder="Select Gender" name="gender">
+                                    <option value="1">Male</option>
+                                    <option value="0">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="block" id="page3">
+                            <div class="form-group">
+                                <label for="weight">Weight</label>
+                                <input type="number" class="form-control" id="weight" placeholder="Enter your weight" name="weight">
+                            </div>
+                            <div class="form-group">
+                                <label for="height">Height</label>
+                                <input type="number" class="form-control" id="height" placeholder="Enter your height" name="height">
+                            </div>
+                        </div>
+                        <div class="block" id="page4">
+                            <div class="form-group">
+                                <label for="desire-weight">Desire Weight</label>
+                                <input type="number" class="form-control" id="desire-weight" placeholder="Enter your desire weight" name="desire_weight">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <button class="btn btn-secondary" id="preBlock" onclick="prePage()">Previous</button>
+                    </div>
+                    <div class="col-lg-6">
+                        <button class="btn btn-secondary pull-right" id="nextBlock" onclick="nextPage()">Next</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<script>
+    let id = 1;
+    $("#page1").css("display", "block");
+    $("#preBlock").prop("disabled", true);
+    let tempValue = $(".progress").css("width");
+    const totalWidth = Number(tempValue.substring(0, tempValue.indexOf("px")));
+    console.log(totalWidth);
+
+    function nextPage() {
+        if (id <= 4) {
+            id++;
+        }
+        clearDisplay();
+        let nextblock = $("#page" + id);
+        nextblock.css("display", "block");
+        $("#preBlock").prop("disabled", false);
+        if (id == 4) {
+            $("#nextBlock").text("Finish");
+            $("#nextBlock").attr("onclick", "document.getElementById('myForm').submit()");
+            $(".progress-bar").css("width", totalWidth + "px");
+        } else {
+            $(".progress-bar").css("width", (0.25 * id * totalWidth) + "px");
+        }
+        let currentValue = $(".progress-bar").css("width");
+
+    }
+
+    function prePage() {
+        if (id > 1) {
+            id--;
+        }
+        clearDisplay();
+        let preBlock = $("#page" + id);
+        preBlock.css("display", "block");
+        $("#nextBlock").attr("onclick", "nextPage()");
+        $("#nextBlock").text("Next");
+        if (id == 1) {
+            $("#preBlock").prop("disabled", true);
+        }
+        let currentValue = $(".progress-bar").css("width");
+        $(".progress-bar").css("width", (0.25 * id * totalWidth) + "px");
+    }
+
+    function clearDisplay() {
+        let block = $(".block");
+        block.css("display", "none");
+    }
+
+</script>

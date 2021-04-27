@@ -1,0 +1,79 @@
+﻿<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-sectionProfile set-bg" data-setbg="img/banner-profile.jpg">
+    <div class="container-profile">
+        <div class="row gutters">
+            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="account-settings">
+                            <div class="user-profile">
+                                <div class="user-avatar">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
+                                </div>
+                                <h5 class="user-name">Yuki Hayashi</h5>
+                                <h6 class="user-email">yuki@Maxwell.com</h6>
+                            </div>
+                            <div class="about">
+                                <ul class="nav nav-list flex-column mb-5">
+                                    <li class="nav-item"><a href="@Url.Action("UserDiagram","Profile")" class="nav-link">User Dashboard</a></li>
+                                    <li class="nav-item"><a href="@Url.Action("UserProfile","Profile")" class="nav-link">User Profile</a></li>
+                                    <li class="nav-item"><a href="@Url.Action("UserPlan","Profile")" class="nav-link">Plan</a></li>
+                                    <li class="nav-item"><a href="@Url.Action("UserOrder","Profile")" class="nav-link">Order</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-5 col-md-5">
+                                <input type="number" class="form-control" id="weight" placeholder="Enter your weight" name="weight">
+                            </div>
+                            <div class="col-xl-5 col-md-5">
+                                <input type="number" class="form-control" id="height" placeholder="Enter your height" name="height">
+                            </div>
+                            <div class="col-xl-2 col-md-2">
+                                <button type="submit" class="btn btn-danger" onclick="calBMI() ">Caculate</button>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="row showMessage">
+                                    <div class="col-xl-5 col-md-5 text-center">
+                                        <table>
+                                            <tr>
+                                                <td>Your BMI</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="BMIIndex">0</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="col-xl-7 col-md-7">
+                                        <table>
+                                            <tr>
+                                                <td>Your result suggests you are</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="statusMessage">a healthy weight</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bmi-container">
+                            <div class="bmi-range">
+                                <img src="../Public/img/bmi.png">
+                            </div>
+                            <span class="fa fa-angle-up fa-3x"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
