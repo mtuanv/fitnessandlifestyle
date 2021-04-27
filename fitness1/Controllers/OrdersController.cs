@@ -166,7 +166,6 @@ namespace fitness.Controllers
             {
                 order1.WorkoutId = orderVMs.wkid;
             }
-            order1.timestamp = DateTime.Now;
             db.Orders.Add(order1);
             db.SaveChanges();
             return Json(true, JsonRequestBehavior.AllowGet);
