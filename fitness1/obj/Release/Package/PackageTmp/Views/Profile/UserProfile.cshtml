@@ -1,0 +1,129 @@
+﻿<!-- Breadcrumb Section Begin -->
+@model fitness.Models.AspNetUser
+<!--<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb-bg.jpg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<div class="breadcrumb-text">
+					<h2>Contact Us</h2>
+					<div class="bt-option">
+						<a href="@Url.Action("Index","Home")">Home</a>
+						<span>Contact us</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>-->
+<!-- Breadcrumb Section End -->
+
+<div class="services-section">
+	<section class="breadcrumb-sectionProfile spad set-bg" data-setbg="img/banner-profile.jpg">
+		<div class="container-profile">
+			<div class="row gutters">
+				<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
+					<div class="card h-100">
+						<div class="card-body">
+							<div class="account-settings">
+								<div class="user-profile">
+									<div class="user-avatar">
+										<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
+									</div>
+									<h5 class="user-name">@Model.FirstName @Model.LastName</h5>
+									<h6 class="user-email">@Model.Email</h6>
+								</div>
+								<div class="about">
+									<ul class="nav nav-list flex-column mb-5">
+										<li class="nav-item"><a href="@Url.Action("UserDiagram","Profile")" class="nav-link">User Dashboard</a></li>
+										<li class="nav-item"><a href="@Url.Action("UserProfile","Profile")" class="nav-link">User Profile</a></li>
+										<li class="nav-item"><a href="@Url.Action("UserPlan","Profile")" class="nav-link">Plan</a></li>
+										<li class="nav-item"><a href="@Url.Action("UserOrder","Profile")" class="nav-link">Order</a></li>
+									</ul>
+								</div>
+
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
+					<div class="card h-100">
+						<div class="card-body">
+							@using (Html.BeginForm("UpdateProfile", "Profile", FormMethod.Post))
+							{
+								@Html.AntiForgeryToken()
+								<input hidden name="id" value="@Model.Id" />
+								<div class="row gutters">
+									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+										<h6 class="mb-3 text-primary">Personal Details</h6>
+									</div>
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+										<div class="form-group">
+											<label for="firstName">First Name</label>
+											<input type="text" value="@Model.UserName" class="form-control" id="firstName" placeholder="Enter first name" name="firstName">
+										</div>
+									</div>
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+										<div class="form-group">
+											<label for="lastName">Last Name</label>
+											<input type="text" value="@Model.UserName" class="form-control" id="lastName" placeholder="Enter last name" name="lastName">
+										</div>
+									</div>
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+										<div class="form-group">
+											<label for="gender">Gender</label>
+											<select class="form-control" value="@Model.Gender" id="gender" placeholder="Select Gender" name="gender">
+												<option value="1">Male</option>
+												<option value="2">Female</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+										<div class="form-group">
+											<label for="age">Age</label>
+											<input type="number" value="@Model.UserAge" class="form-control" id="age" placeholder="Enter last name" name="age">
+										</div>
+									</div>
+								</div>
+
+								<div class="row gutters">
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+										<div class="form-group">
+											<label for="userWeight">User Weight</label>
+											<input type="number" value="@Model.UserWeight" class="form-control" id="userWeight" placeholder="Enter your weight" name="weight">
+										</div>
+									</div>
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+										<div class="form-group">
+											<label for="userHeight">User Height</label>
+											<input type="number" value="@Model.UserHeight" class="form-control" id="userHeight" placeholder="Enter your height" name="height">
+										</div>
+									</div>
+									<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+										<div class="form-group">
+											<label for="desire_weight">Your Goal</label>
+											<input type="number" value="@ViewBag.Goal" class="form-control" id="desire_weight" placeholder="Enter your weight desired" name="desire_weight">
+										</div>
+									</div>
+								</div>
+								<div class="row gutters">
+									<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+										<div class="text-right">
+											<button class="btn btn-secondary">Cancel</button>
+											<button type="submit" class="btn btn-primary">Update</button>
+										</div>
+									</div>
+								</div>
+							}
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+	</section>
+</div>
+@section title{
+	<title>Profile</title>
+}

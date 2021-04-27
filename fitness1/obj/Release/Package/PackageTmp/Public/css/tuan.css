@@ -1,0 +1,21 @@
+﻿.mh-slide {
+	min-height: 140px;
+}
+
+.btn-tpi {
+	color: white;
+	background-color: #f36100;
+	border-color: #f36100;
+}
+
+	.btn-tpi:hover {
+		color: white;
+	}
+
+.dpw_title {
+	font-size: 20px;
+	color: #ffffff;
+	font-weight: 600;
+	text-transform: uppercase;
+	margin-bottom: 24px;
+}

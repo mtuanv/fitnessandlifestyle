@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Server=tcp:duonghoang.database.windows.net,1433;Initial Catalog=fitnessandlifestyle;Persist Security Info=False;User ID=duonghoang;Password=@abc123456;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="F:\\techwiz\\fitnessandlifestyle\\fitness1\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="fitnessandlifestyle-Web.config Connection String" description="fitnessandlifestyle Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.ADOModel.csdl|res://*/Models.ADOModel.ssdl|res://*/Models.ADOModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=tcp:duonghoang.database.windows.net,1433;initial catalog=fitnessandlifestyle;persist security info=False;user id=duonghoang;password=@abc123456;multipleactiveresultsets=False;connect timeout=30;encrypt=True;trustservercertificate=False;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="F:\\techwiz\\fitnessandlifestyle\\fitness1\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='fitnessandlifestyle']/@connectionString" />
+  </parameter>
+</parameters>

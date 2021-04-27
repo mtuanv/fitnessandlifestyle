@@ -1,0 +1,281 @@
+
+.container-profile {
+    max-width: 95%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+}
+
+.account-settings .user-profile {
+    margin: 0 0 1rem 0;
+    padding-bottom: 1rem;
+    text-align: center;
+}
+
+    .account-settings .user-profile .user-avatar {
+        margin: 0 0 1rem 0;
+    }
+
+        .account-settings .user-profile .user-avatar img {
+            width: 90px;
+            height: 90px;
+            -webkit-border-radius: 100px;
+            -moz-border-radius: 100px;
+            border-radius: 100px;
+        }
+
+    .account-settings .user-profile h5.user-name {
+        margin: 0 0 0.5rem 0;
+        color: white;
+    }
+
+    .account-settings .user-profile h6.user-email {
+        margin: 0;
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: white;
+    }
+
+.account-settings .about {
+    margin: 1rem 0 0 0;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.card {
+    background: rgba(39, 46, 72, 0.9);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 0;
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    border: 1px solid #596280;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-size: .825rem;
+    background: #1A233A;
+    color: #c3ccf6;
+}
+
+.container-profile > h5 {
+    color: white;
+}
+
+.about .nav-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    text-decoration: none;
+}
+
+    .about .nav-item .nav-link {
+        text-decoration: none;
+        color: #ffffff;
+    }
+
+.userProgress {
+    color: white;
+    margin-top: 10px;
+}
+
+.active_sidebar {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.bmi-suggest {
+    color: white;
+}
+
+.breadcrumb-sectionProfile h1 {
+    -webkit-transition: all 0.4s ease 0.4s;
+    -o-transition: all 0.4s ease 0.4s;
+    transition: all 0.4s ease 0.4s;
+    opacity: 1;
+    font-size: 80px;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 90px;
+    margin-bottom: 42px;
+    font-family: "Oswald", sans-serif;
+    position: absolute;
+}
+
+    .breadcrumb-sectionProfile h1 strong {
+        color: #f36100;
+    }
+
+.breadcrumb-sectionProfile {
+    padding-top: 230px;
+}
+
+.bmi-range {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0;
+}
+
+    .bmi-range img {
+        opacity: 80%;
+    }
+
+.bmi-container {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: auto;
+    position: relative;
+}
+
+.showMessage {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .showMessage table {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+.BMIIndex {
+    font-size: 40px;
+    font-family: "Muli", sans-serif;
+    font-weight: bold;
+}
+
+.statusMessage {
+    font-size: 30px;
+    font-family: "Muli", sans-serif;
+    font-weight: bold;
+}
+
+.bmi-container span {
+    bottom: 0;
+}
+
+.ss-pic {
+    height: 293px;
+}
+
+.content-show {
+    width: 100%;
+    height: 80%;
+    overflow: hidden;
+}
+
+.goalInput {
+    background-color: rgb(50, 48, 48);
+}
+
+.card-survey {
+    width: 400px;
+    height: 400px;
+    background: rgba(39, 46, 72, 0.9);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 0;
+    margin-bottom: 1rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.flip-block {
+    margin-top: 10px;
+}
+
+.block {
+    display: none;
+    padding: 10px 15px;
+    width: 100%;
+    height: 320px;
+}
+
+.survey-footer {
+    width: 100%;
+    position: relative;
+}
+
+.nextBlock {
+    position: absolute;
+    right: 0;
+}
+
+
+.owl-item .basicInfo {
+    width: 100%;
+    height: 143px;
+}
+
+.list-exercise {
+    height: 185px;
+    overflow: hidden;
+}
+
+.table .table-light th a {
+    text-decoration: none;
+    color: black;
+}
+
+.content-video {
+    height: 200px;
+    overflow: scroll;
+}
+
+.hidden-field {
+    display: none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+.welcomeMessage h3 {
+    color: white;
+    font-size: 33px;
+    font-family: 'Courgette', cursive;
+}
+
+.card-survey {
+    width: 400px;
+    height: 400px;
+    background: rgba(39, 72, 65, 0.9);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 0;
+    margin-bottom: 1rem;
+    margin-left: 20%;
+}
+
+.flip-block {
+    margin-top: 10px;
+}
+
+.block {
+    display: none;
+    padding: 10px 15px;
+    width: 100%;
+    height: 320px;
+}
+
+.survey-footer {
+    width: 100%;
+    position: relative;
+}
+
+.nextBlock {
+    position: absolute;
+    right: 0;
+}

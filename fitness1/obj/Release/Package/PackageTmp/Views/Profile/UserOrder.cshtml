@@ -1,0 +1,138 @@
+﻿<!-- Breadcrumb Section Begin -->
+<link href="~/Assets/WebClient/css/font-awesome.min.css" rel="stylesheet" />
+@model IEnumerable<fitness.Models.Order>
+<section class="breadcrumb-sectionProfile set-bg" data-setbg="img/banner-profile.jpg">
+	<div class="container-profile">
+		<div class="row gutters">
+			<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
+				<div class="card h-100">
+					<div class="card-body">
+						<div class="account-settings">
+							<div class="user-profile">
+								<div class="user-avatar">
+									<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
+								</div>
+								<h5 class="user-name">Yuki Hayashi</h5>
+								<h6 class="user-email">yuki@Maxwell.com</h6>
+							</div>
+							<div class="about">
+								<ul class="nav nav-list flex-column mb-5">
+									<li class="nav-item"><a href="@Url.Action("UserDiagram","Profile")" class="nav-link">User Dashboard</a></li>
+									<li class="nav-item"><a href="@Url.Action("UserProfile","Profile")" class="nav-link">User Profile</a></li>
+									<li class="nav-item"><a href="@Url.Action("UserPlan","Profile")" class="nav-link">Plan</a></li>
+									<li class="nav-item"><a href="@Url.Action("UserOrder","Profile")" class="nav-link">Order</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
+				<div class="card h-100">
+					<div class="card-body">
+						<div class="row" style="color:white">
+							<div class="col-md-6 ">
+								<p>WORKOUT</p>
+								<table class="container table table-hover ">
+									<thead class="thead-light">
+										<tr class="center-block">
+											<td style="color:white">STT</td>
+											<td style="color:white">Name Workout</td>
+											<td style="color:white">Action</td>
+										</tr>
+									</thead>
+
+									<tbody>
+
+										@foreach (var item in Model)
+										{
+											if (item.WorkoutId != null)
+											{
+												<tr>
+													<td style="color:white">@item.WorkOut.Id</td>
+													<td style="color:white">@item.WorkOut.Title</td>
+													<td class="row ">
+														<span style="color:deepskyblue" class="col-md-2>
+															@using (Html.BeginForm("Edit", "Orders", FormMethod.Post, new { @name = "formStart" }))
+															{
+																@Html.AntiForgeryToken()
+																<input hidden name="id" value="@item.Id" />
+																<span onclick="formStart.submit()"><i class="fa fa-play-circle"></i></span>
+															}
+														</span> &nbsp&nbsp
+														<span style="color:red">
+															@using (Html.BeginForm("Delete", "Orders", FormMethod.Post, new { @name = "formDelete" }))
+															{
+																@Html.AntiForgeryToken()
+																<input hidden name="id" value="@item.Id" />
+																<span onclick="formDelete.submit()"><i class="fa fa-trash-o"></i></span>
+															}
+
+														</span>
+													</td>
+												</tr>
+											}
+
+										}
+									</tbody>
+								</table>
+							</div>
+
+							<div class="  col-md-6">
+								<p>DIET PLAN</p>
+								<table class="container table table-hover ">
+									<thead class="thead-light">
+										<tr class="center-block">
+											<td style="color:white">STT</td>
+											<td style="color:white">Name Diet</td>
+											<td style="color:white">Action</td>
+										</tr>
+									</thead>
+
+									<tbody>
+
+										@foreach (var item in Model)
+										{
+											if (item.DietplanId != null)
+											{
+												<tr>
+													<td style="color:white">@item.DietplanId</td>
+													<td style="color:white">@item.DietPlan.Title</td>
+													<td class="row col-md-0">
+														<span style="color:deepskyblue" class="col-md-2">
+															@using (Html.BeginForm("Edit", "DietPlans", FormMethod.Post, new { @name = "formStart" }))
+															{
+																@Html.AntiForgeryToken()
+																<input hidden name="id" value="@item.Id" />
+																<span onclick="formStart.submit()"><i class="fa fa-play-circle"></i></span>
+															}
+														</span> &nbsp&nbsp
+														<span style="color:red">
+															@using (Html.BeginForm("Delete", "DietPlans", FormMethod.Post, new { @name = "formDelete" }))
+															{
+																@Html.AntiForgeryToken()
+																<input hidden name="id" value="@item.Id" />
+																<span onclick="formDelete.submit()"><i class="fa fa-trash-o"></i></span>
+															}
+
+														</span>
+													</td>
+												</tr>
+											}
+
+										}
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Breadcrumb Section End -->
+@section title{
+	<title>My Order</title>
+}

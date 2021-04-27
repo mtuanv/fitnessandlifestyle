@@ -1,0 +1,84 @@
+﻿@model fitness.Models.Schedule
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb-bg.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb-text">
+                    <h2>Resources</h2>
+                    <div class="bt-option">
+                        <a href="@Url.Action("Index","Home")">Home</a>
+                        <span>Resources</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<div class="container">
+    <h2>Details</h2>
+
+    <div>
+        <h4>Schedule</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.reps)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.reps)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.sets)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.sets)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DayPerWeek.Day)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DayPerWeek.Day)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Exercise.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Exercise.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.WorkOut.Content)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.WorkOut.Content)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+
+

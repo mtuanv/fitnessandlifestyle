@@ -60,7 +60,7 @@ namespace fitness.Controllers
             {
                 db.Orders.Add(order);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Indexz");
             }
 
             ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", order.UserId);
@@ -84,7 +84,7 @@ namespace fitness.Controllers
             ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", order.UserId);
             ViewBag.DietplanId = new SelectList(db.DietPlans, "Id", "Title", order.DietplanId);
             ViewBag.WorkoutId = new SelectList(db.WorkOuts, "Id", "Content", order.WorkoutId);
-            return View(order);
+            return RedirectToAction("UserOrder", "Profile");
         }
 
         // POST: Orders/Edit/5
@@ -105,7 +105,7 @@ namespace fitness.Controllers
             ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", order.UserId);
             ViewBag.DietplanId = new SelectList(db.DietPlans, "Id", "Title", order.DietplanId);
             ViewBag.WorkoutId = new SelectList(db.WorkOuts, "Id", "Content", order.WorkoutId);
-            return View(order);
+            return RedirectToAction("UserOrder", "Profile");
         }
 
         // GET: Orders/Delete/5
@@ -120,7 +120,7 @@ namespace fitness.Controllers
             {
                 return HttpNotFound();
             }
-            return View(order);
+            return RedirectToAction("UserOrder", "Profile");
         }
 
         // POST: Orders/Delete/5
@@ -131,7 +131,7 @@ namespace fitness.Controllers
             Order order = db.Orders.Find(id);
             db.Orders.Remove(order);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("UserOrder", "Profile");
         }
 
         protected override void Dispose(bool disposing)
@@ -141,6 +141,34 @@ namespace fitness.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public JsonResult UserOrder(OrderVM orderVMs)
+        {
+            var username = System.Web.HttpContext.Current.User.Identity.Name;
+            AspNetUser user = db.AspNetUsers.Where(u => u.Email.Equals(username)).First();
+            Order order1 = new Order();
+            order1.UserId = user.Id;
+            if(orderVMs.dietid == 0)
+            {
+                order1.DietplanId = null;
+            }
+            else
+            {
+                order1.DietplanId = orderVMs.dietid;
+            }
+            if (orderVMs.wkid == 0)
+            {
+                order1.WorkoutId = null;
+            }
+            else
+            {
+                order1.WorkoutId = orderVMs.wkid;
+            }
+            db.Orders.Add(order1);
+            db.SaveChanges();
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }

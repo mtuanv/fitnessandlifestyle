@@ -1,0 +1,74 @@
+﻿<!-- Header Section Begin -->
+<header class="header-section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="logo">
+                    <a href="@Url.Action("Index","Home")">
+                        <img src="~/Public/img/logo.png" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <nav class="nav-menu">
+                    <ul>
+                        <li class="active">
+                            <a href='@Url.Action("Index","Home")'>Home</a>
+                        </li>
+
+                        <li><a href='@Url.Action("Team","Home")'>Our Team</a></li>
+                        <li>
+                            <a>Services</a>
+                            <ul class="dropdown">
+                                <li><a href='@Url.Action("BMI","Home")'>Calculate BMI</a></li>
+                                <li><a href='@Url.Action("Index","WorkOuts")'>Workouts</a></li>
+                                <li><a href='@Url.Action("Index","DietPlans")'>Diet Plans</a></li>
+                                <li><a href='@Url.Action("Index","Resources")'>Resources</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="@Url.Action("Index", "Contact")">Contact</a></li>
+                        @{
+                            if (User.Identity.Name != "")
+                            {
+
+                                <li><a href="@Url.Action("UserProfile", "Profile")">Profile</a></li>
+
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("LOGIN", "Login", "Account")</li>
+                            }
+
+                        }
+
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-2">
+                <div class="top-option">
+                    <div class="to-search search-switch">
+                        <i class="fa fa-search"></i>
+                    </div>
+                    <div class="to-social">
+                        @{
+                            if (User.Identity.Name != "")
+                            {
+
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <a class="smoothScroll" style="display:inline" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                }
+
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="canvas-open">
+            <i class="fa fa-bars"></i>
+        </div>
+    </div>
+</header>

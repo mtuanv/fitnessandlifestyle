@@ -43,7 +43,7 @@
                                         </tr>
                                     </thead>
 
-                                    <tbody>
+									<tbody>
 
                                         @foreach (var item in Model)
                                         {
@@ -69,68 +69,73 @@
                                                                 <span onclick="formDelete.submit()"><i class="fa fa-trash-o"></i></span>
                                                             }
 
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                            }
+														</span>
+													</td>
+												</tr>
+											}
 
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                            
-                            <div class="  col-md-6">
-                                <p>DIET PLAN</p>
-                                <table class="container table table-hover ">
-                                    <thead class="thead-light">
-                                        <tr class="center-block">
-                                            <td style="color:white">STT</td>
-                                            <td style="color:white">Name Diet</td>
-                                            <td style="color:white">Action</td>
-                                        </tr>
-                                    </thead>
+										}
+									</tbody>
+								</table>
+							</div>
 
-                                    <tbody>
+							<div class="  col-md-6">
+								<p>DIET PLAN</p>
+								<table class="container table table-hover ">
+									<thead class="thead-light">
+										<tr class="center-block">
+											<td style="color:white">STT</td>
+											<td style="color:white">Name Diet</td>
+											<td style="color:white">Action</td>
+										</tr>
+									</thead>
 
-                                        @foreach (var item in Model)
-                                        {
-                                            if (item.DietplanId != null)
-                                            {
-                                                <tr>
-                                                    <td style="color:white">@item.DietplanId</td>
-                                                    <td style="color:white">@item.DietPlan.Title</td>
-                                                    <td class="row col-md-0">
-                                                        <span style="color:deepskyblue" class="col-md-2">
-                                                            @using (Html.BeginForm("Edit", "DietPlans", FormMethod.Post, new { @name = "formStart" }))
-                                                            {
-                                                                @Html.AntiForgeryToken()
-                                                                <input hidden name="id" value="@item.Id" />
-                                                                <span onclick="formStart.submit()"><i class="fa fa-play-circle"></i></span>
-                                                            }
-                                                        </span> &nbsp&nbsp
-                                                        <span style="color:red">
-                                                            @using (Html.BeginForm("Delete", "DietPlans", FormMethod.Post, new { @name = "formDelete" }))
-                                                            {
-                                                                @Html.AntiForgeryToken()
-                                                                <input hidden name="id" value="@item.Id" />
-                                                                <span onclick="formDelete.submit()"><i class="fa fa-trash-o"></i></span>
-                                                            }
+									<tbody>
 
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                            }
+										@foreach (var item in Model)
+										{
+											if (item.DietplanId != null)
+											{
+												<tr>
+													<td style="color:white">@item.DietplanId</td>
+													<td style="color:white">@item.DietPlan.Title</td>
+													<td class="row col-md-0">
+														<span style="color:deepskyblue" class="col-md-2">
+															@{ string submit = "formStart" + item.Id + ".submit()";}
+															@using (Html.BeginForm("Edit", "Orders", FormMethod.Post, new {  @name = "formStart" + item.Id }))
+															{
+																@Html.AntiForgeryToken()
+																<input hidden name="id" value="@item.Id" />
+																<span onclick="@submit" style="cursor: pointer" title="Start Progress"><i class="fa fa-play-circle"></i></span>
+															}
+														</span> &nbsp&nbsp
+														<span style="color:red">
+															@{ submit = "formDelete" + item.Id + ".submit()";}
+															@using (Html.BeginForm("Delete", "Orders", FormMethod.Post, new { @name = "formDelete" + item.Id }))
+															{
+																@Html.AntiForgeryToken()
+																<input hidden name="id" value="@item.Id" />
+																<span onclick="@submit" style="cursor: pointer" title="Delete Diet Plan"><i class="fa fa-trash-o"></i></span>
+															}
 
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
+														</span>
+													</td>
+												</tr>
+											}
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+										}
+									</tbody>
+								</table>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 <!-- Breadcrumb Section End -->
+@section title{
+	<title>My Order</title>
+}
