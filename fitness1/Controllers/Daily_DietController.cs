@@ -54,7 +54,7 @@ namespace fitness.Controllers
             {
                 db.Daily_Diet.Add(daily_Diet);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return View("Create");
             }
 
             ViewBag.DDId = new SelectList(db.Diet_DayPerWeek, "Id", "Id", daily_Diet.DDId);

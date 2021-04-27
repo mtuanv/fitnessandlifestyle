@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace fitness.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         private fitnessandlifestyle db = new fitnessandlifestyle();

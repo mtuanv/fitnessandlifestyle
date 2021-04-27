@@ -27,7 +27,7 @@ namespace fitness.Controllers
                 "icrement", "buildup", "growth", "accrual", "addendum", "boost", "expansion", "plus",
                 "proliferation", "raise", "step up", "supplement", "uptick", "accumulation", "upsurge",
                 "upturn", "hike", "more", "up", "upping", "escalation", "development", "enlargement", "advance", "heavier"};
-            string[] lose = {"lose", "slimming", "emaciation", "emaciating", "loosing", "reduction", "emaciate",
+            string[] lose = {"loss", "lose", "slimming", "emaciation", "emaciating", "loosing", "reduction", "emaciate",
                 "slim down", "reduce", "slim", "thin", "slenderise", "slenderize", "melt off", "thinner"};
             string[] sspl = s.Split(' ');
             int flag = 0;

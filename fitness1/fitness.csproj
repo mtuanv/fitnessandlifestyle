@@ -260,6 +260,7 @@
     <Compile Include="Models\Resource.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ResultOrder.cs" />
     <Compile Include="Models\Schedule.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
@@ -273,6 +274,7 @@
     </Compile>
     <Compile Include="Models\WorkoutModelIndex.cs" />
     <Compile Include="Models\WorkOutViewModel.cs" />
+    <Compile Include="Models\WorkOut_Join_Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servies\notification.cs" />
     <Compile Include="Startup.cs" />
@@ -656,6 +658,7 @@
     <Content Include="Views\Home\BMI.cshtml" />
     <Content Include="Views\Home\tex.cshtml" />
     <Content Include="Views\Search\SearchResult.cshtml" />
+    <Content Include="Views\Profile\UserInputInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

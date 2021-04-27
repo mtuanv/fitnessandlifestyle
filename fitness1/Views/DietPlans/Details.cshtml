@@ -46,8 +46,9 @@
 							</p>
 							@foreach (var item in Model.dayPerWeeks)
 							{
-								<h5 class="dpw_title">@Html.DisplayFor(modelItem => item.Day)</h5> foreach (var dditem in item.Diet_DayPerWeek.Where(ddpw => ddpw.DayPerWeekId == item.Id).Where(ddpw => ddpw.DietID == Model.dietPlan.Id))
+								foreach (var dditem in item.Diet_DayPerWeek.Where(ddpw => ddpw.DayPerWeekId == item.Id).Where(ddpw => ddpw.DietID == Model.dietPlan.Id))
 								{
+									<h5 class="dpw_title">Day @Html.DisplayFor(modelItem => item.Id)</h5>
 									<table class="table table-striped">
 										<thead>
 											<tr class="bg-danger text-white">
@@ -65,7 +66,7 @@
 											}
 										</tbody>
 									</table> }
-								<br /><br />}
+								<br />}
 							@using (Html.BeginForm("Create", "Orders", FormMethod.Post))
 							{
 								@Html.AntiForgeryToken()

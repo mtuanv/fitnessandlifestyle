@@ -12,25 +12,27 @@
             <div class="col-lg-8">
                 <nav class="nav-menu">
                     <ul>
-                        <li class="active"><a href='@Url.Action("Index","Home")'>Home</a></li>
+                        <li class="active">
+                            <a href='@Url.Action("Index","Home")'>Home</a>
+                        </li>
 
                         <li><a href='@Url.Action("Team","Home")'>Our Team</a></li>
                         <li>
                             <a>Services</a>
                             <ul class="dropdown">
+                                <li><a href='@Url.Action("BMI","Home")'>Calculate BMI</a></li>
                                 <li><a href='@Url.Action("Index","WorkOuts")'>Workouts</a></li>
                                 <li><a href='@Url.Action("Index","DietPlans")'>Diet Plans</a></li>
-                                <li><a href='@Url.Action("BMI","Home")'>Calculate BMI</a></li>
+                                <li><a href='@Url.Action("Index","Resources")'>Resources</a></li>
                             </ul>
                         </li>
                         <li><a href="@Url.Action("Index", "Contact")">Contact</a></li>
-                        
                         @{
                             if (User.Identity.Name != "")
                             {
-                                <li>
-                                    <a> HELLO @User.Identity.Name </a>
-                                </li>
+
+                                <li><a href="@Url.Action("UserProfile", "Profile")">Profile</a></li>
+
                             }
                             else
                             {
@@ -51,14 +53,13 @@
                         @{
                             if (User.Identity.Name != "")
                             {
-                            <a href="@Url.Action("UserProfile", "Profile")">Profile</a>
 
-                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                            {
-                                @Html.AntiForgeryToken()
+                                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                {
+                                    @Html.AntiForgeryToken()
 
-                                <a class="smoothScroll" style="display:inline" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-                            }
+                                    <a class="smoothScroll" style="display:inline" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                }
 
                             }
                         }
@@ -71,4 +72,3 @@
         </div>
     </div>
 </header>
-

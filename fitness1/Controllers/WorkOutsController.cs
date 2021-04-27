@@ -8,8 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using fitness.Models;
 
+
 namespace fitness.Controllers
 {
+    [Authorize]
     public class WorkOutsController : Controller
     {
         private fitnessandlifestyle db = new fitnessandlifestyle();
@@ -27,7 +29,7 @@ namespace fitness.Controllers
         // GET: WorkOuts/Details/5
         public ActionResult Details(int? id)
         {
-
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

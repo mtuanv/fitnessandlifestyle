@@ -2825,6 +2825,7 @@ ol {
 /* Tablet Device = 768px */
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+
     .about-text {
         height: auto;
         padding: 120px 70px 60px 70px;
