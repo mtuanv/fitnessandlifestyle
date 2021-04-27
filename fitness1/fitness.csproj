@@ -260,6 +260,7 @@
     <Compile Include="Models\Resource.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ResultOrder.cs" />
     <Compile Include="Models\Schedule.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>

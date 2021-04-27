@@ -15,7 +15,27 @@ namespace fitness.Controllers
         fitnessandlifestyle db = new fitnessandlifestyle();
         public ActionResult Index()
         {
-            return View();
+             List<Order> orders = db.Orders.ToList();
+            List<WorkOut> workOuts = db.WorkOuts.ToList();
+            //List<DietPlan> dietPlans = db.DietPlans.ToList();
+            var Res = from o in orders
+                      join w in workOuts on o.WorkoutId equals w.Id
+                       group w by new { w.Title, w.Link,w.Id }
+                       into t
+                     
+
+                      orderby t.Count() descending 
+                      select new ResultOrder()
+                      {
+                          WorkoutID = t.Count(),
+                          Tittle = t.Key.Title,
+                          Image= t.Key.Link,
+                          Id = t.Key.Id
+
+                      };
+
+
+            return View(Res.Take(3));
         }
         public ActionResult Team()
         {
