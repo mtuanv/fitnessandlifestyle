@@ -1,119 +1,119 @@
 ﻿@model fitness.Models.WorkOutViewModel
 
 @{
-    ViewBag.Title = "Details";
+	ViewBag.Title = "Details";
 }
 
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb-bg.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="breadcrumb-text">
-                    <h2>@Model.WorkOut.Title</h2>
-                    <div class="bt-option">
-                        <a href="@Url.Action("Index","Home")">Home</a>
-                        <a href="@Url.Action("Index","WorkOuts")">Workouts</a>
-                        @if (Model.WorkOut.Category == 1)
-                        {
-                            <span>Body building</span>
-                        }
-                        else
-                        {
-                            <span>Fat loss</span>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<div class="breadcrumb-text">
+					<h2>@Model.WorkOut.Title</h2>
+					<div class="bt-option">
+						<a href="@Url.Action("Index","Home")">Home</a>
+						<a href="@Url.Action("Index","WorkOuts")">Workouts</a>
+						@if (Model.WorkOut.Category == 1)
+						{
+							<span>Body building</span>
+						}
+						else
+						{
+							<span>Fat loss</span>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 <!-- Breadcrumb Section End -->
 <!-- Class Details Section Begin -->
 <section class="class-details-section spad" id="loadSection">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="class-details-text">
-                    <div class="cd-pic">
-                        <img src="@Html.DisplayFor(model => model.WorkOut.Link)" />
-                    </div>
-                    <div class="cd-text">
-                        <div class="cd-single-item">
-                            <h3>@Html.DisplayFor(model => model.WorkOut.Title)</h3>
-                            <p>
-                                @Html.DisplayFor(model => model.WorkOut.Content)
-                            </p>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="class-details-text">
+					<div class="cd-pic">
+						<img src="@Html.DisplayFor(model => model.WorkOut.Link)" />
+					</div>
+					<div class="cd-text">
+						<div class="cd-single-item">
+							<h3>@Html.DisplayFor(model => model.WorkOut.Title)</h3>
+							<p>
+								@Html.DisplayFor(model => model.WorkOut.Content)
+							</p>
 
-                            @foreach (var item in Model.DayPerWeeks)
-                            {
-                                <h5 class="dpw_title">@item.Day</h5>
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr class="bg-danger text-white">
-                                            <th scope="col" class="border-0">Exercise</th>
-                                            <th scope="col" class="border-0">Sets</th>
-                                            <th scope="col" class="border-0">Reps</th>
-                                        </tr>
-                                    </thead>
-                                    @foreach (var day in item.Schedules.Where(x => x.WorkOutId == Model.WorkOut.Id))
-                                    {
-                                        if (day.Status == 2)
-                                        {
-                                            <thead>
-                                                <tr class="table-light">
-                                                    <th>Rest Day</th>
-                                                    <th></th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                        }
-                                        else
-                                        {
-                                            foreach (var ex in Model.Exercises.Where(x => x.Id == day.ExId))
-                                            {
-                                                <tbody>
-                                                    <tr class="table-light">
-                                                        <th><a href="" onclick="loadModal('@ex.Link','@ex.Title')" data-bs-toggle="modal" data-bs-target="#exampleModal">@ex.Title</a></th>
-                                                        <th>@day.sets</th>
-                                                        <th>@day.reps</th>
-                                                    </tr>
-                                                </tbody>
-                                            }
-                                        }
-                                    }
-                                </table>
-                            }
-						<form>
-							<input type="hidden" id="wkid" name="wkid" value="@Html.DisplayFor(model => model.WorkOut.Id)" />
-							<div class="li-text"><h6><button type="button" class="btn float-right btn-tpi" onclick="return _UserOrder()">Take part in</button></h6></div>
-						</form>
-                            <p class="clearfix"></p>
-                            <br />
-                            <h3>Related workout</h3>
-                        </div>
-                    </div>
-                    <div class="cd-trainer">
-                        <div id="owl-demo" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
-                            <div id="owl-example" class="owl-carousel">
-                                @foreach (var item in Model.DietPlans)
-                                {
-                                    <div>
-                                        <a href="@Url.Action("Details","DietPlans",new { id = item.Id })">
-                                            <img src="@Html.DisplayFor(modelItem => item.Link)" alt="Alternate Text" style="max-height:140px;" />
-                                            <div class="li-text">
-                                                <p href="#" style="color: #fff">@Html.DisplayFor(modelItem => item.Title)</p>
-                                            </div>
-                                        </a>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-                            $("#owl-example").owlCarousel();
-                        });
+							@foreach (var item in Model.DayPerWeeks)
+							{
+								<h5 class="dpw_title">@item.Day</h5>
+								<table class="table table-striped">
+									<thead>
+										<tr class="bg-danger text-white">
+											<th scope="col" class="border-0">Exercise</th>
+											<th scope="col" class="border-0">Sets</th>
+											<th scope="col" class="border-0">Reps</th>
+										</tr>
+									</thead>
+									@foreach (var day in item.Schedules.Where(x => x.WorkOutId == Model.WorkOut.Id))
+									{
+										if (day.Status == 2)
+										{
+											<thead>
+												<tr class="table-light">
+													<th>Rest Day</th>
+													<th></th>
+													<th></th>
+												</tr>
+											</thead>
+										}
+										else
+										{
+											foreach (var ex in Model.Exercises.Where(x => x.Id == day.ExId))
+											{
+												<tbody>
+													<tr class="table-light">
+														<th><a href="" onclick="loadModal('@ex.Link','@ex.Title')" data-bs-toggle="modal" data-bs-target="#exampleModal">@ex.Title</a></th>
+														<th>@day.sets</th>
+														<th>@day.reps</th>
+													</tr>
+												</tbody>
+											}
+										}
+									}
+								</table>
+							}
+							<form>
+								<input type="hidden" id="wkid" name="wkid" value="@Html.DisplayFor(model => model.WorkOut.Id)" />
+								<div class="li-text"><h6><button type="button" class="btn float-right btn-tpi" onclick="return _UserOrder()">Take part in</button></h6></div>
+							</form>
+							<p class="clearfix"></p>
+							<br />
+							<h3>Related workout</h3>
+						</div>
+					</div>
+					<div class="cd-trainer">
+						<div id="owl-demo" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
+							<div id="owl-example" class="owl-carousel">
+								@foreach (var item in Model.DietPlans)
+								{
+									<div>
+										<a href="@Url.Action("Details","DietPlans",new { id = item.Id })">
+											<img src="@Html.DisplayFor(modelItem => item.Link)" alt="Alternate Text" style="max-height:140px;" />
+											<div class="li-text">
+												<p href="#" style="color: #fff">@Html.DisplayFor(modelItem => item.Title)</p>
+											</div>
+										</a>
+									</div>
+								}
+							</div>
+						</div>
+					</div>
+					<script type="text/javascript">
+						$(document).ready(function () {
+							$("#owl-example").owlCarousel();
+						});
 						function _UserOrder() {
 							var obj = {
 								dietid: $('#dietid').val(),
@@ -135,7 +135,7 @@
 									})
 									swalWithBootstrapButtons.fire(
 										'Success',
-										'Feedback success',
+										'Take part in success',
 										'success'
 									)
 								},
@@ -149,15 +149,15 @@
 									})
 									swalWithBootstrapButtons.fire(
 										'Fail!',
-										'Feedback fail',
+										'Take part in fail',
 										'error'
 									)
 								}
 							});
 						}
-                    </script>
-                </div>
-            </div>
+					</script>
+				</div>
+			</div>
 			<div class="col-lg-4 col-md-8">
 				<div class="sidebar-option">
 					<div class="so-latest">
@@ -177,6 +177,9 @@
 					</div>
 				</div>
 			</div>
-        </div>
-    </div>
+		</div>
+	</div>
 </section>
+@section title{
+	<title>@Model.WorkOut.Title</title>
+}
