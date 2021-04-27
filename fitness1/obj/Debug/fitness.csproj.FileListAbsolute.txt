@@ -566,3 +566,4 @@ C:\Users\User\Desktop\fitnessandlifestyle2\fitness1\obj\Debug\fitness.csproj.Cor
 C:\Users\User\Desktop\fitnessandlifestyle2\fitness1\obj\Debug\fitness.csproj.CopyComplete
 C:\Users\User\Desktop\fitnessandlifestyle2\fitness1\obj\Debug\fitness.dll
 C:\Users\User\Desktop\fitnessandlifestyle2\fitness1\obj\Debug\fitness.pdb
+C:\Users\User\Desktop\fitnessandlifestyle2\fitness1\obj\Debug\fitness.csprojAssemblyReference.cache
