@@ -43,67 +43,104 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@next/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-<script src="~/Public/js/diagram-data.js"></script>
+
 <script>
-    /*
-    $(document).ready(function () {
-        let dataFill = [];
-        var goalProgess = $("#goalID").val();
-        var list = goalProgess.split('--');
-        
-        let data = {
-            datasets: [{
-                type: 'line',
-                label: 'Weight',
-                data: dataFill,
-                borderColor: 'rgb(104,206,15)'
-
-            }]
-        }
-        console.log(dataFill);
-        let option = {
-            parsing: {
-                xAxisKey: 'x',
-                yAxisKey: 'y'
-            },
-            scales: {
-                y: {
-                    grid: {
-                        borderColor: 'rgb(243,243,242)',
-                        color: 'rgba(255,255,255,0.5)',
-                    },
-                    ticks: {
-                        color: '#fff'
-                    },
-                },
-                x: {
-                    grid: {
-                        borderColor: 'rgb(243,243,242)',
-                        color: 'rgba(255,255,255,0.5)',
-                    },
-                    ticks: {
-                        color: '#fff'
-                    },
-                    title: {
-                        color: 'white',
-                        display: true,
-                    },
-                    type: 'time',
-                    time: {
-                        unit: 'week'
-                    }
-                },
-            }
-        }
-    })
-    */
-
-    let ctx = document.getElementById('myChart');
-    let config = {
-        type: 'line',
-        data: data,
-        options: option
-    }
-    let myChart = new Chart(ctx, config);
     
+    $(document).ready(function () {
+        const makeRequest = async () => {
+            func2(await func1())
+        }
+
+        makeRequest()
+
+        function func1() {
+            let dataFill = [];
+            var goalProgess = $("#goalID").val();
+            var list = goalProgess.split('--');
+
+            for (var i = 0; i < list.length; i++) {
+                var dateTemp = list[i].substring(0, list[i].indexOf("-"));
+                var weight = Number(list[i].substring(list[i].indexOf("-") + 1));
+                var date = convertDate(dateTemp);
+                if (dateTemp != "" && weight != "") {
+                    dataFill.push({ x:date, y:weight })
+                }
+            }
+            console.log(dataFill);
+            return dataFill;
+        }
+        
+
+        function convertDate(str) {
+            var firstIndex = str.indexOf("/");
+            var lastIndex = str.lastIndexOf("/");
+            var month = str.substring(0, firstIndex);
+            var day = str.substring(firstIndex + 1, lastIndex);
+            if (day.length < 2) {
+                day = "0" + day;
+            }
+            if (month.length < 2) {
+                month = "0" + month;
+            }
+            var year = str.substring(lastIndex + 1, lastIndex + 5);
+            var date = year + "-" + month + "-" + day;
+            return date;
+        }
+
+        function func2(dataPass) {
+            let data = {
+                datasets: [{
+                    type: 'line',
+                    label: 'Weight',
+                    data: dataPass,
+                    borderColor: 'rgb(104,206,15)'
+                }],
+
+            }
+
+            let option = {
+                parsing: {
+                    xAxisKey: 'x',
+                    yAxisKey: 'y'
+                },
+                scales: {
+                    y: {
+                        grid: {
+                            borderColor: 'rgb(243,243,242)',
+                            color: 'rgba(255,255,255,0.5)',
+                        },
+                        ticks: {
+                            color: '#fff'
+                        },
+                    },
+                    x: {
+                        grid: {
+                            borderColor: 'rgb(243,243,242)',
+                            color: 'rgba(255,255,255,0.5)',
+                        },
+                        ticks: {
+                            color: '#fff'
+                        },
+                        title: {
+                            color: 'white',
+                            display: true,
+                        },
+                        type: 'time',
+                        time: {
+                            unit: 'week'
+                        }
+                    },
+                }
+            }
+
+            let ctx = document.getElementById('myChart');
+            let config = {
+                type: 'line',
+                data: data,
+                options: option
+            }
+            let myChart = new Chart(ctx, config);
+        }
+        
+    })
 </script>

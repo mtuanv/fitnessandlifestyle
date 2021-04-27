@@ -21,7 +21,7 @@ namespace fitness.Controllers
             {
                 string listProgess = "";
                 ViewBag.GoalID = goal.Id;
-                var list = db.GoalProgesses.Where(n => n.GoalId == goal.Id).ToList();
+                var list = db.GoalProgesses.Where(n => n.GoalId == goal.Id).OrderByDescending(n => n.timestamp).ToList();
                 for(int i = 0; i < list.Count(); i++)
                 {
                     listProgess += list[i].timestamp + "-" + list[i].CurrentWeight + "--";
@@ -50,6 +50,15 @@ namespace fitness.Controllers
             var username = System.Web.HttpContext.Current.User.Identity.Name;
             AspNetUser user = db.AspNetUsers.Where(u => u.Email.Equals(username)).First();
             var listOrder = db.Orders.Where(o => o.UserId == user.Id && o.timestamp != null).ToList();
+            Goal goal = db.Goals.Where(n => n.UserId == user.Id).FirstOrDefault();
+            if (goal != null)
+            {
+                GoalProgess lastProgess = db.GoalProgesses.Where(g => g.GoalId == goal.Id).OrderByDescending(g => g.timestamp).FirstOrDefault();
+                ViewBag.currentResult = lastProgess.CurrentWeight - user.UserWeight;
+            }
+            ViewBag.name = user.FirstName + " " + user.LastName;
+            ViewBag.email = user.Email;
+
             return View(listOrder);
         }
         [Authorize]
@@ -63,6 +72,8 @@ namespace fitness.Controllers
             var username = System.Web.HttpContext.Current.User.Identity.Name;
             AspNetUser user = db.AspNetUsers.Where(u => u.Email.Equals(username)).First();
             var listOrder = db.Orders.Where(o => o.UserId == user.Id && o.timestamp == null).ToList();
+            ViewBag.name = user.FirstName + " " + user.LastName;
+            ViewBag.email = user.Email;
             return View(listOrder);
         }
         [Authorize]

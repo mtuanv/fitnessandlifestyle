@@ -1,4 +1,5 @@
-﻿<!-- Breadcrumb Section Begin -->
+﻿
+<!-- Breadcrumb Section Begin -->
 <link href="~/Assets/WebClient/css/font-awesome.min.css" rel="stylesheet" />
 @model IEnumerable<fitness.Models.Order>
 <section class="breadcrumb-sectionProfile set-bg" data-setbg="img/banner-profile.jpg">
@@ -12,8 +13,8 @@
                                 <div class="user-avatar">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
                                 </div>
-                                <h5 class="user-name">Yuki Hayashi</h5>
-                                <h6 class="user-email">yuki@Maxwell.com</h6>
+                                <h5 class="user-name">@ViewBag.name</h5>
+                                <h6 class="user-email">@ViewBag.email</h6>
                             </div>
                             <div class="about">
                                 <ul class="nav nav-list flex-column mb-5">
@@ -52,7 +53,7 @@
                                                     <td style="color:white">@item.WorkOut.Id</td>
                                                     <td style="color:white">@item.WorkOut.Title</td>
                                                     <td class="row ">
-                                                        <span style="color:deepskyblue" class="col-md-2>
+                                                        <span style="color:deepskyblue" class="col-md-2">
                                                             @using (Html.BeginForm("Edit", "Orders", FormMethod.Post, new { @name = "formStart" }))
                                                             {
                                                                 @Html.AntiForgeryToken()
