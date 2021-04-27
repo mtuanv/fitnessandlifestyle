@@ -794,3 +794,4 @@ D:\Bai Tap FPT\Teckwiz\git3\fitnessandlifestyle\fitness1\obj\Debug\fitness.cspro
 D:\Bai Tap FPT\Teckwiz\git3\fitnessandlifestyle\fitness1\obj\Debug\fitness.csproj.CopyComplete
 D:\Bai Tap FPT\Teckwiz\git3\fitnessandlifestyle\fitness1\obj\Debug\fitness.dll
 D:\Bai Tap FPT\Teckwiz\git3\fitnessandlifestyle\fitness1\obj\Debug\fitness.pdb
+C:\Users\User\Desktop\fitnessandlifestyle2\fitness1\obj\Debug\fitness.csprojAssemblyReference.cache
