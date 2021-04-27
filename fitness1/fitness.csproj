@@ -190,6 +190,7 @@
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ResourcesController.cs" />
     <Compile Include="Controllers\SchedulesController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\WorkOutsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -263,6 +264,7 @@
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SearchModel.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
@@ -397,6 +399,7 @@
     <Content Include="Public\css\owl.theme.default.min.css" />
     <Content Include="Public\css\slicknav.min.css" />
     <Content Include="Public\css\style.css" />
+    <Content Include="Public\css\sweetalert2.min.css" />
     <Content Include="Public\css\tuan.css" />
     <Content Include="Public\fonts\Flaticon.svg" />
     <Content Include="Public\fonts\fontawesome-webfont.svg" />
@@ -466,6 +469,7 @@
     <Content Include="Public\js\masonry.pkgd.min.js" />
     <Content Include="Public\js\owl.carousel.min.js" />
     <Content Include="Public\js\side-bar-menu.js" />
+    <Content Include="Public\js\sweetalert2.all.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\ADOModel.edmx">
@@ -624,6 +628,9 @@
     <Content Include="Views\Schedules\Index.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Profile\UserOrder.cshtml" />
+    <Content Include="Views\Home\BMI.cshtml" />
+    <Content Include="Views\Home\tex.cshtml" />
+    <Content Include="Views\Search\SearchResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
