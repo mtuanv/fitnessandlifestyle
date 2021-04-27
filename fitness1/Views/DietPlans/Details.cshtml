@@ -67,10 +67,10 @@
 										</tbody>
 									</table> }
 								<br />}
-						<form>
-							<input type="hidden" id="dietid" name="dietid" value="@Html.DisplayFor(model => model.dietPlan.Id)" />
-							<div class="li-text"><h6><button type="button" class="btn float-right btn-tpi"  onclick="return _UserOrder()">Take part in</button></h6></div>
-						</form>
+							<form>
+								<input type="hidden" id="dietid" name="dietid" value="@Html.DisplayFor(model => model.dietPlan.Id)" />
+								<div class="li-text"><h6><button type="button" class="btn float-right btn-tpi" onclick="return _UserOrder()">Take part in</button></h6></div>
+							</form>
 							<p class="clearfix"></p><br />
 							<h3>Related workout</h3>
 						</div>
@@ -103,41 +103,41 @@
 								wkid: $('#wkid').val(),
 							}
 							Swal.showLoading()
-								$.ajax({
-									url: "/Orders/UserOrder",
-									type: "POST",
-									data: JSON.stringify(obj),
-									contentType: "application/json; charset=utf-8",
-									success: function (response) {
-										const swalWithBootstrapButtons = Swal.mixin({
-											customClass: {
-												confirmButton: 'btn btn-success',
-												cancelButton: 'btn btn-danger mr-3'
-											},
-											buttonsStyling: false
-										})
-										swalWithBootstrapButtons.fire(
-											'Success',
-											'Feedback success',
-											'success'
-										)
-									},
-									error: function (response) {
-										const swalWithBootstrapButtons = Swal.mixin({
-											customClass: {
-												confirmButton: 'btn btn-success',
-												cancelButton: 'btn btn-danger mr-3'
-											},
-											buttonsStyling: false
-										})
-										swalWithBootstrapButtons.fire(
-											'Fail!',
-											'Feedback fail',
-											'error'
-										)
-									}
-								});
-							}
+							$.ajax({
+								url: "/Orders/UserOrder",
+								type: "POST",
+								data: JSON.stringify(obj),
+								contentType: "application/json; charset=utf-8",
+								success: function (response) {
+									const swalWithBootstrapButtons = Swal.mixin({
+										customClass: {
+											confirmButton: 'btn btn-success',
+											cancelButton: 'btn btn-danger mr-3'
+										},
+										buttonsStyling: false
+									})
+									swalWithBootstrapButtons.fire(
+										'Success',
+										'Take part in success',
+										'success'
+									)
+								},
+								error: function (response) {
+									const swalWithBootstrapButtons = Swal.mixin({
+										customClass: {
+											confirmButton: 'btn btn-success',
+											cancelButton: 'btn btn-danger mr-3'
+										},
+										buttonsStyling: false
+									})
+									swalWithBootstrapButtons.fire(
+										'Fail!',
+										'Take part in fail',
+										'error'
+									)
+								}
+							});
+						}
 					</script>
 				</div>
 			</div>
@@ -147,12 +147,12 @@
 						<h5 class="title">Some resources</h5>
 						@foreach (var item in Model.resources.Take(5))
 						{
-							<input type="hidden" value="@item.Link"/>
-					<div class="latest-large set-bg" data-setbg="img/resources/@item.Image">
-						<div class="ll-text">
-							<h5><a href="@Url.Action("Details","Resources",new { id = item.Id})">@item.Title</a></h5>
-						</div>
-					</div>
+							<input type="hidden" value="@item.Link" />
+							<div class="latest-large set-bg" data-setbg="img/resources/@item.Image">
+								<div class="ll-text">
+									<h5><a href="@Url.Action("Details","Resources",new { id = item.Id})">@item.Title</a></h5>
+								</div>
+							</div>
 						}
 					</div>
 					<div class="so-banner set-bg" data-setbg="img/sidebar-banner.jpg">
@@ -163,3 +163,6 @@
 		</div>
 	</div>
 </section>
+@section title{
+	<title>@Model.dietPlan.Title</title>
+}
