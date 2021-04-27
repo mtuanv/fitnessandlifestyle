@@ -52,20 +52,22 @@
 													<td style="color:white">@item.WorkOut.Id</td>
 													<td style="color:white">@item.WorkOut.Title</td>
 													<td class="row ">
-														<span style="color:deepskyblue" class="col-md-2>
-															@using (Html.BeginForm("Edit", "Orders", FormMethod.Post, new { @name = "formStart" }))
+														<span style="color:deepskyblue" class="col-md-2">
+															@{ string submit = "formStart" + item.Id + ".submit()";}
+															@using (Html.BeginForm("Edit", "Orders", FormMethod.Post, new { @name = "formStart" + item.Id }))
 															{
 																@Html.AntiForgeryToken()
 																<input hidden name="id" value="@item.Id" />
-																<span onclick="formStart.submit()"><i class="fa fa-play-circle"></i></span>
+																<span onclick="@submit"><i class="fa fa-play-circle"></i></span>
 															}
 														</span> &nbsp&nbsp
 														<span style="color:red">
-															@using (Html.BeginForm("Delete", "Orders", FormMethod.Post, new { @name = "formDelete" }))
+															@{ submit = "formDelete" + item.Id + ".submit()";}
+															@using (Html.BeginForm("Delete", "Orders", FormMethod.Post, new { @name = "formDelete" + item.Id }))
 															{
 																@Html.AntiForgeryToken()
 																<input hidden name="id" value="@item.Id" />
-																<span onclick="formDelete.submit()"><i class="fa fa-trash-o"></i></span>
+																<span onclick="@submit"><i class="fa fa-trash-o"></i></span>
 															}
 
 														</span>
@@ -100,19 +102,21 @@
 													<td style="color:white">@item.DietPlan.Title</td>
 													<td class="row col-md-0">
 														<span style="color:deepskyblue" class="col-md-2">
-															@using (Html.BeginForm("Edit", "DietPlans", FormMethod.Post, new { @name = "formStart" }))
+															@{ string submit = "formStart" + item.Id + ".submit()";}
+															@using (Html.BeginForm("Edit", "Orders", FormMethod.Post, new {  @name = "formStart" + item.Id }))
 															{
 																@Html.AntiForgeryToken()
 																<input hidden name="id" value="@item.Id" />
-																<span onclick="formStart.submit()"><i class="fa fa-play-circle"></i></span>
+																<span onclick="@submit"><i class="fa fa-play-circle"></i></span>
 															}
 														</span> &nbsp&nbsp
 														<span style="color:red">
-															@using (Html.BeginForm("Delete", "DietPlans", FormMethod.Post, new { @name = "formDelete" }))
+															@{ submit = "formDelete" + item.Id + ".submit()";}
+															@using (Html.BeginForm("Delete", "Orders", FormMethod.Post, new { @name = "formDelete" + item.Id }))
 															{
 																@Html.AntiForgeryToken()
 																<input hidden name="id" value="@item.Id" />
-																<span onclick="formDelete.submit()"><i class="fa fa-trash-o"></i></span>
+																<span onclick="@submit"><i class="fa fa-trash-o"></i></span>
 															}
 
 														</span>

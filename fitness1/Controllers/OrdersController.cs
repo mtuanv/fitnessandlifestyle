@@ -84,7 +84,7 @@ namespace fitness.Controllers
             ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", order.UserId);
             ViewBag.DietplanId = new SelectList(db.DietPlans, "Id", "Title", order.DietplanId);
             ViewBag.WorkoutId = new SelectList(db.WorkOuts, "Id", "Content", order.WorkoutId);
-            return View(order);
+            return RedirectToAction("UserOrder", "Profile");
         }
 
         // POST: Orders/Edit/5
@@ -105,7 +105,7 @@ namespace fitness.Controllers
             ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", order.UserId);
             ViewBag.DietplanId = new SelectList(db.DietPlans, "Id", "Title", order.DietplanId);
             ViewBag.WorkoutId = new SelectList(db.WorkOuts, "Id", "Content", order.WorkoutId);
-            return View(order);
+            return RedirectToAction("UserOrder", "Profile");
         }
 
         // GET: Orders/Delete/5
@@ -120,7 +120,7 @@ namespace fitness.Controllers
             {
                 return HttpNotFound();
             }
-            return View(order);
+            return RedirectToAction("UserOrder", "Profile");
         }
 
         // POST: Orders/Delete/5
@@ -131,7 +131,7 @@ namespace fitness.Controllers
             Order order = db.Orders.Find(id);
             db.Orders.Remove(order);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("UserOrder", "Profile");
         }
 
         protected override void Dispose(bool disposing)
