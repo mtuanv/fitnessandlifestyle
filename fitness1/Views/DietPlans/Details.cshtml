@@ -67,12 +67,10 @@
 										</tbody>
 									</table> }
 								<br />}
-							@using (Html.BeginForm("Create", "Orders", FormMethod.Post))
-							{
-								@Html.AntiForgeryToken()
-								<input type="hidden" name="DietplanId" value="@Html.DisplayFor(model => model.dietPlan.Id)" />
-								<div class="li-text"><h6><button type="submit" class="btn float-right btn-tpi">Take part in</button></h6></div>
-							}
+						<form>
+							<input type="hidden" id="dietid" name="dietid" value="@Html.DisplayFor(model => model.dietPlan.Id)" />
+							<div class="li-text"><h6><button type="button" class="btn float-right btn-tpi"  onclick="return _UserOrder()">Take part in</button></h6></div>
+						</form>
 							<p class="clearfix"></p><br />
 							<h3>Related workout</h3>
 						</div>
@@ -99,7 +97,47 @@
 						$(document).ready(function () {
 							$("#owl-example").owlCarousel();
 						});
-
+						function _UserOrder() {
+							var obj = {
+								dietid: $('#dietid').val(),
+								wkid: $('#wkid').val(),
+							}
+							Swal.showLoading()
+								$.ajax({
+									url: "/Orders/UserOrder",
+									type: "POST",
+									data: JSON.stringify(obj),
+									contentType: "application/json; charset=utf-8",
+									success: function (response) {
+										const swalWithBootstrapButtons = Swal.mixin({
+											customClass: {
+												confirmButton: 'btn btn-success',
+												cancelButton: 'btn btn-danger mr-3'
+											},
+											buttonsStyling: false
+										})
+										swalWithBootstrapButtons.fire(
+											'Success',
+											'Feedback success',
+											'success'
+										)
+									},
+									error: function (response) {
+										const swalWithBootstrapButtons = Swal.mixin({
+											customClass: {
+												confirmButton: 'btn btn-success',
+												cancelButton: 'btn btn-danger mr-3'
+											},
+											buttonsStyling: false
+										})
+										swalWithBootstrapButtons.fire(
+											'Fail!',
+											'Feedback fail',
+											'error'
+										)
+									}
+								});
+							}
 					</script>
 				</div>
 			</div>

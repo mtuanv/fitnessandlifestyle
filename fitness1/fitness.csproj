@@ -257,6 +257,7 @@
     <Compile Include="Models\Order.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OrderVM.cs" />
     <Compile Include="Models\Resource.cs">
       <DependentUpon>ADOModel.tt</DependentUpon>
     </Compile>

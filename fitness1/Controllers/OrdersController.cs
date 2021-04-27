@@ -60,7 +60,7 @@ namespace fitness.Controllers
             {
                 db.Orders.Add(order);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Indexz");
             }
 
             ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", order.UserId);
@@ -141,6 +141,35 @@ namespace fitness.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public JsonResult UserOrder(OrderVM orderVMs)
+        {
+            var username = System.Web.HttpContext.Current.User.Identity.Name;
+            AspNetUser user = db.AspNetUsers.Where(u => u.Email.Equals(username)).First();
+            Order order1 = new Order();
+            order1.UserId = user.Id;
+            if(orderVMs.dietid == 0)
+            {
+                order1.DietplanId = null;
+            }
+            else
+            {
+                order1.DietplanId = orderVMs.dietid;
+            }
+            if (orderVMs.wkid == 0)
+            {
+                order1.WorkoutId = null;
+            }
+            else
+            {
+                order1.WorkoutId = orderVMs.wkid;
+            }
+            order1.timestamp = DateTime.Now;
+            db.Orders.Add(order1);
+            db.SaveChanges();
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }
