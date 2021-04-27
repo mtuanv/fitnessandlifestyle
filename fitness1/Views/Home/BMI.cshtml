@@ -102,6 +102,7 @@
                 }
                 html += result;
                 var float_result = parseFloat(result);
+                moveArrow(float_result);
                 if (float_result >= 25) {
                     html3 += 'Your weight is redundant !';
                 } else if (float_result <= 18) {

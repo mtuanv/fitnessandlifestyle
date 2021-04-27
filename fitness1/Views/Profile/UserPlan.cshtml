@@ -1,5 +1,6 @@
 ﻿<!-- Breadcrumb Section Begin -->
 @model IEnumerable<fitness.Models.Order>
+
 <section class="breadcrumb-sectionProfile set-bg" data-setbg="img/banner-profile.jpg">
     <div class="container-profile">
 
@@ -11,20 +12,20 @@
                         <h5 class="modal-title text-center" id="exampleModalLabel">Your Daily Info</h5>
                     </div>
                     <div class="modal-body">
-                        <form class="form-modal">
+                        <form class="form-modal" action="@Url.Action("UpdateProgess", "Profile")" id="myForm" method="post">
                             <div class="mb-3">
                                 <label for="dailyWeight" class="form-label">Input Weight</label>
-                                <input type="email" class="form-control" id="dailyWeight" placeholder="Wight">
+                                <input type="number" class="form-control" id="dailyWeight" placeholder="Wight" name="weight">
                             </div>
                             <div class="mb-3">
                                 <label for="dailyHeight" class="form-label">Input Height</label>
-                                <input type="email" class="form-control" id="dailyHeight" placeholder="Height">
+                                <input type="number" class="form-control" id="dailyHeight" placeholder="Height" name="height">
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" id="goalButton" class="btn btn-primary">Save changes</button>
+                        <button type="button" id="goalButton" onclick="document.getElementById('myForm').submit()" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -40,7 +41,7 @@
                                 <div class="user-avatar">
                                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
                                 </div>
-                                <h5 class="user-name">Yuki Hayashi</h5>
+                                <h5 class="user-name">abc </h5>
                                 <h6 class="user-email">yuki@Maxwell.com</h6>
                             </div>
                             <div class="about">
@@ -58,7 +59,10 @@
             <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
                 <div class="card h-100">
                     <div class="card-body">
-                        
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputGoal">
+                            Daily Info
+                        </button>
+
                         <table class="userProgress table">
                             <thead>
                                 <tr>
@@ -70,7 +74,7 @@
                             </thead>
                             @foreach (var item in Model)
                             {
-                                <tr >
+                                <tr>
                                     <td>1</td>
                                     <td>@item.WorkOut.Title</td>
                                     <td>
