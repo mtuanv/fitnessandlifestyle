@@ -32,85 +32,93 @@
 		</div>
 		<!--        Modal End-->
 
-        <div class="row gutters">
-            <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <div class="account-settings">
-                            <div class="user-profile">
-                                <div class="user-avatar">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
-                                </div>
-                                <h5 class="user-name">@ViewBag.name </h5>
-                                <h6 class="user-email">@ViewBag.email</h6>
-                            </div>
-                            <div class="about">
-                                <ul class="nav nav-list flex-column mb-5" id="sidebarnav">
-                                    <li class="nav-item"><a href="@Url.Action("UserDiagram", "Profile")" class="nav-link">User Dashboard</a></li>
-                                    <li class="nav-item"><a href="@Url.Action("UserProfile", "Profile")" class="nav-link">User Profile</a></li>
-                                    <li class="nav-item"><a href="@Url.Action("UserPlan", "Profile")" class="nav-link">Plan</a></li>
-                                    <li class="nav-item"><a href="@Url.Action("UserOrder", "Profile")" class="nav-link">Order</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
-                <div class="card h-100">
-                    <div class="card-body">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputGoal">
-                            Daily Info
-                        </button>
-                        <input class="hidden-field" value="@ViewBag.currentResult" id="currentChanged"/>
-                        <table class="userProgress table">
-                            <thead>
-                                <tr>
-                                    <td>No</td>
-                                    <td>Plan Name</td>
-                                    <td>Progress</td>
-                                    <td></td>
-                                </tr>
-                            </thead>
-                            @{int i =1;}
-                            @foreach (var item in Model)
-                            {
-                                string weightId = "weight" + i;
-                                string barId = "bar" + i;
+		<div class="row gutters">
+			<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12">
+				<div class="card h-100">
+					<div class="card-body">
+						<div class="account-settings">
+							<div class="user-profile">
+								<div class="user-avatar">
+									<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
+								</div>
+								<h5 class="user-name">@ViewBag.name </h5>
+								<h6 class="user-email">@ViewBag.email</h6>
+							</div>
+							<div class="about">
+								<ul class="nav nav-list flex-column mb-5" id="sidebarnav">
+									<li class="nav-item"><a href="@Url.Action("UserDiagram", "Profile")" class="nav-link">User Dashboard</a></li>
+									<li class="nav-item"><a href="@Url.Action("UserProfile", "Profile")" class="nav-link">User Profile</a></li>
+									<li class="nav-item"><a href="@Url.Action("UserPlan", "Profile")" class="nav-link">Plan</a></li>
+									<li class="nav-item"><a href="@Url.Action("UserOrder", "Profile")" class="nav-link">Order</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
+				<div class="card h-100">
+					<div class="card-body">
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputGoal">
+							Daily Info
+						</button>
+						<input class="hidden-field" value="@ViewBag.currentResult" id="currentChanged" />
+						<table class="userProgress table">
+							<thead>
+								<tr>
+									<td>No</td>
+									<td>Plan Name</td>
+									<td>Progress</td>
+									<td></td>
+								</tr>
+							</thead>
+							@{int i = 1;}
+							@foreach (var item in Model)
+							{
+								if (item.WorkOut != null)
+								{
+									string weightId = "weight" + i;
+									string barId = "bar" + i;
 
-                                <tr>
-                                    <td id="No">@i</td>
-                                    <td>@item.WorkOut.Title</td>
-                                    <td id=@weightId class="hidden-field weight">@item.WorkOut.WeightChange</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div id=@barId class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                                        </div>
-                                    </td>
-                                    <td><a style="text-decoration:none" href="@Url.Action("Details", "WorkOuts",new { id = item.WorkoutId})">Details</a></td>
-                                </tr>
-                                i++;
-                            }
+									<tr>
+										<td id="No">@i</td>
+										<td>@item.WorkOut.Title</td>
+										<td id=@weightId class="hidden-field weight">@item.WorkOut.WeightChange</td>
+										<td>
+											<div class="progress">
+												<div id=@barId class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+											</div>
+										</td>
+										<td><a style="text-decoration:none" href="@Url.Action("Details", "WorkOuts",new { id = item.WorkoutId})">Details</a></td>
+									</tr>
+									i++;
+								}
 
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+							}
+
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 <!-- Breadcrumb Section End -->
 
 <script>
-    var userChanged = $("#currentChanged").val();
-    var userChangedConvert = Number(userChanged);
-    var list = $(".weight");
-    for (var i = 1; i <= list.length; i++) {
-        var weigthChanged = $("#weight" + i).text();
-        var weightChangedConvert = Number(weigthChanged);
-        var ratio = (userChangedConvert / weightChangedConvert) * 100;
-        $("#bar" + i).css("width", ratio + "%");
-        $("#bar" + i).text(ratio + "%");
-    }
+	var userChanged = $("#currentChanged").val();
+	var userChangedConvert = Number(userChanged);
+	var list = $(".weight");
+	for (var i = 1; i <= list.length; i++) {
+		var weigthChanged = $("#weight" + i).text();
+		var weightChangedConvert = Number(weigthChanged);
+		var ratio = (userChangedConvert / weightChangedConvert) * 100;
+		$("#bar" + i).css("width", ratio + "%");
+		$("#bar" + i).text(ratio + "%");
+	}
 
 </script>
+@section title{
+	<title>My Plan</title>
+}
+

@@ -1022,3 +1022,4 @@ F:\techwiz\fitnessandlifestyle\fitness1\obj\Debug\fitness.csproj.CoreCompileInpu
 F:\techwiz\fitnessandlifestyle\fitness1\obj\Debug\fitness.csproj.CopyComplete
 F:\techwiz\fitnessandlifestyle\fitness1\obj\Debug\fitness.dll
 F:\techwiz\fitnessandlifestyle\fitness1\obj\Debug\fitness.pdb
+C:\Users\User\Desktop\fitnessandlifestyle2\fitness1\obj\Debug\fitness.csprojAssemblyReference.cache

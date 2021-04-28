@@ -84,7 +84,7 @@ namespace fitness.Controllers
             ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", order.UserId);
             ViewBag.DietplanId = new SelectList(db.DietPlans, "Id", "Title", order.DietplanId);
             ViewBag.WorkoutId = new SelectList(db.WorkOuts, "Id", "Content", order.WorkoutId);
-            return RedirectToAction("UserOrder", "Profile");
+            return RedirectToAction("UserPlan", "Profile");
         }
 
         // POST: Orders/Edit/5
@@ -100,12 +100,12 @@ namespace fitness.Controllers
                 Order orderchange = db.Orders.Find(id);
                 orderchange.timestamp = DateTime.Now;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("UserPlan", "Profile");
             }
             ViewBag.UserId = new SelectList(db.AspNetUsers, "Id", "Email", order.UserId);
             ViewBag.DietplanId = new SelectList(db.DietPlans, "Id", "Title", order.DietplanId);
             ViewBag.WorkoutId = new SelectList(db.WorkOuts, "Id", "Content", order.WorkoutId);
-            return RedirectToAction("UserOrder", "Profile");
+            return RedirectToAction("UserPlan", "Profile");
         }
 
         // GET: Orders/Delete/5

@@ -69,7 +69,7 @@
 								<br />}
 							<form>
 								<input type="hidden" id="dietid" name="dietid" value="@Html.DisplayFor(model => model.dietPlan.Id)" />
-								<div class="li-text"><h6><button type="button" class="btn float-right btn-tpi" onclick="return _UserOrder()">Take part in</button></h6></div>
+								<div class="li-text"><h6><button type="button" class="btn float-right btn-tpi" onclick="return _UserOrder()">Save the post</button></h6></div>
 							</form>
 							<p class="clearfix"></p><br />
 							<h3>Related workout</h3>
@@ -118,7 +118,7 @@
 									})
 									swalWithBootstrapButtons.fire(
 										'Success',
-										'Take part in success',
+										'Save success',
 										'success'
 									)
 								},
@@ -132,7 +132,7 @@
 									})
 									swalWithBootstrapButtons.fire(
 										'Fail!',
-										'Take part in fail',
+										'Save fail',
 										'error'
 									)
 								}
