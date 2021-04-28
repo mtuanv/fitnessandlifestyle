@@ -41,15 +41,15 @@
 								<div class="user-avatar">
 									<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="Maxwell Admin">
 								</div>
-								<h5 class="user-name">abc </h5>
-								<h6 class="user-email">yuki@Maxwell.com</h6>
+								<h5 class="user-name">@ViewBag.name </h5>
+								<h6 class="user-email">@ViewBag.email</h6>
 							</div>
 							<div class="about">
 								<ul class="nav nav-list flex-column mb-5" id="sidebarnav">
-									<li class="nav-item"><a href="@Url.Action("UserDiagram","Profile")" class="nav-link">User Dashboard</a></li>
-									<li class="nav-item"><a href="@Url.Action("UserProfile","Profile")" class="nav-link">User Profile</a></li>
-									<li class="nav-item"><a href="@Url.Action("UserPlan","Profile")" class="nav-link">Plan</a></li>
-									<li class="nav-item"><a href="@Url.Action("UserOrder","Profile")" class="nav-link">Order</a></li>
+									<li class="nav-item"><a href="@Url.Action("UserDiagram", "Profile")" class="nav-link">User Dashboard</a></li>
+									<li class="nav-item"><a href="@Url.Action("UserProfile", "Profile")" class="nav-link">User Profile</a></li>
+									<li class="nav-item"><a href="@Url.Action("UserPlan", "Profile")" class="nav-link">Plan</a></li>
+									<li class="nav-item"><a href="@Url.Action("UserOrder", "Profile")" class="nav-link">Order</a></li>
 								</ul>
 							</div>
 						</div>
@@ -62,37 +62,39 @@
 						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#inputGoal">
 							Daily Info
 						</button>
-
+						<input class="hidden-field" value="@ViewBag.currentResult" id="currentChanged" />
 						<table class="userProgress table">
 							<thead>
 								<tr>
 									<td>No</td>
 									<td>Plan Name</td>
 									<td>Progress</td>
-									<td>Update Progress</td>
+									<td></td>
 								</tr>
 							</thead>
+							@{int i = 1;}
 							@foreach (var item in Model)
 							{
-								<tr>
-									<td>1</td>
-									<td>@item.WorkOut.Title</td>
-									<td>
-										00%
-										<div class="progress">
-											<div class="progress-bar" role="progressbar" style="width: 00%" aria-valuenow="00" aria-valuemin="0" aria-valuemax="100">00%</div>
-										</div><span style="float:right">100%</span>
+								if (item.WorkOut != null)
+								{
+									string weightId = "weight" + i;
+									string barId = "bar" + i;
 
-									</td>
-									<td>
-										&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-										<button type="button" class="btn btn-primary" data-workoutId="@item.WorkOut.Id" data-bs-toggle="modal" data-bs-target="#inputGoal">
-											<i class="fa fa-edit"></i>
-										</button>
-									</td>
-								</tr>
+									<tr>
+										<td id="No">@i</td>
+										<td>@item.WorkOut.Title</td>
+										<td id=@weightId class="hidden-field weight">@item.WorkOut.WeightChange</td>
+										<td>
+											<div class="progress">
+												<div id=@barId class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+											</div>
+										</td>
+										<td><a style="text-decoration:none" href="@Url.Action("Details", "WorkOuts",new { id = item.WorkoutId})">Details</a></td>
+									</tr>
+									i++;
+								}
+
 							}
-
 
 						</table>
 					</div>
@@ -102,6 +104,21 @@
 	</div>
 </section>
 <!-- Breadcrumb Section End -->
+
+<script>
+	var userChanged = $("#currentChanged").val();
+	var userChangedConvert = Number(userChanged);
+	var list = $(".weight");
+	for (var i = 1; i <= list.length; i++) {
+		var weigthChanged = $("#weight" + i).text();
+		var weightChangedConvert = Number(weigthChanged);
+		var ratio = (userChangedConvert / weightChangedConvert) * 100;
+		$("#bar" + i).css("width", ratio + "%");
+		$("#bar" + i).text(ratio + "%");
+	}
+
+</script>
 @section title{
 	<title>My Plan</title>
 }
+
